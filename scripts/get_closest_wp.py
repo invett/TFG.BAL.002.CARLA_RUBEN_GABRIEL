@@ -1,3 +1,32 @@
+"""
+Script Name: get_spectator_waypoint.py
+
+Description:
+    This script connects to a running CARLA simulator instance and retrieves 
+    the closest driving waypoint to the spectator's current position in the world. 
+    It displays the waypoint's location and rotation, and visually marks it in the 
+    CARLA world using a debug string.
+
+Use case:
+    When working in CARLA (e.g., for simulation setup, debugging, or vehicle spawning),
+    it’s often useful to identify the nearest waypoint relative to where the spectator 
+    camera is currently positioned. This helps developers understand map coordinates, 
+    navigation paths, and environment layout more intuitively.
+
+How to run:
+    1. Make sure the CARLA simulator is running (default port: 2000).
+    2. Adjust the CARLA Python API path in the script if necessary:
+         sys.path.append('/path/to/your/CARLA_x.x.x/PythonAPI/carla')
+    3. Run this script with Python 3:
+         python3 get_spectator_waypoint.py
+    4. The script will print the spectator’s nearest waypoint information 
+       and display a visual marker in the simulator.
+
+Dependencies:
+    - CARLA simulator (version 0.9.x)
+    - Python 3.x
+"""
+
 import carla
 import sys
 import time
