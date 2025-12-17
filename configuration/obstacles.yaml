@@ -1,0 +1,3701 @@
+
+# YAML file: obstacles.yaml
+# This is a configuration file for the CARLA simulator in YAML format that contains all the information necessary to
+# generate a set of props specified in the official CARLA documentation (https://carla.readthedocs.io/en/latest/catalogue_props/)
+# information that will be read by a script to use the data to moify maps and simulate roadblocks 
+# in different areas of the simulator's predefined environements.
+# This file is divided into different scenarios, each with the following fields:
+#
+#           - Map: The map for wich the roadblock is designed (Town02, Town03, Town04,...)
+#           - Description: A brief description of what eacho roadblock contins
+#           - Props: A list of the props used to generate and simulate the roadblock
+#           - Prop ID: The ID used to search for props in the CARLA blueprints and generate them
+#           - Transforms: Each prop has different transform fiels wich contains the location (x, y, z) and the rotation (pitch, yaw, roll) where the prop will be placed
+#
+# This file can be modified or expanded to generate other types of roadblocks on additional maps or change the props used for existing roadblocks in the YAML file
+# To do so, the following considerations must be taken into account:
+#
+#           - Unreal Engine handles rotations differently than CARLA: 
+#                   + Unreal Rotation -> roll, pitch, yaw 
+#                   + CARLA Rotation -> pitch, yaw, roll (practical use decided by the CARLA team to match their Python classes)
+#           - In Unreal Engine, positions are given in meters (example: X= 14610.0 in Unreal | X = 146.10 in CARLA)
+
+#- transform:
+#            
+#            location: {x: ,y: ,z: }
+#            rotation: {pitch: ,yaw: ,roll: }
+
+scenarios:
+
+  blocked_street01_Town02: #roadblock type identifier
+
+    map: "Town02"  
+    description: |
+        First roadblock consisting of a single closed street in Town02. 
+        This roadblock consists of 2 road barriers (static.prop.streetbarrier) 
+        and 2 traffic cones (static.prop.trafficcone01), Both taken from the CARLA props catalog, placed across the width of the road, 
+        simulating a roadblock due to construction work.
+
+    props: #List of props
+
+      static.prop.streetbarrier: #Props ID
+
+        - transform: #coordinates and rotations for generating props in their respective locations 
+
+            location: {x: 45.91, y: 250.181, z: 0.02}
+            rotation: {pitch: 0.0 , yaw: 0.0 , roll: 0.0}
+
+        - transform:
+
+            location: {x: 41.80 , y: 250.20 ,z: 0.02}
+            rotation: {pitch: 0.0 , yaw: 0.0, roll: 0.02 }
+
+      static.prop.trafficcone01:
+        
+        - transform:
+
+            location: {x: 47.19 , y: 250.44 , z: 0.02 }
+            rotation: {pitch: 0.0 , yaw: 90.0 , roll: 0.0}
+
+        - transform:
+
+            location: {x: 40.60 ,y: 250.40,z: 0.03}
+            rotation: {pitch: 0.0 , yaw: 90.0 , roll: 0.0}
+ 
+  blocked_street02_Town02:
+
+    map: "Town02"
+    description: |
+        Second simple blockade on a single street in Town02. 
+        This blockade consists of 3 traffic barriers (static.prop.streetbarrier) placed perpendicularly 
+        across the width of the street, blocking it.
+
+    props:
+      
+      static.prop.streetbarrier:
+
+        - transform:
+          
+            location: {x: 142.70 ,y: 187.10 ,z:  0.02}
+            rotation: {pitch: 0.0,yaw: 90.0,roll: 0.0 }
+
+        - transform:
+          
+            location: {x: 142.70 ,y: 189.40 ,z: 0.02 }
+            rotation: {pitch: 0.0 ,yaw: 90.0,roll: 0.0 }
+        
+        - transform:
+          
+            location: {x: 142.70 ,y: 191.60 ,z: 0.02}
+            rotation: {pitch: 0.0 ,yaw: 90.0 ,roll: 0.0}
+  
+  multiple_blocked_street01_Town02:
+
+    map: "Town02"
+    description: | 
+        Multiple roadblocks distributed across 3 streets in Town02, blocking the streets with elements consisting of 
+        6 traffic barriers (static.prop.streetbarrier divided between the roadblocks), 8 construction cones (static.prop.constructioncone representing a single roadblock)
+        a police car (vehicle.dodge.charger_police) from the second roadblock to complement the cosntruction cones, 2 traffic cones 
+        (static.prop.trafficcone01), and a warning sign (static.prop.warningconstruction).
+
+    props:
+
+      static.prop.streetbarrier:
+
+        - transform:
+          
+            location: {x: 142.70 ,y: 187.10 ,z:  0.02}
+            rotation: {pitch: 0.0,yaw: 90.0,roll: 0.0 }
+
+        - transform:
+          
+            location: {x: 142.70 ,y: 189.40 ,z: 0.02 }
+            rotation: {pitch: 0.0 ,yaw: 90.0,roll: 0.0 }
+        
+        - transform:
+          
+            location: {x: 142.70 ,y: 191.60 ,z: 0.02}
+            rotation: {pitch: 0.0 ,yaw: 90.0 ,roll: 0.0}
+
+        - transform:
+
+            location: {x: 45.50,y: 251.00,z: 0.02}
+            rotation: {pitch: 0.0,yaw: 0.0,roll: 0.0}
+        
+        - transform:
+
+            location: {x: 43.90,y: 251.00,z: 0.02}
+            rotation: {pitch: 0.0,yaw: 0.0,roll: 0.0}
+
+        - transform:
+
+            location: {x: 42.30,y: 251.00,z: 0.02}
+            rotation: {pitch: 0.0,yaw: 0.0,roll: 0.0}
+
+      static.prop.constructioncone:
+
+        - transform:
+          
+            location: {x: 144.30,y: 235.50,z: 0.02}
+            rotation: {pitch: 0.0,yaw: 0.0,roll: 0.0}
+
+        - transform:
+          
+            location: {x: 144.30,y: 236.10,z: 0.02 }
+            rotation: {pitch: 0.0,yaw: 0.0,roll: 0.0}
+        
+        - transform:
+          
+            location: {x: 144.30,y: 236.70,z: 0.02}
+            rotation: {pitch: 0.0, yaw: 0.0,roll: 0.0}
+
+
+        - transform:
+          
+            location: {x: 144.30,y: 237.20,z: 0.02}
+            rotation: {pitch: 0.0,yaw: 0.0,roll: 0.0}
+
+        - transform:
+          
+            location: {x: 144.30,y: 241.00,z: 0.02}
+            rotation: {pitch: 0.0,yaw: 0.0,roll: 0.0}
+
+        - transform:
+          
+            location: {x: 144.30,y: 241.50,z: 0.02}
+            rotation: {pitch: 0.0,yaw: 0.0,roll: 0.0}
+
+        - transform:
+          
+            location: {x: 144.30,y: 242.00,z: 0.02}
+            rotation: {pitch: 0.0,yaw: 0.0,roll: 0.0}
+
+        - transform:
+          
+            location: {x: 144.30,y: 242.50,z: 0.02}
+            rotation: {pitch: 0.0,yaw: 0.0,roll: 0.0}
+
+      vehicle.dodge.charger_police:
+        
+        - transform:
+
+            location: {x: 147.10,y: 239.10,z: 2.00}
+            rotation: {pitch: 0.0,yaw: 90.0,roll: 0.0}
+
+      static.prop.warningconstruction:
+        
+        - transform:
+          
+            location: {x: 40.70,y: 249.40,z: 0.02}
+            rotation: {pitch: 0.0,yaw: 180.0 ,roll: 0.0}
+
+      static.prop.trafficcone01:
+
+        - transform:
+
+            location: {x: 47.20,y: 250.40,z: 0.02}
+            rotation: {pitch: 0.0,yaw: 90.0,roll: 0.0}
+
+        - transform:
+
+            location: {x: 40.60,y: 250.40,z: 0.02}
+            rotation: {pitch: 0.0,yaw: 90.0,roll: 0.0}
+
+  multiple_blocked_street02_Town02:
+
+    map: "Town02"
+    description: |
+        Same as 'multiple_blocked_street01_Town02' but in different locations.
+
+    props:
+        
+      static.prop.streetbarrier:
+
+        - transform:
+          
+            location: {x: 142.70 ,y: 187.10 ,z:  0.02}
+            rotation: {pitch: 0.0,yaw: 90.0,roll: 0.0 }
+
+        - transform:
+          
+            location: {x: 142.70 ,y: 189.40 ,z: 0.02 }
+            rotation: {pitch: 0.0 ,yaw: 90.0 ,roll: 0.0 }
+        
+        - transform:
+          
+            location: {x: 142.70 ,y: 191.60 ,z: 0.02}
+            rotation: {pitch: 0.0 ,yaw: 90.0 ,roll: 0.0}
+
+        - transform:
+
+            location: {x: 45.50,y: 198.20,z: 0.02}
+            rotation: {pitch: 0.0,yaw: 0.0,roll: 0.0}
+        
+        - transform:
+
+            location: {x: 43.90,y: 198.20,z: 0.02}
+            rotation: {pitch: 0.0,yaw: 0.0,roll: 0.0}
+
+        - transform:
+
+            location: {x: 42.30,y: 198.20,z: 0.02}
+            rotation: {pitch: 0.0,yaw: 0.0,roll: 0.0}
+
+      static.prop.constructioncone:
+
+        - transform:
+          
+            location: {x: 144.30,y: 235.50,z: 0.02}
+            rotation: {pitch: 0.0,yaw: 0.0,roll: 0.0}
+
+        - transform:
+          
+            location: {x: 144.30,y: 236.10,z: 0.02 }
+            rotation: {pitch: 0.0,yaw: 0.0,roll: 0.0}
+        
+        - transform:
+          
+            location: {x: 144.30,y: 236.70,z: 0.02}
+            rotation: {pitch: 0.0, yaw: 0.0,roll: 0.0}
+
+
+        - transform:
+          
+            location: {x: 144.30,y: 237.20,z: 0.02}
+            rotation: {pitch: 0.0,yaw: 0.0,roll: 0.0}
+
+        - transform:
+          
+            location: {x: 144.30,y: 241.00,z: 0.02}
+            rotation: {pitch: 0.0,yaw: 0.0,roll: 0.0}
+
+        - transform:
+          
+            location: {x: 144.30,y: 241.50,z: 0.02}
+            rotation: {pitch: 0.0,yaw: 0.0,roll: 0.0}
+
+        - transform:
+          
+            location: {x: 144.30,y: 242.00,z: 0.02}
+            rotation: {pitch: 0.0,yaw: 0.0,roll: 0.0}
+
+        - transform:
+          
+            location: {x: 144.30,y: 242.50,z: 0.02}
+            rotation: {pitch: 0.0,yaw: 0.0,roll: 0.0}
+
+      vehicle.dodge.charger_police:
+        
+        - transform:
+
+            location: {x: 147.10,y: 240.10,z: 2.00}
+            rotation: {pitch: 0.0,yaw: 90.0,roll: 0.0}
+
+      static.prop.warningconstruction:
+        
+        - transform:
+          
+            location: {x: 40.70,y: 197.10,z: 0.02}
+            rotation: {pitch: 0.0,yaw: 180.0 ,roll: 0.0}
+
+      static.prop.trafficcone01:
+
+        - transform:
+
+            location: {x: 47.20,y: 198.10,z: 0.02}
+            rotation: {pitch: 0.0,yaw: 90.0,roll: 0.0}
+
+        - transform:
+
+            location: {x: 40.60,y: 198.10,z: 0.02}
+            rotation: {pitch: 0.0,yaw: 90.0,roll: 0.0}
+
+  simple_blocked_street01_town03:
+
+    map: "Town03"
+    description: |
+        Simple roadblock on a single uphill street in Town03. 
+        This roadblock consists of a series of barriers with chains aligned with each other to create a single large barrier 
+        to simulate a road in the process of being removed or blocked due to an event that usually means heavy pedestrian traffic.
+
+    props:
+      
+      static.prop.chainbarrier:
+        
+        - transform:
+          
+            location: {x: 143.60,y: -12.90 ,z: 0.01}
+            rotation: {pitch: 0.0,yaw: 0.0,roll: 0.0}
+
+        - transform:
+          
+            location: {x: 145.10,y: -12.90,z: 0.01}
+            rotation: {pitch: 0.0,yaw: 0.0,roll: 0.0}
+
+        - transform:
+          
+            location: {x: 146.50,y: -12.90,z: 0.01}
+            rotation: {pitch: 0.0,yaw: 0.0,roll: 0.0}
+
+        - transform:
+          
+            location: {x: 148.00,y: -12.90,z: 0.01}
+            rotation: {pitch: 0.0,yaw: 0.0,roll: 0.0}
+
+        - transform:
+          
+            location: {x: 149.50,y: -12.90,z: 0.01}
+            rotation: {pitch: 0.0,yaw: 0.0,roll: 0.0}
+
+        - transform:
+          
+            location: {x: 151.00,y: -12.90,z: 0.01}
+            rotation: {pitch: 0.0,yaw: 0.0,roll: 0.0}
+
+        - transform:
+          
+            location: {x: 152.30,y: -12.90,z: 0.01}
+            rotation: {pitch: 0.0,yaw: 0.0,roll: 0.0}
+
+        - transform:
+          
+            location: {x: 153.70,y: -12.90,z: 0.01}
+            rotation: {pitch: 0.0,yaw: 0.0,roll: 0.0}
+
+        - transform:
+          
+            location: {x: 155.20,y: -12.90,z: 0.01}
+            rotation: {pitch: 0.0,yaw: 0.0,roll: 0.0}
+
+      static.prop.chainbarrierend:
+
+        - transform:
+
+            location: {x: 156.70,y: -12.90,z: 0.01}
+            rotation: {pitch: 0.0,yaw: 0.0,roll: 0.0}
+
+  
+  poor_condition_uphill_street_Town03:
+    
+
+    map: "Town03"
+    description: |
+      A blocked uphill street that appears to be in poor condition 
+      due to dirt or debris. Using earth debris and street barriers. 
+
+    props:
+      
+      static.prop.streetbarrier:
+
+        - transform:
+            
+            location: {x: 89.40, y: -184.90, z: -0.01}
+            rotation: {pitch: 0.0,yaw: 0.0,roll: 0.0}
+
+        - transform:
+            
+            location: {x: 86.20, y: -184.90, z: -0.01}
+            rotation: {pitch: 0.0,yaw: 0.0,roll: 0.0}
+
+        - transform:
+            
+            location: {x: 82.60, y: -184.90, z: -0.01}
+            rotation: {pitch: 0.0,yaw: 0.0,roll: 0.0}
+
+        - transform:
+            
+            location: {x: 79.30, y: -184.90, z: -0.01}
+            rotation: {pitch: 0.0,yaw: 0.0,roll: 0.0}
+      
+      static.prop.dirtdebris01:
+
+        - transform:
+            
+            location: {x: 88.90,y: -183.20,z: -0,02}
+            rotation: {pitch: 0.0,yaw: 180.0,roll: 0.0}
+
+        - transform:
+            
+            location: {x: 87.20,y: -179.80,z: 0.00}
+            rotation: {pitch: 0.0,yaw: 0.0,roll: -10.0}
+
+        - transform:
+            
+            location: {x: 80.40,y: -181.70,z: -0.01}
+            rotation: {pitch: 0.0,yaw: 25.0,roll: 0.0}
+
+      static.prop.dirtdebris02:
+
+        - transform:
+            
+            location: {x: 90.70,y: -182.50,z: -0,02}
+            rotation: {pitch: 0.0,yaw: 0.0,roll: 0.0}
+
+        - transform:
+            
+            location: {x: 87.90,y: -181.30,z: -0.01}
+            rotation: {pitch: 0.0,yaw: 0.0,roll: 0.0}
+
+        - transform:
+            
+            location: {x: 85.40,y: -182.50,z: -0.02}
+            rotation: {pitch: 0.0,yaw: 180.0,roll: 0.0}
+
+      static.prop.dirtdebris03:
+
+        - transform:
+            
+            location: {x: 81.90,y: -183.70,z: -0,02}
+            rotation: {pitch: 0.0,yaw: -40.0,roll: 0.0}
+
+        - transform:
+            
+            location: {x: 80.10,y: -183.30,z: -0.02}
+            rotation: {pitch: 0.0,yaw: 25.0,roll: 0.0}
+
+        - transform:
+            
+            location: {x: 77.60,y: -183.90,z: -0.02}
+            rotation: {pitch: 0.0,yaw: 60.0,roll: 0.0}
+
+  multiple_blocked_street01_Town03:
+
+
+    map: "Town03"
+    description: |
+      A series of streets blocked by different types of props simulating 
+      police checkpoints, firefighting operations, and construction work near the main roundabout. 
+      Consisting of stationary vehicles such as police cars and fire trucks 
+      as well as warning signs, street barriers and dumpsters.
+
+    props:
+
+      static.prop.warningaccident:
+        
+        - transform:
+            
+            location: {x: -6.00,y: 143.90,z: 0.00}
+            rotation: {pitch: 0.0,yaw: 180.0,roll: 0.0}
+
+        - transform:
+            
+            location: {x: -9.40,y: 143.90,z: 0.00}
+            rotation: {pitch: 0.0,yaw: 180.0,roll: 0.0}
+
+      vehicle.carlamotors.firetruck:
+
+        - transform:
+            
+            location: {x: -7.40,y: 151.30,z: 2.00}
+            rotation: {pitch: 0.0,yaw: 60.0,roll: 0.0}
+
+        - transform:
+            
+            location: {x: -9.50,y: 161.50,z: 2.00}
+            rotation: {pitch: 0.0,yaw: 100.0,roll: 0.0}
+
+      static.prop.container:
+
+        - transform:
+            
+            location: {x: -12.30,y: 153.00,z: 0.0}
+            rotation: {pitch: 0.0,yaw: 0.0,roll: 0.0}
+
+        - transform:
+            
+            location: {x: -54.40,y: -2.90,z: 0.0}
+            rotation: {pitch: 0.0,yaw: 45.0,roll: 0.0}
+      
+
+      static.prop.streetbarrier:
+
+        - transform:
+
+            location: {x: -17.70,y: 138.20,z: 0.0}
+            rotation: {pitch: 0.0,yaw: 90.0,roll: 0.0}
+
+        - transform:
+
+            location: {x: -17.70,y: 135.30,z: 0.0}
+            rotation: {pitch: 0.0,yaw: 90.0,roll: 0.0}
+
+        - transform:
+
+            location: {x: -17.70,y: 132.60,z: 0.0}
+            rotation: {pitch: 0.0,yaw: 90.0,roll: 0.0}
+
+        - transform:
+
+            location: {x: -17.70,y: 129.90,z: 0.0}
+            rotation: {pitch: 0.0,yaw: 90.0,roll: 0.0}
+
+        - transform:
+
+            location: {x: -17.70,y: 127.10,z: 0.0}
+            rotation: {pitch: 0.0,yaw: 90.0,roll: 0.0}
+
+      vehicle.dodge.charger_police:
+
+        - transform:
+            
+            location: {x: -19.80,y: 135.70,z: 0.0}
+            rotation: {pitch: 0.0,yaw: -90.0,roll: 0.0}
+
+        - transform:
+            
+            location: {x: -19.80,y: 128.90,z: 0.0}
+            rotation: {pitch: 0.0,yaw: 90.0,roll: 0.0}
+
+      static.prop.trafficwarning:
+
+        - transform:
+            
+            location: {x: -26.50,y: -7.70,z: 0.0}
+            rotation: {pitch: 0.0,yaw: 55.0,roll: 0.0}
+
+      static.prop.ironplank:
+        
+        - transform:
+
+            location: {x: -48.70,y: -2.80,z: 0.0}
+            rotation: {pitch: 0.0,yaw: 0.0,roll: 0.0}
+
+        - transform:
+
+            location: {x: -50.40,y: -2.80,z: 0.0}
+            rotation: {pitch: 0.0,yaw: 0.0,roll: 0.0}
+        
+        - transform:
+
+            location: {x: -52.10,y: -2.80,z: 0.0}
+            rotation: {pitch: 0.0,yaw: 0.0,roll: 0.0}
+
+      vehicle.nissan.patrol:
+
+        - transform:
+            
+            location: {x: -41.10,y: -3.00,z: 0.0}
+            rotation: {pitch: 0.0,yaw: 0.0,roll: 0.0}
+
+  double_roadblock_Town03:
+    
+    map: "Town03"
+    description: |
+      Double roadblock, one inside the main roundabout, 
+      consisting of barriers and warning signs, and the other near the Town03 gas station, 
+      consisting of traffic cones and some containers, a type of improvised roadblock.
+
+    props:
+
+      static.prop.container:
+
+        - transform:
+            
+            location: {x: -62.40,y: 131.00,z: 0.0}
+            rotation: {pitch: 0.0,yaw: 125.0,roll: 0.0}
+
+        - transform:
+            
+            location: {x: -62.70,y: 133.50,z: 0.0}
+            rotation: {pitch: 0.0,yaw: 75.0,roll: 0.0}
+
+        - transform:
+            
+            location: {x: -62.70,y: 137.40,z: 0.0}
+            rotation: {pitch: 0.0,yaw: 115.0,roll: 0.0}
+
+      static.prop.barrel:
+
+        - transform:
+            
+            location: {x: -65.20,y: 130.80,z: 0.0}
+            rotation: {pitch: 0.0,yaw: 0.0,roll: 0.0}
+
+        - transform:
+            
+            location: {x: -65.20,y: 132.50,z: 0.0}
+            rotation: {pitch: 0.0,yaw: 0.0,roll: 0.0}
+
+        - transform:
+            
+            location: {x: -65.30,y: 134.70,z: 0.0}
+            rotation: {pitch: 0.0,yaw: 0.0,roll: 0.0}
+
+        - transform:
+            
+            location: {x: -65.30,y: 136.80,z: 0.0}
+            rotation: {pitch: 0.0,yaw: 0.0,roll: 0.0}
+
+      static.prop.constructioncone:
+        
+        - transform:
+
+            location: {x: -64.30,y: 127.90,z: 0.0}
+            rotation: {pitch: 0.0,yaw: 0.0,roll: 0.0}
+
+        - transform:
+
+            location: {x: -64.70,y: 129.00,z: 0.0}
+            rotation: {pitch: 0.0,yaw: 0.0,roll: 0.0}
+
+        - transform:
+
+            location: {x: -65.40,y: 138.60,z: 0.0}
+            rotation: {pitch: 0.0,yaw: 0.0,roll: 0.0}
+
+        - transform:
+
+            location: {x: -65.60,y: 139.60,z: 0.0}
+            rotation: {pitch: 0.0,yaw: 0.0,roll: 0.0}
+
+      static.prop.streetbarrier:
+
+        - transform: 
+            
+            location: {x: -7.60,y: 25.40,z: 0.0}
+            rotation: {pitch: 0.0,yaw: -15.0,roll: 0.0}
+        
+        - transform: 
+            
+            location: {x: -13.00,y: 26.00,z: 0.0}
+            rotation: {pitch: 0.0,yaw: -15.0,roll: 0.0}
+
+      static.prop.warningaccident:
+
+        - transform:
+            
+            location: {x: -10.20,y: 25.80,z: 0.0}
+            rotation: {pitch: 0.0,yaw: 160.0,roll: 0.0}
+
+
+  multiple_blocked_streets03_Town03:
+
+    map: "Town03"
+    description: |
+      Multiple roadblocks distributed throughout the main streets on the map. 
+      These consist of various barriers and traffic signs used as warnings, 
+      as well as some simple cones that are easy to set up and a small police roadblock.
+
+
+    props:
+
+      static.prop.trafficwarning:
+
+        - transform:
+            
+            location: {x: 26.81,y: 5.30,z: 0.0}
+            rotation: {pitch: 0.0,yaw: -100.0,roll: 0.0}
+
+        - transform:
+            
+            location: {x: 68.20,y: -7.30,z: 0.0}
+            rotation: {pitch: 0.0,yaw: 90.0,roll: 0.0}
+    
+      static.prop.streetbarrier:
+
+        - transform:
+            
+            location: {x: 70.40,y: -4.60,z: 0.0}
+            rotation: {pitch: 0.0,yaw: 90.0,roll: 0.0}
+
+        - transform:
+            
+            location: {x: 70.40,y: -6.50,z: 0.0}
+            rotation: {pitch: 0.0,yaw: 90.0,roll: 0.0}
+
+        - transform:
+            
+            location: {x: 70.40,y: -8.50,z: 0.0}
+            rotation: {pitch: 0.0,yaw: 90.0,roll: 0.0}
+
+        - transform:
+            
+            location: {x: 70.40,y: -10.50,z: 0.0}
+            rotation: {pitch: 0.0,yaw: 90.0,roll: 0.0}
+
+      static.prop.trafficcone02:
+
+        - transform:
+         
+           location: {x: -5.80,y: 143.70,z: 0.0}
+           rotation: {pitch: 0.0,yaw: 0.0,roll: 0.0}
+
+        - transform:
+         
+           location: {x: -7.80,y: 143.70,z: 0.0}
+           rotation: {pitch: 0.0,yaw: 0.0,roll: 0.0}
+
+        - transform:
+         
+           location: {x: -9,90,y: 143.70,z: 0.0}
+           rotation: {pitch: 0.0,yaw: 0.0,roll: 0.0}
+
+        - transform:
+         
+           location: {x: 15.10,y: 129.40,z: 0.0}
+           rotation: {pitch: 0.0,yaw: 0.0,roll: 0.0}
+
+        - transform:
+         
+           location: {x: 15.10,y: 130.60,z: 0.0}
+           rotation: {pitch: 0.0,yaw: 0.0,roll: 0.0}
+
+        - transform:
+         
+           location: {x: 15.10,y: 131.80,z: 0.0}
+           rotation: {pitch: 0.0,yaw: 0.0,roll: 0.0}
+
+        - transform:
+         
+           location: {x: 15.10,y: 133.20,z: 0.0}
+           rotation: {pitch: 0.0,yaw: 0.0,roll: 0.0}
+
+        - transform:
+         
+           location: {x: 15.10,y: 134.40,z: 0.0}
+           rotation: {pitch: 0.0,yaw: 0.0,roll: 0.0}
+
+        - transform:
+         
+           location: {x: 15.10,y: 135.60,z: 0.0}
+           rotation: {pitch: 0.0,yaw: 0.0,roll: 0.0}
+
+      vehicle.dodge.charger_police:
+
+        - transform: 
+
+            location: {x: -7.70,y: 145.90,z: 2.00}
+            rotation: {pitch: 0.0,yaw: 210.0,roll: 0.0}
+
+        - transform: 
+
+            location: {x: -9.50,y: 151.60,z: 2.00}
+            rotation: {pitch: 0.0,yaw: 110.0,roll: 0.0}
+
+  double_roadblock02_Town03:
+
+    map: "Town03"
+    description: |
+      Two streets blocked, one opposite the other, leaving only one possibility for traffic to pass. 
+      The roadblock is set up using some ambulances and a fire truck on one side and some medium-sized traffic cones
+       on the other side of the street.
+
+    props:
+
+      vehicle.carlamotors.firetruck:
+
+        - transform:
+            
+            location: {x: -13.80,y: -137.00,z: 2.00}
+            rotation: {pitch: 0.0,yaw: 105,roll: 0.0}
+
+      vehicle.ford.ambulance:
+
+        - transform:
+
+            location: {x: -23.60,y: -142.40,z: 2.00}
+            rotation: {pitch: 0.0,yaw: 180.0,roll: 0.0}
+
+        - transform:
+
+            location: {x: -25.30,y: -136.40,z: 2.00}
+            rotation: {pitch: 0.0,yaw: -25.0,roll: 0.0}
+
+      static.prop.trafficcone01:
+
+        - transform:
+            
+            location: {x: 17.80,y: -141.10,z: 0.01}
+            rotation: {pitch: 0.0,yaw: 0.0,roll: 0.0}
+
+        - transform:
+            
+            location: {x: 17.80,y: -139.70,z: 0.01}
+            rotation: {pitch: 0.0,yaw: 0.0,roll: 0.0}
+
+        - transform:
+            
+            location: {x: 17.80,y: -138.30,z: 0.01}
+            rotation: {pitch: 0.0,yaw: 0.0,roll: 0.0}
+
+        - transform:
+            
+            location: {x: 17.80,y: -135.00,z: 0.01}
+            rotation: {pitch: 0.0,yaw: 0.0,roll: 0.0}
+
+        - transform:
+            
+            location: {x: 17.80,y: -133.60,z: 0.01}
+            rotation: {pitch: 0.0,yaw: 0.0,roll: 0.0}
+
+        - transform:
+            
+            location: {x: 17.80,y: -132.30,z: 0.01}
+            rotation: {pitch: 0.0,yaw: 0.0,roll: 0.0}
+
+      static.prop.trafficcone02:
+
+        - transform:
+           
+            location: {x: 17.80,y: -137.20,z: 0.01}
+            rotation: {pitch: 0.0,yaw: 0.0,roll: 0.0}
+
+        - transform:
+           
+            location: {x: 17.80,y: -136.20,z: 0.01}
+            rotation: {pitch: 0.0,yaw: 0.0,roll: 0.0}
+
+  multiple_blocked_streets04_Town03:
+
+    
+    map: "Town03"
+    description: |
+      Multiple blocked streets limit traffic in some strategic areas of the map. 
+      The roadblocks mainly consist of street barriers and some warning lights at key points such as the central roundabout, 
+      and also include some traffic cones to add a touch of realism.
+
+    props:
+
+      static.prop.streetbarrier:
+
+        - transform:
+            
+            location: {x: -87.90,y: -149.60,z: 0.0}
+            rotation: {pitch: 0.0,yaw: 0.0,roll: 0.0}
+
+        - transform:
+            
+            location: {x: -85.10,y: -149.60,z: 0.0}
+            rotation: {pitch: 0.0,yaw: 0.0,roll: 0.0}
+
+        - transform:
+            
+            location: {x: -81.30,y: -149.60,z: 0.0}
+            rotation: {pitch: 0.0,yaw: 0.0,roll: 0.0}
+
+        - transform:
+            
+            location: {x: -77.90,y: -149.60,z: 0.0}
+            rotation: {pitch: 0.0,yaw: 0.0,roll: 0.0}
+
+        - transform:
+            
+            location: {x: -74.60,y: -149.60,z: 0.0}
+            rotation: {pitch: 0.0,yaw: 0.0,roll: 0.0}
+
+        - transform:
+            
+            location: {x: -88.50,y: -126.10,z: 0.0}
+            rotation: {pitch: 0.0,yaw: 0.0,roll: 0.0}
+
+        - transform:
+            
+            location: {x: -85.70,y: -126.10,z: 0.0}
+            rotation: {pitch: 0.0,yaw: 0.0,roll: 0.0}
+
+        - transform:
+            
+            location: {x: -81.90,y: -126.10,z: 0.0}
+            rotation: {pitch: 0.0,yaw: 0.0,roll: 0.0}
+
+        - transform:
+            
+            location: {x: -78.50,y: -126.10,z: 0.0}
+            rotation: {pitch: 0.0,yaw: 0.0,roll: 0.0}
+
+        - transform:
+            
+            location: {x: -75.20,y: -126.10,z: 0.0}
+            rotation: {pitch: 0.0,yaw: 0.0,roll: 0.0}
+
+        - transform:
+            
+            location: {x: -4.10,y: -126.10,z: 0.0}
+            rotation: {pitch: 0.0,yaw: 0.0,roll: 0.0}
+
+        - transform:
+            
+            location: {x: -1.30,y: -126.10,z: 0.0}
+            rotation: {pitch: 0.0,yaw: 0.0,roll: 0.0}
+
+        - transform:
+            
+            location: {x: 5.90,y: -126.10,z: 0.0}
+            rotation: {pitch: 0.0,yaw: 0.0,roll: 0.0}
+
+        - transform:
+            
+            location: {x: 9.20,y: -126.10,z: 0.0}
+            rotation: {pitch: 0.0,yaw: 0.0,roll: 0.0}
+
+      static.prop.trafficcone02:
+
+        - transform:
+            
+            location: {x: 4.00,y: -125.70,z: 0.00}
+            rotation: {pitch: 0.0,yaw: 0.0,roll: 0.0}
+
+        - transform:
+            
+            location: {x: 3.00,y: -125.70,z: 0.00}
+            rotation: {pitch: 0.0,yaw: 0.0,roll: 0.0}
+
+        - transform:
+            
+            location: {x: 2.20,y: -125.70,z: 0.00}
+            rotation: {pitch: 0.0,yaw: 0.0,roll: 0.0}
+
+        - transform:
+            
+            location: {x: 1.40,y: -125.70,z: 0.00}
+            rotation: {pitch: 0.0,yaw: 0.0,roll: 0.0}
+
+      static.prop.constructioncone:
+
+        - transform:
+            
+            location: {x: 26.60,y: 2.70,z: 0.0}
+            rotation: {pitch: 0.0,yaw: 0.0,roll: 0.0}
+
+        - transform:
+            
+            location: {x: 26.60,y: 3.30,z: 0.0}
+            rotation: {pitch: 0.0,yaw: 0.0,roll: 0.0}
+
+        - transform:
+            
+            location: {x: 26.60,y: 4.00,z: 0.0}
+            rotation: {pitch: 0.0,yaw: 0.0,roll: 0.0}
+
+        - transform:
+            
+            location: {x: 26.60,y: 7.10,z: 0.0}
+            rotation: {pitch: 0.0,yaw: 0.0,roll: 0.0}
+
+        - transform:
+            
+            location: {x: 26.60,y: 7.80,z: 0.0}
+            rotation: {pitch: 0.0,yaw: 0.0,roll: 0.0}
+
+        - transform:
+            
+            location: {x: 26.60,y: 8.40,z: 0.0}
+            rotation: {pitch: 0.0,yaw: 0.0,roll: 0.0}
+
+      static.prop.trafficwarning:
+
+        - transform:
+            
+            location: {x: 27.30,y: 5.50,z: 0.0}
+            rotation: {pitch: 0.0,yaw: -100.0,roll: 0.0}
+
+
+  simple_roadblock_Town04:
+
+    map: "Town04"
+    description: |
+      A simple roadblock consisting of a few street barriers placed near the gas station in Town04.  
+
+
+    props:
+
+      static.prop.streetbarrier:
+
+        - transform:
+            
+            location: {x: 303.60,y: -246.60,z: 0.0}
+            rotation: {pitch: 0.0,yaw: 90.0,roll: 0.0}
+
+        - transform:
+            
+            location: {x: 303.60,y: -248.50,z: 0.0}
+            rotation: {pitch: 0.0,yaw: 90.0,roll: 0.0}
+        
+        - transform:
+            
+            location: {x: 303.60,y: -250.50,z: 0.0}
+            rotation: {pitch: 0.0,yaw: 90.0,roll: 0.0}
+
+  simple_roadblock02_Town04:
+
+    map: "Town04"
+    description: |
+      A simple roadblock similar to -simple roadblock town04- but on the opposite street 
+      and using medium-sized traffic cones instead of barriers. 
+
+    props:
+
+      static.prop.trafficcone01:
+
+        - transform:
+
+            location: {x: 323.00,y: -250.40,z: 0.0}
+            rotation: {pitch: 0.0,yaw: 0.0,roll: 0.0}
+
+        - transform:
+
+            location: {x: 323.00,y: -249.50,z: 0.0}
+            rotation: {pitch: 0.0,yaw: 0.0,roll: 0.0}
+
+        - transform:
+
+            location: {x: 323.00,y: -246.90,z: 0.0}
+            rotation: {pitch: 0.0,yaw: 0.0,roll: 0.0}
+
+        - transform:
+
+            location: {x: 323.00,y: -246.00,z: 0.0}
+            rotation: {pitch: 0.0,yaw: 0.0,roll: 0.0}
+
+
+  double_roadblock_Town04:
+    
+    map: "Town04"
+    description: |
+      Two streets blocked by barriers, traffic cones, and warning signs. 
+      One of the blockades cuts off one of the access roads from the highway to the town, 
+      and the other is located on a single street within the town.
+
+    props:
+
+      static.prop.streetbarrier:
+
+        - transform: 
+            
+            location: {x: 24.80,y: -174.90,z: 0.02}
+            rotation: {pitch: 0.0,yaw: 90.0,roll: 0.0}
+
+        - transform: 
+            
+            location: {x: 24.80,y: -172.30,z: 0.02}
+            rotation: {pitch: 0.0,yaw: 90.0,roll: 0.0}
+
+        - transform: 
+            
+            location: {x: 24.80,y: -169.60,z: 0.02}
+            rotation: {pitch: 0.0,yaw: 90.0,roll: 0.0}
+
+
+        - transform: 
+            
+            location: {x: 203.80,y: -238.10,z: 0.0}
+            rotation: {pitch: 0.0,yaw: 0.0,roll: 0.0}
+
+        - transform: 
+            
+            location: {x: 199.80,y: -238.10,z: 0.0}
+            rotation: {pitch: 0.0,yaw: 0.0,roll: 0.0}
+
+      static.prop.trafficcone01:
+
+        - transform:
+            
+            location: {x: 24.70,y: -170.90,z: 0.02}
+            rotation: {pitch: 0.0,yaw: 0.0,roll: 0.0}
+
+
+        - transform:
+            
+            location: {x: 24.70,y: -173.70,z: 0.02}
+            rotation: {pitch: 0.0,yaw: 0.0,roll: 0.0}
+
+      static.prop.warningconstruction:
+
+        - transform:
+            
+            location: {x: 201.90,y: -238.70,z: 0.0}
+            rotation: {pitch: 0.0,yaw: 180.0,roll: 0.0}
+
+  double_roadblock02_Town04:
+
+    map: "Town04"
+    description: |
+      A double roadblock in certain main traffic areas within Town04. 
+      Simulated roadblocks with chain barriers simulating pedestrian events or permanent closures, and barriers and cones simulating temporary roadblocks for various reasons.
+
+    props:
+     
+      static.prop.streetbarrier:
+
+        - transform:
+            
+            location: {x: 138.10,y: -174.30,z: 0.02}
+            rotation: {pitch: 0.0,yaw: 90.0,roll: 0.0}
+
+        - transform:
+            
+            location: {x: 138.10,y: -171.70,z: 0.02}
+            rotation: {pitch: 0.0,yaw: 90.0,roll: 0.0}
+
+        - transform:
+            
+            location: {x: 138.10,y: -169.00,z: 0.02}
+            rotation: {pitch: 0.0,yaw: 90.0,roll: 0.0}
+
+      static.prop.trafficcone01:
+        
+        - transform:
+            
+            location: {x: 138.00,y: -173.10,z: 0.02}
+            rotation: {pitch: 0.0,yaw: 0.0,roll: 0.0}
+
+        - transform:
+            
+            location: {x: 138.00,y: -170.30,z: 0.02}
+            rotation: {pitch: 0.0,yaw: 0.0,roll: 0.0}
+
+      static.prop.chainbarrier:
+
+        - transform: 
+          
+            location: {x: 308.80,y: -161.30,z: 0.0}
+            rotation: {pitch: 0.0,yaw: 0.0,roll: 0.0}
+
+        - transform: 
+          
+            location: {x: 310.20,y: -161.30,z: 0.0}
+            rotation: {pitch: 0.0,yaw: 0.0,roll: 0.0}
+
+        - transform: 
+          
+            location: {x: 311.50,y: -161.30,z: 0.0}
+            rotation: {pitch: 0.0,yaw: 0.0,roll: 0.0}
+
+        - transform: 
+          
+            location: {x: 312.90,y: -161.30,z: 0.0}
+            rotation: {pitch: 0.0,yaw: 0.0,roll: 0.0}
+
+        - transform: 
+          
+            location: {x: 314.40,y: -161.30,z: 0.0}
+            rotation: {pitch: 0.0,yaw: 0.0,roll: 0.0}
+
+      static.prop.chainbarrierend:
+
+        - transform: 
+          
+            location: {x: 315.90,y: -161.30,z: 0.0}
+            rotation: {pitch: 0.0,yaw: 0.0,roll: 0.0}
+
+  multiple_blocked_streets_Town04:
+    
+    map: "Town04"
+    description: |
+      Multiple streets blocked by roadblocks made with various objects related to road works. 
+      This includes roadblocks at one of the entrances to the town from the highway, containers 
+      blocking the street to simulate trash or similar, as well as a traffic guide made with cones 
+      indicating the only possible route to follow, located near the Town04 parking lot.
+
+    props:
+
+      static.prop.constructioncone:
+        
+        - transform: 
+            
+            location: {x: 161.80,y: -363.70,z: 0.0}
+            rotation: {pitch: 0.0,yaw: 0.0,roll: 0.0}
+
+        - transform: 
+            
+            location: {x: 161.80,y: -365.50,z: 0.0}
+            rotation: {pitch: 0.0,yaw: 0.0,roll: 0.0}
+
+        - transform: 
+            
+            location: {x: 162.20,y: -363.20,z: 0.0}
+            rotation: {pitch: 0.0,yaw: 0.0,roll: 0.0}
+
+        - transform: 
+            
+            location: {x: 162.20,y: -366.00,z: 0.0}
+            rotation: {pitch: 0.0,yaw: 0.0,roll: 0.0}
+
+        - transform:
+
+            location: {x: 250.50,y: -250.50,z: 0.0}
+            rotation: {pitch: 0.0,yaw: 0.0,roll: 0.0}
+
+        - transform:
+
+            location: {x: 251.70,y: -248.30,z: 0.0}
+            rotation: {pitch: 0.0,yaw: 0.0,roll: 0.0}
+
+        - transform:
+
+            location: {x: 253.20,y: -246.40,z: 0.0}
+            rotation: {pitch: 0.0,yaw: 0.0,roll: 0.0}
+
+        - transform:
+
+            location: {x: 255.30,y: -244.70,z: 0.0}
+            rotation: {pitch: 0.0,yaw: 0.0,roll: 0.0}
+
+        - transform:
+
+            location: {x: 257.80,y: -243.50,z: 0.0}
+            rotation: {pitch: 0.0,yaw: 0.0,roll: 0.0}
+
+        - transform:
+
+            location: {x: 260.10,y: -243.40,z: 0.1}
+            rotation: {pitch: 0.0,yaw: 0.0,roll: 0.0}
+
+        - transform:
+
+            location: {x: 262.70,y: -243.40,z: 0.1}
+            rotation: {pitch: 0.0,yaw: 0.0,roll: 0.0}
+
+      static.prop.trafficwarning:
+
+        - transform:
+
+            location: {x: 165.10,y: -364.70,z: 0.0}
+            rotation: {pitch: 0.0,yaw: -90.0,roll: 0.0}
+
+        - transform:
+
+            location: {x: 251.20,y: -311.00,z: 0.0}
+            rotation: {pitch: 0.0,yaw: 90.0,roll: 0.0}
+
+      static.prop.streetbarrier:
+        
+        - transform:
+            
+            location: {x: 251.70,y: -306.20,z: 0.0}
+            rotation: {pitch: 0.0,yaw: 90.0,roll: 0.0}
+
+        - transform:
+            
+            location: {x: 251.70,y: -309.10,z: 0.0}
+            rotation: {pitch: 0.0,yaw: 90.0,roll: 0.0}
+
+        - transform:
+            
+            location: {x: 198.10,y: -362.20,z: 0.0}
+            rotation: {pitch: 0.0,yaw: -70.0,roll: 0.0}
+
+        - transform:
+            
+            location: {x: 199.60,y: -365.40,z: 0.0}
+            rotation: {pitch: 0.0,yaw: -70.0,roll: 0.0}
+
+      static.prop.warningconstruction:
+
+        - transform:
+
+            location: {x: 198.40,y: -363.90,z: 0.0}
+            rotation: {pitch: 0.0,yaw: 120.0,roll: 0.0}
+
+
+      static.prop.trafficcone01:
+
+        - transform:
+
+            location: {x: 251.60,y: -307.60,z: 0.0}
+            rotation: {pitch: 0.0,yaw: 0.0,roll: 0.0}
+
+      static.prop.container:
+
+        - transform:
+            
+            location: {x: 301.00,y: -169.80,z: 0.02}
+            rotation: {pitch: 0.0,yaw: -75.0,roll: 0.0}
+
+        - transform:
+            
+            location: {x: 301.00,y: -172.10,z: 0.02}
+            rotation: {pitch: 0.0,yaw: -115.0,roll: 0.0}
+
+
+  multiple_blocked_streets02_Town04:
+
+    map: "Town04"
+    description: |
+      Multiple blocked streets distributed throughout the Town04 map, 
+      including a closure on the highway that requires a significant detour depending on the final destination. 
+      Roadblocks are created using street barriers, traffic cones, illuminated signs with posters, and a small police checkpoint.
+
+    props:
+
+      static.prop.trafficwarning:
+        
+        - transform:
+            
+            location: {x: -18.70,y: 89.00,z: 0.0}
+            rotation: {pitch: 0.0,yaw: 0.0,roll: 0.0}
+
+      static.prop.constructioncone:
+
+        - transform:
+            
+            location: {x: -18.30,y: 105.10,z: 0.0}
+            rotation: {pitch: 0.0,yaw: 0.0,roll: 0.0}
+        
+        - transform:
+            
+            location: {x: -17.50,y: 106.40,z: 0.0}
+            rotation: {pitch: 0.0,yaw: 0.0,roll: 0.0}
+
+        - transform:
+            
+            location: {x: -16.90,y: 107.50,z: 0.0}
+            rotation: {pitch: 0.0,yaw: 0.0,roll: 0.0}
+
+        - transform:
+            
+            location: {x: -16.50,y: 108.80,z: 0.0}
+            rotation: {pitch: 0.0,yaw: 0.0,roll: 0.0}    
+
+      vehicle.dodge.charger_police:
+        
+        - transform:
+
+            location: {x: -18.30,y: 109.10,z: 2.00}
+            rotation: {pitch: 0.0,yaw: 70.0,roll: 0.0}
+
+      static.prop.streetbarrier:
+        
+        - transform:
+
+            location: {x: 57.90,y: -181.20,z: 0.0}
+            rotation: {pitch: 0.0,yaw: 0.0,roll: 0.0}
+
+        - transform:
+
+            location: {x: 60.50,y: -181.20,z: 0.0}
+            rotation: {pitch: 0.0,yaw: 0.0,roll: 0.0}
+
+        - transform:
+
+            location: {x: 63.00,y: -181.20,z: 0.0}
+            rotation: {pitch: 0.0,yaw: 0.0,roll: 0.0}
+
+        - transform:
+
+            location: {x: 200.50,y: -256.00,z: 0.0}
+            rotation: {pitch: 0.0,yaw: 0.0,roll: 0.0}
+
+        - transform:
+
+            location: {x: 204.20,y: -256.00,z: 0.0}
+            rotation: {pitch: 0.0,yaw: 0.0,roll: 0.0}
+
+      static.prop.trafficcone01:
+
+        - transform:
+            
+            location: {x: 202.40,y: -256.10,z: 0.0}
+            rotation: {pitch: 0.0,yaw: 0.0,roll: 0.0}
+      
+  double_roadblock_Town10:
+
+    map: "Town10HD"
+    description: |
+      Double roadblocks on the streets of town10 created with street barriers and a police checkpoint supplemented with cones to ensure the road is properly blocked off. 
+      One of the pedestrian crossings is also blocked off to make the simulation more realistic.
+
+    props:
+
+      static.prop.streetbarrier:
+        
+        - transform:
+            
+            location: {x: -95.20,y: 28.60,z: 0.0}
+            rotation: {pitch: 0.0,yaw: 90.0,roll: 0.0}
+
+        - transform:
+            
+            location: {x: -95.20,y: 26.60,z: 0.0}
+            rotation: {pitch: 0.0,yaw: 90.0,roll: 0.0}
+
+        - transform:
+            
+            location: {x: -95.20,y: 24.40,z: 0.0}
+            rotation: {pitch: 0.0,yaw: 90.0,roll: 0.0}
+
+      static.prop.trafficcone01:
+
+        - transform:
+            
+            location: {x: -92.70,y: 22.90,z: 0.0}
+            rotation: {pitch: 0.0,yaw: 0.0,roll: 0.0}
+
+        - transform:
+            
+            location: {x: -92.70,y: 30.80,z: 0.0}
+            rotation: {pitch: 0.0,yaw: 0.0,roll: 0.0}
+
+        - transform:
+            
+            location: {x: -93.80,y: 30.80,z: 0.0}
+            rotation: {pitch: 0.0,yaw: 0.0,roll: 0.0}
+
+        - transform:
+            
+            location: {x: -93.80,y: 22.90,z: 0.0}
+            rotation: {pitch: 0.0,yaw: 0.0,roll: 0.0}
+
+      static.prop.constructioncone:
+
+        - transform:
+            
+            location: {x: -48.60,y: 114.60,z: 0.0}
+            rotation: {pitch: 0.0,yaw: 0.0,roll: 0.0}
+
+        - transform:
+            
+            location: {x: -41.40,y: 114.60,z: 0.0}
+            rotation: {pitch: 0.0,yaw: 0.0,roll: 0.0}
+
+        - transform:
+            
+            location: {x: -43.20,y: 114.60,z: 0.0}
+            rotation: {pitch: 0.0,yaw: 0.0,roll: 0.0}
+
+        - transform:
+            
+            location: {x: -45.00,y: 114.60,z: 0.0}
+            rotation: {pitch: 0.0,yaw: 0.0,roll: 0.0}
+
+        - transform:
+            
+            location: {x: -50.50,y: 114.60,z: 0.0}
+            rotation: {pitch: 0.0,yaw: 0.0,roll: 0.0}
+
+        - transform:
+            
+            location: {x: -52.40,y: 114.60,z: 0.0}
+            rotation: {pitch: 0.0,yaw: 0.0,roll: 0.0}
+
+      vehicle.dodge.charger_police:
+        
+        - transform:
+            
+            location: {x: -43.50,y: 113.20,z: 2.00}
+            rotation: {pitch: 0.0,yaw: 180.0,roll: 0.0}
+
+        - transform:
+            
+            location: {x: -50.50,y: 113.20,z: 2.00}
+            rotation: {pitch: 0.0,yaw: 0.0,roll: 0.0}
+
+  double_roadblock02_Town10:
+
+    map: "Town10HD"
+    description: |
+      Double roadblock similar to -double_roadblock_town10- 
+      but with different locations to alter other traffic flows.
+
+    props:
+      
+      static.prop.streetbarrier:
+        
+        - transform:
+            
+            location: {x: -61.10,y: 11.70,z: 0.0}
+            rotation: {pitch: 0.0,yaw: 90.0,roll: 0.0}
+
+        - transform:
+            
+            location: {x: -61.10,y: 14.30,z: 0.0}
+            rotation: {pitch: 0.0,yaw: 90.0,roll: 0.0}
+
+        - transform:
+            
+            location: {x: -61.10,y: 17.40,z: 0.0}
+            rotation: {pitch: 0.0,yaw: 90.0,roll: 0.0}
+
+      static.prop.trafficcone01:
+
+        - transform:
+            
+            location: {x: -61.10,y: 12.80,z: 0.0}
+            rotation: {pitch: 0.0,yaw: 0.0,roll: 0.0}
+
+        - transform:
+            
+            location: {x: -61.10,y: 15.60,z: 0.0}
+            rotation: {pitch: 0.0,yaw: 0.0,roll: 0.0}
+
+
+      static.prop.constructioncone:
+
+        - transform:
+            
+            location: {x: -41.40,y: 78.60,z: 0.0}
+            rotation: {pitch: 0.0,yaw: 0.0,roll: 0.0}
+
+        - transform:
+            
+            location: {x: -43.20,y: 78.60,z: 0.0}
+            rotation: {pitch: 0.0,yaw: 0.0,roll: 0.0}
+
+        - transform:
+            
+            location: {x: -45.00,y: 78.60,z: 0.0}
+            rotation: {pitch: 0.0,yaw: 0.0,roll: 0.0}
+
+        - transform:
+            
+            location: {x: -48.60,y: 78.60,z: 0.0}
+            rotation: {pitch: 0.0,yaw: 0.0,roll: 0.0}
+
+        - transform:
+            
+            location: {x: -50.50,y: 78.60,z: 0.0}
+            rotation: {pitch: 0.0,yaw: 0.0,roll: 0.0}
+
+        - transform:
+            
+            location: {x: -52.40,y: 78.60,z: 0.0}
+            rotation: {pitch: 0.0,yaw: 0.0,roll: 0.0}
+
+      vehicle.dodge.charger_police:
+        
+        - transform:
+            
+            location: {x: -43.50,y: 80.40,z: 2.00}
+            rotation: {pitch: 0.0,yaw: 180.0,roll: 0.0}
+
+        - transform:
+            
+            location: {x: -50.50,y: 80.40,z: 2.00}
+            rotation: {pitch: 0.0,yaw: 0.0,roll: 0.0}
+
+
+  multiple_blocked_streets_Town10:
+    
+    map: "Town10HD"
+    description: |
+      Multiple roadblocks set up in different areas of main traffic routes 
+      significantly altering vehicle routes. Using traffic barriers, cones with small fixed lights, traffic signs with illuminated signs 
+      and some public service vehicles such as ambulances and fire trucks, similar to real-life situations.
+
+    props:
+      
+      static.prop.container:
+        
+        - transform:
+            
+            location: {x: -61,80,y: -61.20,z: 0,0}
+            rotation: {pitch: 0.0,yaw: 290.0,roll: 0.0}
+
+        - transform:
+            
+            location: {x: -61,80,y: -64.00,z: 0,0}
+            rotation: {pitch: 0.0,yaw: 200.0,roll: 0.0}
+
+      static.prop.trafficcone01:
+        
+        - transform:
+            
+            location: {x: -58.00,y: -69.00,z: 0.0}
+            rotation: {pitch: 0.0,yaw: 0.0,roll: 0.0}
+
+        - transform:
+            
+            location: {x: -58.00,y: -65.20,z: 0.0}
+            rotation: {pitch: 0.0,yaw: 0.0,roll: 0.0}
+
+        - transform:
+            
+            location: {x: -58.00,y: -61.60,z: 0.0}
+            rotation: {pitch: 0.0,yaw: 0.0,roll: 0.0}
+
+        - transform:
+            
+            location: {x: -58.00,y: -57.80,z: 0.0}
+            rotation: {pitch: 0.0,yaw: 0.0,roll: 0.0}
+
+      vehicle.ford.ambulance:
+        
+        - transform:
+            
+            location: {x: -75.10,y: -66.10,z: 2.00}
+            rotation: {pitch: 0.0,yaw: 170.0,roll: 0.0}
+
+      vehicle.carlamotors.firetruck:
+
+        - transform: 
+            
+            location: {x: -68.10,y: -59.90,z: 2.00}
+            rotation: {pitch: 0.0,yaw: 200.0,roll: 0.0}
+
+      static.prop.trafficwarning:
+        
+        - transform: 
+            
+            location: {x: -63.80,y: 12.30,z: 0.0}
+            rotation: {pitch: 0.0,yaw: 90.0,roll: 0.0}
+
+        - transform: 
+            
+            location: {x: -63.80,y: 16.40,z: 0.0}
+            rotation: {pitch: 0.0,yaw: 90.0,roll: 0.0}
+
+        - transform: 
+
+            location: {x: -47.00,y: 41.70,z: 0.0}
+            rotation: {pitch: 0.0,yaw: 0.0,roll: 0.0}
+
+      static.prop.trafficcone02:
+
+        - transform: 
+            
+            location: {x: -50.70,y: 39.30,z: 0.0}
+            rotation: {pitch: 0.0,yaw: 0.0,roll: 0.0}
+        
+        - transform: 
+            
+            location: {x: -47.00,y: 39.30,z: 0.0}
+            rotation: {pitch: 0.0,yaw: 0.0,roll: 0.0}
+
+        - transform: 
+            
+            location: {x: -43.10,y: 39.30,z: 0.0}
+            rotation: {pitch: 0.0,yaw: 0.0,roll: 0.0}
+
+      static.prop.streetbarrier:
+        
+        - transform: 
+
+            location: {x: -52.30,y: 39.30,z: 0.0}
+            rotation: {pitch: 0.0,yaw: 0.0,roll: 0.0}
+        
+        - transform: 
+
+            location: {x: -48.70,y: 39.30,z: 0.0}
+            rotation: {pitch: 0.0,yaw: 0.0,roll: 0.0}
+
+        - transform: 
+
+            location: {x: -45.00,y: 39.30,z: 0.0}
+            rotation: {pitch: 0.0,yaw: 0.0,roll: 0.0}
+
+        - transform: 
+
+            location: {x: -41.30,y: 39.30,z: 0.0}
+            rotation: {pitch: 0.0,yaw: 0.0,roll: 0.0}
+
+  double_roadblock03_Town10:
+
+    map: "Town10HD"
+    description: |
+      Double roadblock similar to - double roadblock town10- but using a series of different props
+
+
+    props:
+
+      static.prop.trafficcone01:
+
+        - transform:
+            
+            location: {x: -95.60,y: 25.50,z: 0.0}
+            rotation: {pitch: 0.0,yaw: 0.0,roll: 0.0}
+        
+        - transform:
+            
+            location: {x: -95.60,y: 29.90,z: 0.0}
+            rotation: {pitch: 0.0,yaw: 0.0,roll: 0.0}
+
+      static.prop.trafficcone02:
+        
+
+        - transform:
+            
+            location: {x: -95.60,y: 31.60,z: 0.0}
+            rotation: {pitch: 0.0,yaw: 0.0,roll: 0.0}
+
+        - transform:
+            
+            location: {x: -95.60,y: 27.50,z: 0.0}
+            rotation: {pitch: 0.0,yaw: 0.0,roll: 0.0}
+
+        - transform:
+            
+            location: {x: -95.60,y: 23.60,z: 0.0}
+            rotation: {pitch: 0.0,yaw: 0.0,roll: 0.0}
+
+      static.prop.warningconstruction:
+
+        - transform:
+            
+            location: {x: -96.40,y: 32.20,z: 0.0}
+            rotation: {pitch: 0.0,yaw: 60.0,roll: 0.0}
+      
+      static.prop.constructioncone:
+
+        - transform:
+            
+            location: {x: -48.60,y: 114.60,z: 0.0}
+            rotation: {pitch: 0.0,yaw: 0.0,roll: 0.0}
+
+        - transform:
+            
+            location: {x: -41.40,y: 114.60,z: 0.0}
+            rotation: {pitch: 0.0,yaw: 0.0,roll: 0.0}
+
+        - transform:
+            
+            location: {x: -43.20,y: 114.60,z: 0.0}
+            rotation: {pitch: 0.0,yaw: 0.0,roll: 0.0}
+
+        - transform:
+            
+            location: {x: -45.00,y: 114.60,z: 0.0}
+            rotation: {pitch: 0.0,yaw: 0.0,roll: 0.0}
+
+        - transform:
+            
+            location: {x: -50.50,y: 114.60,z: 0.0}
+            rotation: {pitch: 0.0,yaw: 0.0,roll: 0.0}
+
+        - transform:
+            
+            location: {x: -52.40,y: 114.60,z: 0.0}
+            rotation: {pitch: 0.0,yaw: 0.0,roll: 0.0}
+
+      vehicle.dodge.charger_police:
+        
+        - transform:
+            
+            location: {x: -43.50,y: 113.20,z: 2.00}
+            rotation: {pitch: 0.0,yaw: 180.0,roll: 0.0}
+
+        - transform:
+            
+            location: {x: -50.50,y: 113.20,z: 2.00}
+            rotation: {pitch: 0.0,yaw: 0.0,roll: 0.0}
+
+  double_roadblock04_Town10:
+
+    map: "Town10HD"
+    description: |
+      Double roadblock in the center of the map using several barriers together to simulate a single larger barrier 
+      and transport vehicles in unloading operations, simulated with cardboard boxes, as well as the use of traffic cones 
+      to reinforce the roadblock.
+
+    props: 
+      
+      static.prop.streetbarrier:
+        
+        - transform:
+            
+            location: {x: -52.80,y: 1.30,z: 0.0}
+            rotation: {pitch: 0.0,yaw: 0.0,roll: 0.0}
+
+        - transform:
+            
+            location: {x: -51.60,y: 1.30,z: 0.0}
+            rotation: {pitch: 0.0,yaw: 0.0,roll: 0.0}
+
+        - transform:
+            
+            location: {x: -50.40,y: 1.30,z: 0.0}
+            rotation: {pitch: 0.0,yaw: 0.0,roll: 0.0}
+
+        - transform:
+            
+            location: {x: -49.20,y: 1.30,z: 0.0}
+            rotation: {pitch: 0.0,yaw: 0.0,roll: 0.0}
+
+        - transform:
+            
+            location: {x: -45.50,y: 1.30,z: 0.0}
+            rotation: {pitch: 0.0,yaw: 0.0,roll: 0.0}
+
+        - transform:
+            
+            location: {x: -44.30,y: 1.30,z: 0.0}
+            rotation: {pitch: 0.0,yaw: 0.0,roll: 0.0}
+
+        - transform:
+            
+            location: {x: -43.10,y: 1.30,z: 0.0}
+            rotation: {pitch: 0.0,yaw: 0.0,roll: 0.0}
+
+        - transform:
+            
+            location: {x: -41.90,y: 1.30,z: 0.0}
+            rotation: {pitch: 0.0,yaw: 0.0,roll: 0.0}
+
+      static.prop.trafficcone01:
+        
+        - transform:
+            
+            location: {x: -54.30,y: 1.30,z: 0.0}
+            rotation: {pitch: 0.0,yaw: 0.0,roll: 0.0}
+
+        - transform:
+            
+            location: {x: -40.30,y: 1.30,z: 0.0}
+            rotation: {pitch: 0.0,yaw: 0.0,roll: 0.0}
+
+        - transform:
+            
+            location: {x: -47.30,y: 1.30,z: 0.0}
+            rotation: {pitch: 0.0,yaw: 0.0,roll: 0.0}
+
+      static.prop.trafficcone02:
+        
+        - transform:
+          
+            location: {x: 93.10,y: 73.70,z: 0.0}
+            rotation: {pitch: 0.0,yaw: 0.0,roll: 0.0}
+        
+        - transform:
+          
+            location: {x: 93.10,y: 71.10,z: 0.0}
+            rotation: {pitch: 0.0,yaw: 0.0,roll: 0.0}
+        
+        - transform:
+          
+            location: {x: 93.10,y: 68.20,z: 0.0}
+            rotation: {pitch: 0.0,yaw: 0.0,roll: 0.0}
+
+        - transform:
+          
+            location: {x: 93.10,y: 65.00,z: 0.0}
+            rotation: {pitch: 0.0,yaw: 0.0,roll: 0.0}
+
+        - transform:
+          
+            location: {x: 93.10,y: 62.50,z: 0.0}
+            rotation: {pitch: 0.0,yaw: 0.0,roll: 0.0}
+
+      vehicle.carlamotors.carlacola:
+        
+        - transform:
+
+            location: {x: 85.30,y: 65.80,z: 2.00}
+            rotation: {pitch: 0.0,yaw: 0.0,roll: 0.0}
+
+      static.prop.box01:
+
+        - transform:
+            
+            location: {x: 86.80,y: 68.70,z: 0.0}
+            rotation: {pitch: 0.0,yaw: 0.0,roll: 0.0}
+
+        - transform:
+            
+            location: {x: 86.10,y: 69.50,z: 0.0}
+            rotation: {pitch: 0.0,yaw: 0.0,roll: 0.0}
+
+        - transform:
+            
+            location: {x: 87.60,y: 70.90,z: 0.0}
+            rotation: {pitch: 0.0,yaw: 0.0,roll: 0.0}
+
+      static.prop.box03:
+
+        - transform:
+            
+            location: {x: 86.70,y: 68.70,z: 0.7}
+            rotation: {pitch: 0.0,yaw: 0.0,roll: 0.0}
+
+        - transform:
+            
+            location: {x: 88.40,y: 69.50,z: 0.0}
+            rotation: {pitch: 0.0,yaw: 0.0,roll: 0.0}
+
+      static.prop.creasedbox01:
+
+        - transform:
+            
+            location: {x: 88.60,y: 70.50,z: 0.0}
+            rotation: {pitch: 0.0,yaw: 0.0,roll: 0.0}
+
+      static.prop.creasedbox03:
+        
+        - transform:
+            
+            location: {x: 88.20,y: 68.80,z: 0.0}
+            rotation: {pitch: 0.0,yaw: 0.0,roll: 0.0}
+
+  simple_blocked_street03_town02:
+
+    map: "Town02"
+    description: |
+      A simple roadblock on a basic road in Town02 near the central parking lot 
+      consisting of street barriers and traffic cones as reinforcement.
+
+    props:
+      
+      static.prop.streetbarrier:
+        
+        - transform:
+
+            location: {x: 132.70,y: 197.40,z: 0.02}
+            rotation: {pitch: 0.0,yaw: 0.0,roll: 0.0}
+
+        - transform:
+
+            location: {x: 134.30,y: 197.40,z: 0.02}
+            rotation: {pitch: 0.0,yaw: 0.0,roll: 0.0}
+
+        - transform:
+
+            location: {x: 135.90,y: 197.40,z: 0.02}
+            rotation: {pitch: 0.0,yaw: 0.0,roll: 0.0}
+
+      static.prop.trafficcone01:
+        
+        - transform:
+            
+
+            location: {x: 131.00,y: 197.30,z: 0.02}
+            rotation: {pitch: 0.0,yaw: 0.0,roll: 0.0}
+
+        - transform:
+            
+
+            location: {x: 137.60,y: 197.30,z: 0.02}
+            rotation: {pitch: 0.0,yaw: 0.0,roll: 0.0}
+
+  simple_blocked_street04_town02:
+    
+    map: "Town02"
+    description: |
+      A street blocked in both directions with some street barriers and a couple of traffic signs warning of roadworks
+      along with some props such as a vehicle and iron plates in the middle of the blocked street to make it look more realistic.
+
+    props:
+      
+      static.prop.streetbarrier:
+
+        - transform:
+
+            location: {x: 4.40,y: 187.50,z: 0.02}
+            rotation: {pitch: 0.0,yaw: 90.0,roll: 0.0}
+        
+        - transform:
+
+            location: {x: 4.40,y: 191.90,z: 0.02}
+            rotation: {pitch: 0.0,yaw: 90.0,roll: 0.0}
+        
+        - transform:
+
+            location: {x: 30.90,y: 187.50,z: 0.02}
+            rotation: {pitch: 0.0,yaw: 90.0,roll: 0.0}
+
+        - transform:
+
+            location: {x: 30.90,y: 191.90,z: 0.02}
+            rotation: {pitch: 0.0,yaw: 90.0,roll: 0.0}
+
+      static.prop.warningconstruction:
+        
+        - transform:
+            
+            location: {x: 30.90,y: 189.70,z: 0.02}
+            rotation: {pitch: 0.0,yaw: -90.0,roll: 0.0}
+
+        - transform:
+            
+            location: {x: 4.50,y: 189.70,z: 0.02}
+            rotation: {pitch: 0.0,yaw: 90.0,roll: 0.0}
+
+      static.prop.ironplank:
+        
+        - transform:
+            
+            location: {x: 18.50,y: 190.30,z: 0.2}
+            rotation: {pitch: 0.0,yaw: 0.0,roll: 0.0}
+
+        - transform:
+            
+            location: {x: 18.50,y: 188.70,z: 0.2}
+            rotation: {pitch: 0.0,yaw: 0.0,roll: 0.0}
+
+        - transform:
+            
+            location: {x: 20.40,y: 190.30,z: 0.2}
+            rotation: {pitch: 0.0,yaw: 0.0,roll: 0.0}
+
+        - transform:
+            
+            location: {x: 20.40,y: 188.70,z: 0.2}
+            rotation: {pitch: 0.0,yaw: 0.0,roll: 0.0}
+
+      vehicle.nissan.patrol:
+        
+        - transform:
+            
+            location: {x: 15.20,y: 189.50,z: 2.00}
+            rotation: {pitch: 0.0,yaw: 20.0,roll: 0.0}
+
+  double_roadblock_Town02:
+        
+    map: "Town02"
+    description: |
+      Two streets blocked with traffic barriers strategically placed 
+      to significantly affect vehicle traffic in Town02.
+
+    props:
+          
+
+      static.prop.streetbarrier:
+            
+        - transform:
+                
+            location: {x: 46.00,y: 228.80,z: 0.02}
+            rotation: {pitch: 0.0,yaw: 0.0,roll: 0.0}
+
+        - transform:
+                
+            location: {x: 44.00,y: 228.80,z: 0.02}
+            rotation: {pitch: 0.0,yaw: 0.0,roll: 0.0}
+
+        - transform:
+                
+            location: {x: 42.00,y: 228.80,z: 0.02}
+            rotation: {pitch: 0.0,yaw: 0.0,roll: 0.0}
+
+        - transform:
+                
+            location: {x: -3.50,y: 198.70,z: 0.02}
+            rotation: {pitch: 0.0,yaw: 0.0,roll: 0.0}
+
+        - transform:
+                
+            location: {x: -5.50,y: 198.70,z: 0.02}
+            rotation: {pitch: 0.0,yaw: 0.0,roll: 0.0}
+
+        - transform:
+                
+            location: {x: -7.50,y: 198.70,z: 0.02}
+            rotation: {pitch: 0.0,yaw: 0.0,roll: 0.0}
+
+  simple_blocked_street05_town02:
+
+    map: "Town02"
+    description: |
+      A simple street blocked off with traffic cones and 
+      a stationary police car simulating a routine traffic stop. 
+
+    props: 
+      
+      static.prop.constructioncone:
+        
+        - transform:
+            
+            location: {x: 121.80,y: 190.90,z: 0.02}
+            rotation: {pitch: 0.0,yaw: 0.0,roll: 0.0}
+
+        - transform:
+            
+            location: {x: 121.80,y: 192.40,z: 0.02}
+            rotation: {pitch: 0.0,yaw: 0.0,roll: 0.0}
+
+        - transform:
+            
+            location: {x: 121.80,y: 188.30,z: 0.02}
+            rotation: {pitch: 0.0,yaw: 0.0,roll: 0.0}
+
+        - transform:
+            
+            location: {x: 121.80,y: 186.80,z: 0.02}
+            rotation: {pitch: 0.0,yaw: 0.0,roll: 0.0}
+
+      vehicle.dodge.charger_police:
+        
+        - transform:
+            
+            location: {x: 119.90,y: 189.60,z: 2.00}
+            rotation: {pitch: 0.0,yaw: 90.0,roll: 0.0}
+
+  simple_blocked_street_town10:
+    
+    map: "Town10HD"
+    description: |
+      Although it is called -simple- it is a roadblock on a two-way street with several lanes, which prevents quick access to the central part of Town10. 
+      This is achieved with several traffic cones placed between each other to form a type of barrier.
+
+    props:
+
+      static.prop.trafficcone01:
+
+        - transform:
+
+            location: {x: -95.60,y: 29.90,z: 0.0}
+            rotation: {pitch: 0.0,yaw: 0.0,roll: 0.0}
+
+        - transform:
+
+            location: {x: -95.60,y: 25.50,z: 0.0}
+            rotation: {pitch: 0.0,yaw: 0.0,roll: 0.0}
+
+        - transform:
+
+            location: {x: -95.60,y: 11.60,z: 0.0}
+            rotation: {pitch: 0.0,yaw: 0.0,roll: 0.0}
+
+        - transform:
+
+            location: {x: -95.60,y: 16.00,z: 0.0}
+            rotation: {pitch: 0.0,yaw: 0.0,roll: 0.0}
+
+      static.prop.trafficcone02:
+        
+        - transform:
+
+            location: {x: -95.60,y: 31.60,z: 0.0}
+            rotation: {pitch: 0.0,yaw: 0.0,roll: 0.0}
+
+        - transform:
+
+            location: {x: -95.60,y: 27.50,z: 0.0}
+            rotation: {pitch: 0.0,yaw: 0.0,roll: 0.0}
+
+        - transform:
+
+            location: {x: -95.60,y: 23.60,z: 0.0}
+            rotation: {pitch: 0.0,yaw: 0.0,roll: 0.0}
+
+        - transform:
+
+            location: {x: -95.60,y: 17.70,z: 0.0}
+            rotation: {pitch: 0.0,yaw: 0.0,roll: 0.0}
+
+        - transform:
+
+            location: {x: -95.60,y: 13.60,z: 0.0}
+            rotation: {pitch: 0.0,yaw: 0.0,roll: 0.0}
+
+        - transform:
+
+            location: {x: -95.60,y: 9.70,z: 0.0}
+            rotation: {pitch: 0.0,yaw: 0.0,roll: 0.0}
+
+  simple_blocked_street02_town10:
+    
+    map: "Town10HD"
+    description: |
+      A simple but significant roadblock because it blocks one of the main routes for making U-turns or cutting across to get to the other side of Town10. 
+      This roadblock is achieved with chain barriers placed across the width and at the end of both lanes of traffic.
+
+    props:
+
+      static.prop.chainbarrier:
+        
+        - transform:
+            
+            location: {x: -28.90,y: 64.40,z: 0.0}
+            rotation: {pitch: 0.0,yaw: 90.0,roll: 0.0}
+
+        - transform:
+            
+            location: {x: -28.90,y: 65.80,z: 0.0}
+            rotation: {pitch: 0.0,yaw: 90.0,roll: 0.0}
+
+        - transform:
+            
+            location: {x: -28.90,y: 67.20,z: 0.0}
+            rotation: {pitch: 0.0,yaw: 90.0,roll: 0.0}
+
+        - transform:
+            
+            location: {x: -28.90,y: 68.60,z: 0.0}
+            rotation: {pitch: 0.0,yaw: 90.0,roll: 0.0}
+
+        - transform:
+            
+            location: {x: -28.90,y: 70.10,z: 0.0}
+            rotation: {pitch: 0.0,yaw: 90.0,roll: 0.0}
+
+      static.prop.chainbarrierend:
+        
+        - transform:
+            
+            location: {x: -28.90,y: 71.50,z: 0.0}
+            rotation: {pitch: 0.0,yaw: 0.0,roll: 0.0}
+
+  simple_blocked_street03_town10:
+    
+    map: "Town10HD"
+    description: |
+      Complete roadblock on one of the sections of road connecting one of the side sections of Town10 with the other. 
+      The roadblock is simulated with traffic cones and a couple of police cars, which can be interpreted as police operations on that particular street.
+
+    props: 
+    
+      static.prop.constructioncone:
+        
+        - transform:
+            
+            location: {x: 29.80,y: 70.80,z: 0.0}
+            rotation: {pitch: 0.0,yaw: 0.0,roll: 0.0}
+
+        - transform:
+            
+            location: {x: 29.80,y: 69.30,z: 0.0}
+            rotation: {pitch: 0.0,yaw: 0.0,roll: 0.0}
+
+        - transform:
+            
+            location: {x: 29.80,y: 66.90,z: 0.0}
+            rotation: {pitch: 0.0,yaw: 0.0,roll: 0.0}
+
+        - transform:
+            
+            location: {x: 29.80,y: 64.90,z: 0.0}
+            rotation: {pitch: 0.0,yaw: 0.0,roll: 0.0}
+
+        - transform:
+            
+            location: {x: -28.50,y: 64.90,z: 0.0}
+            rotation: {pitch: 0.0,yaw: 0.0,roll: 0.0}
+
+        - transform:
+            
+            location: {x: -28.50,y: 66.90,z: 0.0}
+            rotation: {pitch: 0.0,yaw: 0.0,roll: 0.0}
+
+        - transform:
+            
+            location: {x: -28.50,y: 69.30,z: 0.0}
+            rotation: {pitch: 0.0,yaw: 0.0,roll: 0.0}
+
+        - transform:
+            
+            location: {x: -28.50,y: 70.80,z: 0.0}
+            rotation: {pitch: 0.0,yaw: 0.0,roll: 0.0}
+
+      vehicle.dodge.charger_police:
+        
+        - transform:
+            
+            location: {x: -26.50,y: 68.00,z: 2.00}
+            rotation: {pitch: 0.0,yaw: -90.0,roll: 0.0}
+
+        - transform:
+            
+            location: {x: 26.50,y: 68.00,z: 2.00}
+            rotation: {pitch: 0.0,yaw: 90.0,roll: 0.0}
+
+  simple_blocked_street04_town10:
+
+    map: "Town10HD"
+    description: |
+      A fairly simple roadblock at one of the exits from the urban section of Town10 to the surrounding highway
+      consisting of a couple of traffic cones and a traffic sign with an illuminated sign.
+
+    props:
+      
+      static.prop.trafficcone01:
+        
+        - transform:
+            
+            location: {x: 57.10,y: 28.50,z: 0.0}
+            rotation: {pitch: 0.0,yaw: 0.0,roll: 0.0}
+
+        - transform:
+            
+            location: {x: 57.10,y: 24.90,z: 0.0}
+            rotation: {pitch: 0.0,yaw: 0.0,roll: 0.0}
+
+      static.prop.trafficwarning:
+        
+        - transform:
+            
+            location: {x: 57.70,y: 26.70,z: 0.0}
+            rotation: {pitch: 0.0,yaw: -90.0,roll: 0.0}
+
+  double_roadblock05_Town10:
+
+    map: "Town10HD"
+    description: |
+      Double roadblock where closures are placed at different positions as a way of checking traffic behavior. 
+      Traffic barriers and warning signs are used on both sides of the road.
+
+    props: 
+      
+      static.prop.streetbarrier:
+
+        - transform:
+            
+            location: {x: -64.70,y: 16.60,z: 0.0}
+            rotation: {pitch: 0.0,yaw: 90.0,roll: 0.0}
+
+        - transform:
+            
+            location: {x: -64.70,y: 14.70,z: 0.0}
+            rotation: {pitch: 0.0,yaw: 90.0,roll: 0.0}
+
+
+        - transform:
+            
+            location: {x: -64.70,y: 12.90,z: 0.0}
+            rotation: {pitch: 0.0,yaw: 90.0,roll: 0.0}
+
+        - transform:
+            
+            location: {x: -92.80,y: 28.40,z: 0.0}
+            rotation: {pitch: 0.0,yaw: 90.0,roll: 0.0}
+
+        - transform:
+            
+            location: {x: -92.80,y: 26.50,z: 0.0}
+            rotation: {pitch: 0.0,yaw: 90.0,roll: 0.0}
+
+        - transform:
+            
+            location: {x: -92.80,y: 24.70,z: 0.0}
+            rotation: {pitch: 0.0,yaw: 90.0,roll: 0.0}
+
+      static.prop.warningaccident:
+        
+        - transform:
+            
+            location: {x: -63.90,y: 11.00,z: 0.0}
+            rotation: {pitch: 0.0,yaw: -90.0,roll: 0.0}
+
+  double_roadblock06_Town10:
+    
+    map: "Town10HD"
+    description: |
+      A double roadblock using props such as traffic barriers and cones. Instead of being placed separately on both streets
+      they are placed diagonally as a more complex form of roadblock and as a more rigorous vehicle evaluation.
+
+    props:
+      
+      static.prop.streetbarrier:
+
+        - transform:
+            
+            location: {x: -41.80,y: 1.30,z: 0.0}
+            rotation: {pitch: 0.0,yaw: 0.0,roll: 0.0}
+
+        - transform:
+            
+            location: {x: -45.30,y: 1.30,z: 0.0}
+            rotation: {pitch: 0.0,yaw: 0.0,roll: 0.0}
+
+        - transform:
+            
+            location: {x: -48.90,y: 2.60,z: 0.0}
+            rotation: {pitch: 0.0,yaw: -45.0,roll: 0.0}
+
+        - transform:
+            
+            location: {x: -50.70,y: 4.40,z: 0.0}
+            rotation: {pitch: 0.0,yaw: -45.0,roll: 0.0}
+
+        - transform:
+            
+            location: {x: -52.70,y: 6.50,z: 0.0}
+            rotation: {pitch: 0.0,yaw: -45.0,roll: 0.0}
+
+        - transform:
+            
+            location: {x: -54.70,y: 8.60,z: 0.0}
+            rotation: {pitch: 0.0,yaw: -45.0,roll: 0.0}
+
+        - transform:
+            
+            location: {x: -59.20,y: 13.20,z: 0.0}
+            rotation: {pitch: 0.0,yaw: -45.0,roll: 0.0}
+
+        - transform:
+            
+            location: {x: -61.30,y: 15.70,z: 0.0}
+            rotation: {pitch: 0.0,yaw: -45.0,roll: 0.0}
+
+        - transform:
+            
+            location: {x: -62.30,y: 18.00,z: 0.0}
+            rotation: {pitch: 0.0,yaw: 90.0,roll: 0.0}
+      
+      static.prop.trafficcone01:
+        
+        - transform:
+            
+            location: {x: -40.30,y: 1.30,z: 0.0}
+            rotation: {pitch: 0.0,yaw: 0.0,roll: 0.0}
+
+        - transform:
+            
+            location: {x: -47.30,y: 1.30,z: 0.0}
+            rotation: {pitch: 0.0,yaw: 0.0,roll: 0.0}
+
+        - transform:
+            
+            location: {x: -57.30,y: 11.10,z: 0.0}
+            rotation: {pitch: 0.0,yaw: 0.0,roll: 0.0}
+
+  multiple_blocked_streets03_Town04:
+    
+    map: "Town04"
+    description: |
+      Multiple streets close to each other and located at one of the main exits of the town toward the highway, forcing drivers to take alternative routes. 
+      Containers and fire trucks are used as the main roadblocks, along with barriers, cones, and a light signal placed at a strategic point so it can be seen from afar.
+
+    props:
+      
+      static.prop.container:
+        
+        - transform:
+            
+            location: {x: 214.70,y: -310.80,z: 0.0}
+            rotation: {pitch: 0.0,yaw: 75.0,roll: 0.0}
+
+        - transform:
+            
+            location: {x: 214.70,y: -307.80,z: 0.0}
+            rotation: {pitch: 0.0,yaw: 90.0,roll: 0.0}
+
+      static.prop.streetbarrier:
+
+        - transform:
+            
+            location: {x: 206.10,y: -321.10,z: 0.0}
+            rotation: {pitch: 0.0,yaw: 0.0,roll: 0.0}
+
+        - transform:
+            
+            location: {x: 204.60,y: -321.10,z: 0.0}
+            rotation: {pitch: 0.0,yaw: 0.0,roll: 0.0}
+
+        - transform:
+            
+            location: {x: 200.00,y: -237.40,z: 0.0}
+            rotation: {pitch: 0.0,yaw: 0.0,roll: 0.0}
+
+        - transform:
+            
+            location: {x: 203.70,y: -237.40,z: 0.0}
+            rotation: {pitch: 0.0,yaw: 0.0,roll: 0.0}
+
+      static.prop.trafficcone01:
+        
+        - transform:
+          
+            location: {x: 201.90,y: -237.50,z: 0.0}
+            rotation: {pitch: 0.0,yaw: 0.0,roll: 0.0}
+
+        - transform:
+          
+            location: {x: 210.90,y: -249.60,z: 0.0}
+            rotation: {pitch: 0.0,yaw: 0.0,roll: 0.0}
+
+        - transform:
+          
+            location: {x: 210.90,y: -247.80,z: 0.0}
+            rotation: {pitch: 0.0,yaw: 0.0,roll: 0.0}
+
+        - transform:
+          
+            location: {x: 210.90,y: -245.90,z: 0.0}
+            rotation: {pitch: 0.0,yaw: 0.0,roll: 0.0}
+
+      static.prop.trafficcone02:
+        
+        - transform:
+          
+            location: {x: 210.90,y: -248.80,z: 0.0}
+            rotation: {pitch: 0.0,yaw: 0.0,roll: 0.0}
+
+        - transform:
+          
+            location: {x: 210.90,y: -246.90,z: 0.0}
+            rotation: {pitch: 0.0,yaw: 0.0,roll: 0.0}
+
+      static.prop.warningaccident:
+        
+        - transform:
+            
+            location: {x: 208.50,y: -314.10,z: 0.0}
+            rotation: {pitch: 0.0,yaw: 45.0,roll: 0.0}
+
+      static.prop.trafficwarning:
+        
+        - transform:
+          
+            location: {x: 208.20,y: -242.10,z: 0.0}
+            rotation: {pitch: 0.0,yaw: -45.0,roll: 0.0}
+
+      vehicle.carlamotors.firetruck:
+        
+        - transform:
+            
+            location: {x: 221.70,y: -308.70,z: 2.00}
+            rotation: {pitch: 0.0,yaw: -15.0,roll: 0.0}
+
+  double_roadblock03_Town04:
+    
+    map: "Town04"
+    description: |
+      Small roadblock located next to the gas station in Town04, followed by a complete roadblock using objects such as 
+      containers, barriers, traffic cones, and warning signs. 
+      They are located on the main street that runs through Town04, restricting traffic through it.
+
+    props:
+
+      static.prop.streetbarrier:
+        
+        - transform:
+            
+            location: {x: 340.20,y: -168.70,z: 0.02}
+            rotation: {pitch: 0.0,yaw: 90,roll: 0.0}
+
+        - transform:
+            
+            location: {x: 340.20,y: -170.40,z: 0.02}
+            rotation: {pitch: 0.0,yaw: 90,roll: 0.0}
+
+        - transform:
+            
+            location: {x: 340.20,y: -172.30,z: 0.02}
+            rotation: {pitch: 0.0,yaw: 90,roll: 0.0}
+
+      static.prop.warningconstruction:
+        
+        - transform:
+            
+            location: {x: 341.40,y: -170.30,z: 0.02}
+            rotation: {pitch: 0.0,yaw: -90,roll: 0.0}
+
+      static.prop.constructioncone:
+        
+
+        - transform:
+            
+            location: {x: 303.60,y: -169.40,z: 0.02}
+            rotation: {pitch: 0.0,yaw: 0.0,roll: 0.0}
+
+        - transform:
+            
+            location: {x: 303.60,y: -170.60,z: 0.02}
+            rotation: {pitch: 0.0,yaw: 0.0,roll: 0.0}
+
+        - transform:
+            
+            location: {x: 303.60,y: -171.80,z: 0.02}
+            rotation: {pitch: 0.0,yaw: 0.0,roll: 0.0}
+
+      static.prop.container:
+
+        - transform:
+            
+            location: {x: 301.00,y: -169.80,z: 0.02}
+            rotation: {pitch: 0.0,yaw: -70.0,roll: 0.0}
+
+        - transform:
+            
+            location: {x: 301.00,y: -172.10,z: 0.02}
+            rotation: {pitch: 0.0,yaw: -110.0,roll: 0.0}
+
+      static.prop.trafficcone01:
+        
+
+        - transform:
+            
+            location: {x: 266.40,y: -169.10,z: 0.02}
+            rotation: {pitch: 0.0,yaw: 0.0,roll: 0.0}
+
+        - transform:
+            
+            location: {x: 266.40,y: -171.00,z: 0.02}
+            rotation: {pitch: 0.0,yaw: 0.0,roll: 0.0}
+        
+        - transform:
+            
+            location: {x: 266.40,y: -172.80,z: 0.02}
+            rotation: {pitch: 0.0,yaw: 0.0,roll: 0.0}
+
+  multiple_blocked_streets04_Town04:
+  
+    map: "Town04"
+    description: |
+      Multiple complex roadblocks distributed throughout the town significantly restrict traffic circulation within it. 
+      Various public service vehicles are in operation, such as police cars, fire trucks, and even ambulances, which are blocking several streets. 
+      There are also various traffic cones placed diagonally across the streets to simulate a closure not directly at the street entrance but at the intersection itself
+      in addition to some simpler roadblocks in higher areas of the map.
+
+    props:
+      
+      static.prop.trafficcone01:
+        
+        - transform:
+            
+            location: {x: 196.70,y: -176.30,z: 0.0}
+            rotation: {pitch: 0.0,yaw: 0.0,roll: 0.0}
+
+        - transform:
+            
+            location: {x: 198.20,y: -175.50,z: 0.0}
+            rotation: {pitch: 0.0,yaw: 0.0,roll: 0.0}
+
+        - transform:
+            
+            location: {x: 199.70,y: -174.60,z: 0.0}
+            rotation: {pitch: 0.0,yaw: 0.0,roll: 0.0}
+
+        - transform:
+            
+            location: {x: 201.30,y: -173.30,z: 0.0}
+            rotation: {pitch: 0.0,yaw: 0.0,roll: 0.0}
+
+        - transform:
+            
+            location: {x: 202.40,y: -171.50,z: 0.0}
+            rotation: {pitch: 0.0,yaw: 0.0,roll: 0.0}
+
+        - transform:
+            
+            location: {x: 203.40,y: -169.40,z: 0.0}
+            rotation: {pitch: 0.0,yaw: 0.0,roll: 0.0}
+
+        - transform:
+            
+            location: {x: 204.20,y: -167.40,z: 0.0}
+            rotation: {pitch: 0.0,yaw: 0.0,roll: 0.0}
+
+        - transform:
+            
+            location: {x: 258.80,y: -176.90,z: 0.0}
+            rotation: {pitch: 0.0,yaw: 0.0,roll: 0.0}
+
+        - transform:
+            
+            location: {x: 257.20,y: -176.00,z: 0.0}
+            rotation: {pitch: 0.0,yaw: 0.0,roll: 0.0}
+
+        - transform:
+            
+            location: {x: 254.30,y: -173.60,z: 0.0}
+            rotation: {pitch: 0.0,yaw: 0.0,roll: 0.0}
+
+        - transform:
+            
+            location: {x: 252.90,y: -172.00,z: 0.0}
+            rotation: {pitch: 0.0,yaw: 0.0,roll: 0.0}
+
+        - transform:
+            
+            location: {x: 251.60,y: -170.30,z: 0.0}
+            rotation: {pitch: 0.0,yaw: 0.0,roll: 0.0}
+
+        - transform:
+            
+            location: {x: 250.50,y: -168.50,z: 0.0}
+            rotation: {pitch: 0.0,yaw: 0.0,roll: 0.0}
+
+        - transform:
+            
+            location: {x: 255.70,y: -174.80,z: 0.0}
+            rotation: {pitch: 0.0,yaw: 0.0,roll: 0.0}
+
+      static.prop.streetbarrier:
+        
+        - transform:
+            
+            location: {x: 308.70,y: -173.10,z: 0.0}
+            rotation: {pitch: 0.0,yaw: 45.0,roll: 0.0}
+
+        - transform:
+            
+            location: {x: 312.10,y: -170.10,z: 0.0}
+            rotation: {pitch: 0.0,yaw: 45.0,roll: 0.0}
+
+        - transform:
+            
+            location: {x: 314.80,y: -167.20,z: 0.0}
+            rotation: {pitch: 0.0,yaw: 45.0,roll: 0.0}
+
+        - transform:
+            
+            location: {x: 303.60,y: -246.60,z: 0.0}
+            rotation: {pitch: 0.0,yaw: 90.0,roll: 0.0}
+
+        - transform:
+            
+            location: {x: 303.60,y: -248.50,z: 0.0}
+            rotation: {pitch: 0.0,yaw: 90.0,roll: 0.0}
+
+        - transform:
+            
+            location: {x: 303.60,y: -250.50,z: 0.0}
+            rotation: {pitch: 0.0,yaw: 90.0,roll: 0.0}
+
+        - transform:
+            
+            location: {x: 311.60,y: -256.60,z: 0.0}
+            rotation: {pitch: 0.0,yaw: 0.0,roll: 0.0}
+
+        - transform:
+            
+            location: {x: 313.40,y: -256.60,z: 0.0}
+            rotation: {pitch: 0.0,yaw: 0.0,roll: 0.0}
+
+        - transform:
+            
+            location: {x: 315.30,y: -256.60,z: 0.0}
+            rotation: {pitch: 0.0,yaw: 0.0,roll: 0.0}
+
+      vehicle.dodge.charger_police:
+        
+        - transform:
+            
+            location: {x: 316.40,y: -169.80,z: 2.00}
+            rotation: {pitch: 0.0,yaw: -120.0,roll: 0.0}
+
+        - transform:
+            
+            location: {x: 311.40,y: -175.40,z: 2.00}
+            rotation: {pitch: 0.0,yaw: -140.0,roll: 0.0}
+
+
+      vehicle.carlamotors.firetruck:
+        
+        - transform:
+            
+            location: {x: 326.70,y: -173.20,z: 1.00}
+            rotation: {pitch: 0.0,yaw: -60.0,roll: 0.0}
+
+      vehicle.ford.ambulance:
+        
+        - transform:
+            
+            location: {x: 312.60,y: -186.30,z: 2.00}
+            rotation: {pitch: 0.0,yaw: -75.0,roll: 0.0}
+
+  multiple_blocked_streets05_Town04:
+
+    map: "Town04"
+    description: |
+      Multiple roadblocks caused by various obstructions related to traffic works or accidents. 
+      Traffic cones, warning signs, and some light signals are used to achieve this. A simple but useful roadblock.
+
+    props:
+
+      static.prop.streetbarrier:
+
+        - transform:
+            
+            location: {x: 255.40,y: -180.90,z: 0.0}
+            rotation: {pitch: 0.0,yaw: 0.0,roll: 0.0}
+
+        - transform:
+            
+            location: {x: 257.90,y: -180.90,z: 0.0}
+            rotation: {pitch: 0.0,yaw: 0.0,roll: 0.0}
+
+      static.prop.trafficcone01:
+        
+        - transform:
+            
+            location: {x: 254.00,y: -181.00,z: 0.0}
+            rotation: {pitch: 0.0,yaw: 0.0,roll: 0.0}
+
+        - transform:
+            
+            location: {x: 256.70,y: -181.00,z: 0.0}
+            rotation: {pitch: 0.0,yaw: 0.0,roll: 0.0}
+
+        - transform:
+            
+            location: {x: 259.40,y: -181.00,z: 0.0}
+            rotation: {pitch: 0.0,yaw: 0.0,roll: 0.0}
+
+        - transform:
+            
+            location: {x: 208.90,y: -244.20,z: 0.0}
+            rotation: {pitch: 0.0,yaw: 0.0,roll: 0.0}
+
+        - transform:
+            
+            location: {x: 208.90,y: -247.50,z: 0.0}
+            rotation: {pitch: 0.0,yaw: 0.0,roll: 0.0}
+
+        - transform:
+            
+            location: {x: 208.90,y: -251.10,z: 0.0}
+            rotation: {pitch: 0.0,yaw: 0.0,roll: 0.0}
+
+      static.prop.warningconstruction:
+        
+        - transform:
+            
+            location: {x: 209.00,y: -245.70,z: 0.0}
+            rotation: {pitch: 0.0,yaw: 90.0,roll: 0.0}
+
+        - transform:
+            
+            location: {x: 209.00,y: -249.60,z: 0.0}
+            rotation: {pitch: 0.0,yaw: 90.0,roll: 0.0}
+
+      static.prop.trafficwarning:
+        
+        - transform:
+            
+            location: {x: 202.50,y: -255.50,z: 0.0}
+            rotation: {pitch: 0.0,yaw: 180.0,roll: 0.0}
+
+
+  multiple_blocked_streets06_Town04:
+    
+    map: "Town04"
+    description: |
+      One of the areas with the highest number of roadblocks. These consist of simple roadblocks made with cones, signs, barriers, and vehicles
+      but they are spread throughout the town at key points that can significantly disrupt traffic flow.
+
+    props:
+      
+      static.prop.streetbarrier:
+        
+        - transform:
+            
+            location: {x: 138.10,y: -174.30,z: 0.0}
+            rotation: {pitch: 0.0,yaw: 90.0,roll: 0.0}
+
+        - transform:
+            
+            location: {x: 138.10,y: -171.70,z: 0.0}
+            rotation: {pitch: 0.0,yaw: 90.0,roll: 0.0}
+
+        - transform:
+            
+            location: {x: 138.10,y: -169.00,z: 0.0}
+            rotation: {pitch: 0.0,yaw: 90.0,roll: 0.0}
+
+        - transform:
+            
+            location: {x: 57.90 ,y: -181.20,z: 0.0}
+            rotation: {pitch: 0.0,yaw: 0.0,roll: 0.0}
+
+        - transform:
+            
+            location: {x: 60.50,y: -181.20,z: 0.0}
+            rotation: {pitch: 0.0,yaw: 0.0,roll: 0.0}
+
+        - transform:
+            
+            location: {x: 63.00,y: -181.20,z: 0.0}
+            rotation: {pitch: 0.0,yaw: 0.0,roll: 0.0}
+
+        - transform:
+            
+            location: {x: 203.80,y: -237.50,z: 0.0}
+            rotation: {pitch: 0.0,yaw: 0.0,roll: 0.0}
+
+        - transform:
+            
+            location: {x: 202.00,y: -237.50,z: 0.0}
+            rotation: {pitch: 0.0,yaw: 0.0,roll: 0.0}
+
+        - transform:
+            
+            location: {x: 200.10,y: -237.50,z: 0.0}
+            rotation: {pitch: 0.0,yaw: 0.0,roll: 0.0}
+
+        - transform:
+            
+            location: {x: 315.30,y: -238.30,z: 0.0}
+            rotation: {pitch: 0.0,yaw: 0.0,roll: 0.0}
+
+        - transform:
+            
+            location: {x: 313.40,y: -238.20,z: 0.0}
+            rotation: {pitch: 0.0,yaw: 0.0,roll: 0.0}
+
+        - transform:
+            
+            location: {x: 311.60,y: -238.30,z: 0.0}
+            rotation: {pitch: 0.0,yaw: 0.0,roll: 0.0}
+
+      static.prop.trafficcone01:
+
+        - transform:
+            
+            location: {x: 138.00,y: -173.10,z: 0.0}
+            rotation: {pitch: 0.0,yaw: 0.0,roll: 0.0}
+
+        - transform:
+            
+            location: {x: 138.00,y: -170.30,z: 0.0}
+            rotation: {pitch: 0.0,yaw: 0.0,roll: 0.0}
+
+      static.prop.trafficcone02:
+
+        - transform:
+            
+            location: {x: 205.00,y: -237.40,z: 0.0}
+            rotation: {pitch: 0.0,yaw: 0.0,roll: 0.0}
+
+        - transform:
+            
+            location: {x: 198.90,y: -237.40,z: 0.0}
+            rotation: {pitch: 0.0,yaw: 0.0,roll: 0.0}
+
+      static.prop.constructioncone:
+
+        - transform:
+            
+            location: {x: 212.30,y: -312.30,z: 0.0}
+            rotation: {pitch: 0.0,yaw: 0.0,roll: 0.0}
+
+        - transform:
+            
+            location: {x: 212.30,y: -309.10,z: 0.0}
+            rotation: {pitch: 0.0,yaw: 0.0,roll: 0.0}
+
+        - transform:
+            
+            location: {x: 212.30,y: -310.70,z: 0.0}
+            rotation: {pitch: 0.0,yaw: 0.0,roll: 0.0}
+
+        - transform:
+            
+            location: {x: 212.30,y: -307.50,z: 0.0}
+            rotation: {pitch: 0.0,yaw: 0.0,roll: 0.0}
+
+        - transform:
+            
+            location: {x: 212.30,y: -306.10,z: 0.0}
+            rotation: {pitch: 0.0,yaw: 0.0,roll: 0.0}
+
+        - transform:
+            
+            location: {x: 254.10,y: -240.90,z: 0.0}
+            rotation: {pitch: 0.0,yaw: 0.0,roll: 0.0}
+
+        - transform:
+            
+            location: {x: 255.60,y: -242.10,z: 0.0}
+            rotation: {pitch: 0.0,yaw: 0.0,roll: 0.0}
+
+        - transform:
+            
+            location: {x: 257.00,y: -243.50,z: 0.0}
+            rotation: {pitch: 0.0,yaw: 0.0,roll: 0.0}
+        - transform:
+            
+            location: {x: 259.10,y: -245.90,z: 0.0}
+            rotation: {pitch: 0.0,yaw: 0.0,roll: 0.0}
+
+        - transform:
+            
+            location: {x: 260.60,y: -248.40,z: 0.0}
+            rotation: {pitch: 0.0,yaw: 0.0,roll: 0.0}
+
+        - transform:
+            
+            location: {x: 261.60,y: -250.40,z: 0.0}
+            rotation: {pitch: 0.0,yaw: 0.0,roll: 0.0}
+
+        - transform:
+            
+            location: {x: 262.50,y: -252.40,z: 0.0}
+            rotation: {pitch: 0.0,yaw: 0.0,roll: 0.0}
+
+      static.prop.trafficwarning:
+
+        - transform:
+            
+            location: {x: 258.10,y: -239.70,z: 0.0}
+            rotation: {pitch: 0.0,yaw: 0.0,roll: 0.0}
+
+        - transform:
+            
+            location: {x: 263.70,y: -248.50,z: 0.0}
+            rotation: {pitch: 0.0,yaw: -90.0,roll: 0.0}
+
+      static.prop.warningaccident:
+
+        - transform:
+            
+            location: {x: 341.70,y: -172.40,z: 0.0}
+            rotation: {pitch: 0.0,yaw: -90.0,roll: 0.0}
+
+        - transform:
+            
+            location: {x: 341.70,y: -168.70,z: 0.0}
+            rotation: {pitch: 0.0,yaw: -90.0,roll: 0.0}
+
+      vehicle.carlamotors.firetruck:
+
+        - transform:
+            
+            location: {x: 337.20,y: -171.50,z: 2.00}
+            rotation: {pitch: 0.0,yaw: -120.0,roll: 0.0}
+
+  multiple_blocked_street02_Town03:
+    
+    map: "Town03"
+    description: |
+      Multiple roadblocks formed by police checkpoints created using available police vehicles and cones. 
+      Traffic lights and additional street barriers are also included. This roadblock is interesting because it cuts off the main and largest avenue in Town03.
+
+    props:
+      
+      static.prop.constructioncone:
+        
+        - transform:
+            
+            location: {x: -18.40,y: 137.20,z: 0.00}
+            rotation: {pitch: 0.0,yaw: 0.0,roll: 0.0}
+
+        - transform:
+            
+            location: {x: -18.40,y: 132.60,z: 0.00}
+            rotation: {pitch: 0.0,yaw: 0.0,roll: 0.0}
+
+        - transform:
+            
+            location: {x: -18.40,y: 128.10,z: 0.00}
+            rotation: {pitch: 0.0,yaw: 0.0,roll: 0.0}
+
+      static.prop.trafficwarning:
+        
+        - transform:
+            
+            location: {x: -19.00,y: 130.30,z: 0.00}
+            rotation: {pitch: 0.0,yaw: 90.0,roll: 0.0}
+
+        - transform:
+            
+            location: {x: -19.00,y: 135.30,z: 0.00}
+            rotation: {pitch: 0.0,yaw: 90.0,roll: 0.0}
+
+      static.prop.streetbarrier:
+
+        - transform:
+            
+            location: {x: -97.10,y: 17.80,z: 0.00}
+            rotation: {pitch: 0.0,yaw: 45.0,roll: 0.0}
+
+        - transform:
+            
+            location: {x: -97.10,y: 15.10,z: 0.00}
+            rotation: {pitch: 0.0,yaw: 45.0,roll: 0.0}
+
+        - transform:
+            
+            location: {x: -97.10,y: 12.50,z: 0.00}
+            rotation: {pitch: 0.0,yaw: 45.0,roll: 0.0}
+
+
+      static.prop.trafficcone01:
+        
+        - transform:
+            
+            location: {x: -73.70,y: 10.20,z: 0.00}
+            rotation: {pitch: 0.0,yaw: 0.0,roll: 0.0}
+
+        - transform:
+            
+            location: {x: -80.40,y: 15.30,z: 0.00}
+            rotation: {pitch: 0.0,yaw: 0.0,roll: 0.0}
+
+        - transform:
+            
+            location: {x: -87.70,y: 20.20,z: 0.00}
+            rotation: {pitch: 0.0,yaw: 0.0,roll: 0.0}
+
+      vehicle.dodge.charger_police:
+
+        - transform:
+            
+            location: {x: -76.40,y: 13.60,z: 2.00}
+            rotation: {pitch: 0.0,yaw: -35.0,roll: 0.0}
+
+        - transform:
+            
+            location: {x: -83.40,y: 18.50,z: 2.00}
+            rotation: {pitch: 0.0,yaw: -35.0,roll: 0.0}
+
+        - transform:
+            
+            location: {x: -90.30,y: 23.50,z: 2.00}
+            rotation: {pitch: 0.0,yaw: -35.0,roll: 0.0}
+
+  double_roadblock03_Town03:
+
+    map: "Town03"
+    description: |
+      Closure of two separate streets to conduct tests in different areas of Town03 at the same time. 
+      Classic street barriers and easy-to-assemble white traffic cones are used. 
+      In addition to this, at one of the roadblocks, white traffic cones, cardboard boxes, and transport trucks are used to simulate loading or unloading operations that require a temporary roadblock.
+
+    props: 
+      
+      static.prop.box01:
+
+        - transform:
+            
+            location: {x: 169.50,y: 79.70,z: 0.02}
+            rotation: {pitch: 0.0,yaw: 0.0,roll: 0.0}
+
+        - transform:
+            
+            location: {x: 170.30,y: 79.70,z: 0.02}
+            rotation: {pitch: 0.0,yaw: 0.0,roll: 0.0}
+
+        - transform:
+            
+            location: {x: 171.10,y: 79.70,z: 0.02}
+            rotation: {pitch: 0.0,yaw: 0.0,roll: 0.0}
+
+        - transform:
+            
+            location: {x: 169.90,y: 79.70,z: 0.8}
+            rotation: {pitch: 0.0,yaw: 0.0,roll: 0.0}
+
+        - transform:
+            
+            location: {x: 170.70,y: 79.70,z: 0.8}
+            rotation: {pitch: 0.0,yaw: 0.0,roll: 0.0}
+
+        - transform:
+            
+            location: {x: 170.30,y: 79.70,z: 1.4}
+            rotation: {pitch: 0.0,yaw: 0.0,roll: 0.0}
+
+      vehicle.carlamotors.carlacola:
+
+        - transform:
+            
+            location: {x: 167.10,y: 81.80,z: 2.0}
+            rotation: {pitch: 0.0,yaw: 90.0,roll: 0.0}
+
+      static.prop.trafficcone02:
+        
+        - transform:
+            
+            location: {x: 163.90,y: 74.00,z: 0.0}
+            rotation: {pitch: 0.0,yaw: 0.0,roll: 0.0}
+
+        - transform:
+            
+            location: {x: 167.00,y: 74.00,z: 0.0}
+            rotation: {pitch: 0.0,yaw: 0.0,roll: 0.0}
+
+        - transform:
+            
+            location: {x: 170.80,y: 74.00,z: 0.0}
+            rotation: {pitch: 0.0,yaw: 0.0,roll: 0.0}
+
+        - transform:
+            
+            location: {x: 173.60,y: 74.00,z: 0.0}
+            rotation: {pitch: 0.0,yaw: 0.0,roll: 0.0}
+
+        
+        - transform:
+            
+            location: {x: 4.00,y: -125.70,z: 0.0}
+            rotation: {pitch: 0.0,yaw: 0.0,roll: 0.0}
+
+        - transform:
+            
+            location: {x: 3.00,y: -125.70,z: 0.0}
+            rotation: {pitch: 0.0,yaw: 0.0,roll: 0.0}
+
+        - transform:
+            
+            location: {x: 2.20,y: -125.70,z: 0.0}
+            rotation: {pitch: 0.0,yaw: 0.0,roll: 0.0}
+
+        - transform:
+            
+            location: {x: 1.40,y: -125.70,z: 0.0}
+            rotation: {pitch: 0.0,yaw: 0.0,roll: 0.0}
+
+      static.prop.streetbarrier:
+        
+        - transform:
+            
+            location: {x: 9.20,y: -126.10,z: 0.0}
+            rotation: {pitch: 0.0,yaw: 0.0,roll: 0.0}
+
+        - transform:
+            
+            location: {x: 5.90,y: -126.10,z: 0.0}
+            rotation: {pitch: 0.0,yaw: 0.0,roll: 0.0}
+
+        - transform:
+            
+            location: {x: -1.30,y: -126.10,z: 0.0}
+            rotation: {pitch: 0.0,yaw: 0.0,roll: 0.0}
+
+        - transform:
+            
+            location: {x: -4.10,y: -126.10,z: 0.0}
+            rotation: {pitch: 0.0,yaw: 0.0,roll: 0.0}
+
+  multiple_blocked_street03_Town03:
+    
+    map: "Town03"
+    description: |
+      Multiple streets blocked off again using police control and different sections cut off with medium-sized orange traffic cones
+      as well as traffic barriers and chain barriers placed on the main avenue that circles the entire Town03 to significantly alter the flow of traffic.
+
+    props:
+      
+      static.prop.streetbarrier:
+
+        - transform:
+            
+            location: {x: -97.10,y: 17.80,z: 0.00}
+            rotation: {pitch: 0.0,yaw: 45.0,roll: 0.0}
+
+        - transform:
+            
+            location: {x: -97.10,y: 15.10,z: 0.00}
+            rotation: {pitch: 0.0,yaw: 45.0,roll: 0.0}
+
+        - transform:
+            
+            location: {x: -97.10,y: 12.50,z: 0.00}
+            rotation: {pitch: 0.0,yaw: 45.0,roll: 0.0}
+
+        - transform:
+            
+            location: {x: 9.20,y: -126.10,z: 0.0}
+            rotation: {pitch: 0.0,yaw: 0.0,roll: 0.0}
+
+        - transform:
+            
+            location: {x: 5.90,y: -126.10,z: 0.0}
+            rotation: {pitch: 0.0,yaw: 0.0,roll: 0.0}
+
+        - transform:
+            
+            location: {x: -1.30,y: -126.10,z: 0.0}
+            rotation: {pitch: 0.0,yaw: 0.0,roll: 0.0}
+
+        - transform:
+            
+            location: {x: -4.10,y: -126.10,z: 0.0}
+            rotation: {pitch: 0.0,yaw: 0.0,roll: 0.0}
+
+
+      static.prop.trafficcone01:
+        
+        - transform:
+            
+            location: {x: -73.70,y: 10.20,z: 0.00}
+            rotation: {pitch: 0.0,yaw: 0.0,roll: 0.0}
+
+        - transform:
+            
+            location: {x: -80.40,y: 15.30,z: 0.00}
+            rotation: {pitch: 0.0,yaw: 0.0,roll: 0.0}
+
+        - transform:
+            
+            location: {x: -87.70,y: 20.20,z: 0.00}
+            rotation: {pitch: 0.0,yaw: 0.0,roll: 0.0}
+
+        
+        - transform:
+            
+            location: {x: 86.50,y: -122.50,z: 8.00}
+            rotation: {pitch: 0.0,yaw: 0.0,roll: 0.0}
+
+        - transform:
+            
+            location: {x: 84.80,y: -122.50,z: 8.00}
+            rotation: {pitch: 0.0,yaw: 0.0,roll: 0.0}
+
+
+        - transform:
+            
+            location: {x: 81.10,y: -122.50,z: 8.00}
+            rotation: {pitch: 0.0,yaw: 0.0,roll: 0.0}
+
+        - transform:
+            
+            location: {x: 79.30,y: -122.50,z: 8.00}
+            rotation: {pitch: 0.0,yaw: 0.0,roll: 0.0}
+
+      vehicle.dodge.charger_police:
+
+        - transform:
+            
+            location: {x: -76.40,y: 13.60,z: 2.00}
+            rotation: {pitch: 0.0,yaw: -35.0,roll: 0.0}
+
+        - transform:
+            
+            location: {x: -83.40,y: 18.50,z: 2.00}
+            rotation: {pitch: 0.0,yaw: -35.0,roll: 0.0}
+
+        - transform:
+            
+            location: {x: -90.30,y: 23.50,z: 2.00}
+            rotation: {pitch: 0.0,yaw: -35.0,roll: 0.0}
+
+        - transform:
+            
+            location: {x: -76.80,y: -123.10,z: 2.00}
+            rotation: {pitch: 0.0,yaw: -165.0,roll: 0.0}
+
+      static.prop.trafficcone02:
+
+        - transform:
+            
+            location: {x: 4.00,y: -125.70,z: 0.0}
+            rotation: {pitch: 0.0,yaw: 0.0,roll: 0.0}
+
+        - transform:
+            
+            location: {x: 3.00,y: -125.70,z: 0.0}
+            rotation: {pitch: 0.0,yaw: 0.0,roll: 0.0}
+
+        - transform:
+            
+            location: {x: 2.20,y: -125.70,z: 0.0}
+            rotation: {pitch: 0.0,yaw: 0.0,roll: 0.0}
+
+
+
+      static.prop.trafficwarning:
+        
+        - transform:
+            
+            location: {x: -145.20,y: 7.10,z: 0.0}
+            rotation: {pitch: 0.0,yaw: 0.0,roll: 0.0}
+
+        - transform:
+            
+            location: {x: -150.50,y: 7.10,z: 0.0}
+            rotation: {pitch: 0.0,yaw: 0.0,roll: 0.0}
+
+      static.prop.constructioncone:
+        
+        - transform:
+            
+            location: {x: -143.30,y: 6.30,z: 0.0}
+            rotation: {pitch: 0.0,yaw: 0.0,roll: 0.0}
+
+        - transform:
+            
+            location: {x: -148.00,y: 6.30,z: 0.0}
+            rotation: {pitch: 0.0,yaw: 0.0,roll: 0.0}
+
+        - transform:
+            
+            location: {x: -152.50,y: 6.30,z: 0.0}
+            rotation: {pitch: 0.0,yaw: 0.0,roll: 0.0}
+
+      static.prop.chainbarrier:
+        
+        - transform:
+            
+            location: {x: 96.50,y: -196.20,z: 0.0}
+            rotation: {pitch: 0.0,yaw: 90.0,roll: 0.0}
+
+        - transform:
+            
+            location: {x: 96.50,y: -194.80,z: 0.0}
+            rotation: {pitch: 0.0,yaw: 90.0,roll: 0.0}
+
+        - transform:
+            
+            location: {x: 96.50,y: -193.40,z: 0.0}
+            rotation: {pitch: 0.0,yaw: 90.0,roll: 0.0}
+
+        - transform:
+            
+            location: {x: 96.50,y: -191.90,z: 0.0}
+            rotation: {pitch: 0.0,yaw: 90.0,roll: 0.0}
+
+      static.prop.chainbarrierend:
+        
+        - transform:
+            
+            location: {x: 96.50,y: -190.50,z: 0.0}
+            rotation: {pitch: 0.0,yaw: 0.0,roll: 0.0}
+
+
+  multiple_blocked_street04_Town03:
+    
+    map: "Town03"
+    description: |
+      Multiple roadblocks that practically prevent all access to the upper part of the city in Town03, leaving only one access point open
+      which can lead to complex situations with heavy traffic. This is done by creating simple blockades with traffic barriers, cones, warning signs, containers
+      and the use of service vehicles such as police cars and ambulances, as well as vehicles with special access, such as the one seen on one of the closed roads.
+
+    props:
+
+      static.prop.warningaccident:
+        
+        - transform:
+            
+            location: {x: 15.80,y: -138.40,z: 0.0}
+            rotation: {pitch: 0.0,yaw: 90.0,roll: 0.0}
+
+        - transform:
+            
+            location: {x: 15.80,y: -136.20,z: 0.0}
+            rotation: {pitch: 0.0,yaw: 90.0,roll: 0.0}
+
+        - transform:
+            
+            location: {x: 15.80,y: -134.10,z: 0.0}
+            rotation: {pitch: 0.0,yaw: 90.0,roll: 0.0}
+
+      static.prop.streetbarrier:
+        
+        - transform:
+            
+            location: {x: 87.80,y: -184.40,z: 0.0}
+            rotation: {pitch: 0.0,yaw: 0.0,roll: 0.0}
+
+        - transform:
+            
+            location: {x: 84.50,y: -184.40,z: 0.0}
+            rotation: {pitch: 0.0,yaw: 0.0,roll: 0.0}
+
+        - transform:
+            
+            location: {x: 81.20,y: -184.40,z: 0.0}
+            rotation: {pitch: 0.0,yaw: 0.0,roll: 0.0}
+
+      static.prop.trafficcone01:
+        
+        - transform:
+            
+            location: {x: 75.20,y: -16.00,z: 0.04} 
+            rotation: {pitch: 0.0,yaw: 0.0,roll: 0.0}
+
+        - transform:
+            
+            location: {x: 77.20,y: -15.90,z: 0.04} 
+            rotation: {pitch: 0.0,yaw: 0.0,roll: 0.0}
+
+        - transform:
+            
+            location: {x: 79.30,y: -15.80,z: 0.04} 
+            rotation: {pitch: 0.0,yaw: 0.0,roll: 0.0}
+
+        - transform:
+            
+            location: {x: 81.30,y: -15.60,z: 0.04} 
+            rotation: {pitch: 0.0,yaw: 0.0,roll: 0.0}
+
+        - transform:
+            
+            location: {x: 83.00,y: -15.60,z: 0.04} 
+            rotation: {pitch: 0.0,yaw: 0.0,roll: 0.0}
+
+      static.prop.trafficwarning:
+
+        - transform:
+            
+            location: {x: 81.40,y: -17.70,z: 0.05} 
+            rotation: {pitch: 0.0,yaw: 180.0,roll: 0.0}
+
+      static.prop.container:
+
+        - transform:
+            
+            location: {x: 77.60,y: -20.50,z: 0.80} 
+            rotation: {pitch: 0.0,yaw: 20.0,roll: 0.0}
+
+      vehicle.ford.ambulance:
+        
+        - transform:
+            
+            location: {x: 22.10,y: -138.30,z: 2.00} 
+            rotation: {pitch: 0.0,yaw: 90.0,roll: 0.0}
+
+      vehicle.dodge.charger_police:
+        
+        - transform:
+            
+            location: {x: 138.50,y: -130.60,z: 10.00} 
+            rotation: {pitch: 0.0,yaw: -90.0,roll: 0.0}
+
+        - transform:
+            
+            location: {x: 138.60,y: -136.70,z: 10.00} 
+            rotation: {pitch: 0.0,yaw: 90.0,roll: 0.0}
+
+      vehicle.nissan.patrol:
+        
+        - transform:
+            
+            location: {x: 80.10,y: -24.90,z: 4.00} 
+            rotation: {pitch: 0.0,yaw: 0.0,roll: 0.0}
+
+  multiple_blocked_street05_Town03:
+
+
+    map: "Town03"
+    description: |
+      It combines several types of roadblocks seen in other simulations, but distributed throughout the map and separated from each other to create the possibility of making different decisions. 
+      Traffic cones, road barriers, police cars, containers misplaced or moved on purpose for an emergency closure, and simple warning lights are used.
+
+    props:
+      
+      static.prop.trafficcone01:
+
+        - transform:
+            
+            location: {x: -89.80,y: 122.20,z: 0.01}
+            rotation: {pitch: 0.0,yaw: 0.0,roll: 0.0}
+
+        - transform:
+            
+            location: {x: -86.20,y: 122.20,z: 0.01}
+            rotation: {pitch: 0.0,yaw: 0.0,roll: 0.0}
+
+        - transform:
+            
+            location: {x: -82.90,y: 122.20,z: 0.01}
+            rotation: {pitch: 0.0,yaw: 0.0,roll: 0.0}
+
+        - transform:
+            
+            location: {x: -79.10,y: 122.20,z: 0.01}
+            rotation: {pitch: 0.0,yaw: 0.0,roll: 0.0}
+
+        - transform:
+            
+            location: {x: -75.80,y: 122.20,z: 0.01}
+            rotation: {pitch: 0.0,yaw: 0.0,roll: 0.0}
+
+        - transform:
+            
+            location: {x: -72.40,y: 122.20,z: 0.01}
+            rotation: {pitch: 0.0,yaw: 0.0,roll: 0.0}
+
+      static.prop.streetbarrier:
+        
+        - transform:
+            
+            location: {x: -136.60,y: -3.50,z: 0.01}
+            rotation: {pitch: 0.0,yaw: 90.0,roll: 0.0}
+
+        - transform:
+            
+            location: {x: -136.60,y: -1.70,z: 0.01}
+            rotation: {pitch: 0.0,yaw: 90.0,roll: 0.0}
+
+        - transform:
+            
+            location: {x: -136.60,y: 0.00,z: 0.01}
+            rotation: {pitch: 0.0,yaw: 90.0,roll: 0.0}
+
+
+        - transform:
+            
+            location: {x: 10.00,y: -124.90,z: 0.01}
+            rotation: {pitch: 0.0,yaw: 0.0,roll: 0.0}
+
+        - transform:
+            
+            location: {x: 6.10,y: -124.90,z: 0.01}
+            rotation: {pitch: 0.0,yaw: 0.0,roll: 0.0}
+
+        - transform:
+            
+            location: {x: -1.00,y: -124.90,z: 0.01}
+            rotation: {pitch: 0.0,yaw: 0.0,roll: 0.0}
+
+        - transform:
+            
+            location: {x: -4.50,y: -124.90,z: 0.01}
+            rotation: {pitch: 0.0,yaw: 0.0,roll: 0.0}
+
+
+        - transform:
+            
+            location: {x: 88.50,y: -123.50,z: 8.00}
+            rotation: {pitch: 0.0,yaw: 0.0,roll: 0.0}
+
+        - transform:
+            
+            location: {x: 86.80,y: -123.50,z: 8.00}
+            rotation: {pitch: 0.0,yaw: 0.0,roll: 0.0}
+
+        - transform:
+            
+            location: {x: 85.10,y: -123.50,z: 8.00}
+            rotation: {pitch: 0.0,yaw: 0.0,roll: 0.0}
+
+      vehicle.dodge.charger_police:
+        
+        - transform: 
+            
+            location: {x: 2.60,y: -124.20,z: 2.0}
+            rotation: {pitch: 0.0,yaw: 0.0,roll: 0.0}
+
+      static.prop.trafficwarning:
+        
+        - transform:
+            
+            location: {x: 79.50,y: -122.40,z: 8.00}
+            rotation: {pitch: 0.0,yaw: 0.0,roll: 0.0}
+
+      static.prop.warningconstruction:
+        
+        - transform:
+            
+            location: {x: 83.10,y: -123.50,z: 8.00}
+            rotation: {pitch: 0.0,yaw: 180.0,roll: 0.0}
+
+      static.prop.chainbarrier:
+        
+        - transform:
+            
+            location: {x: 138.20,y: -71.20,z: 8.00}
+            rotation: {pitch: 0.0,yaw: -90.0,roll: 0.0}
+
+        - transform:
+            
+            location: {x: 138.20,y: -72.60,z: 8.00}
+            rotation: {pitch: 0.0,yaw: -90.0,roll: 0.0}
+
+        - transform:
+            
+            location: {x: 138.20,y: -74.00,z: 8.00}
+            rotation: {pitch: 0.0,yaw: -90.0,roll: 0.0}
+
+        - transform:
+            
+            location: {x: 138.20,y: -75.50,z: 8.00}
+            rotation: {pitch: 0.0,yaw: -90.0,roll: 0.0}
+
+      static.prop.chainbarrierend:
+        
+        - transform:
+            
+            location: {x: 138.20,y: -76.90,z: 8.00}
+            rotation: {pitch: 0.0,yaw: -90.0,roll: 0.0}
+
+
+      static.prop.container:
+
+        - transform:
+            
+            location: {x: 77.00,y: -17.90,z: 0.05}
+            rotation: {pitch: 0.0,yaw: 0.0,roll: 0.0}
+
+        - transform:
+            
+            location: {x: 79.10,y: -17.90,z: 0.05}
+            rotation: {pitch: 0.0,yaw: 0.0,roll: 0.0}
+
+        - transform:
+            
+            location: {x: 81.20,y: -17.90,z: 0.05}
+            rotation: {pitch: 0.0,yaw: 0.0,roll: 0.0}
+
+      static.prop.warningaccident:
+        
+        - transform:
+            
+            location: {x: 75.30,y: -14.50,z: 0.03}
+            rotation: {pitch: 0.0,yaw: 0.0,roll: 0.0}
+
+        - transform:
+            
+            location: {x: 82.60,y: -14.50,z: 0.03}
+            rotation: {pitch: 0.0,yaw: 0.0,roll: 0.0}
+            
