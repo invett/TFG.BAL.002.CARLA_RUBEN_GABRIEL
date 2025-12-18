@@ -1,59 +1,34 @@
 """
-Script: penalty_manager.py
-
+--------------------------------------------------------------------------
+Route Penalty Manager
+--------------------------------------------------------------------------
 Description:
-    This module provides the RoutePenaltyManager class, a utility designed to
-    dynamically adjust the traversal cost of edges in a CARLA navigation graph.
-    The manager reads obstacle definitions from a YAML configuration file,
-    interprets them as physical blockages or restricted areas in the world, and
-    increases the weight (length) of graph edges located near those obstacles.
-    This mechanism forces CARLA’s route planner to avoid obstructed or hazardous
-    segments without modifying the underlying road network.
+    This module provides the RoutePenaltyManager class, which is responsible 
+    for dynamically modifying the cost (weight) of edges in the navigation 
+    graph. It allows for the integration of both static obstacles (loaded 
+    from YAML configuration) and dynamic runtime obstacles (detected via 
+    perception) into the path planning process by increasing the traversal 
+    cost of affected road segments.
 
 Usage:
-    # 1. Initialize the manager with a navigation graph
-    rpm = RoutePenaltyManager(graph)
+    penalty_manager = RoutePenaltyManager(navigation_graph)
+    
+    # Static Usage
+    penalty_manager.load_obstacles("scenarios/obstacles.yaml")
+    penalty_manager.apply_static_penalties()
 
-    # 2. Load all obstacles from a YAML file
-    rpm.load_obstacles("obstacles.yaml")
+    # Dynamic Usage (e.g., after perception event)
+    penalty_manager.apply_penalty_near_waypoints(blocked_waypoints, penalty_value=500.0)
 
-    # 3. Apply penalties to edges affected by nearby obstacles
-    rpm.apply_penalties(penalty_value=1000.0, radius=5.0)
-
-    # 4. Remove all penalties and restore original lengths
-    rpm.remove_penalties()
-
-Data Requirements:
-    • The navigation graph must contain edges with:
-        - "entry_waypoint": CARLA waypoint
-        - "exit_waypoint": CARLA waypoint
-        - "path": list of CARLA waypoints
-        - "length": numeric cost used by the planner
-
-    • CARLA waypoints must include:
-        wp.transform.location.x
-        wp.transform.location.y
-        wp.transform.location.z
-
-YAML Requirements:
-    The expected YAML format includes scenarios → props → transforms:
-
-        scenarios:
-          example_scenario:
-            props:
-              static.prop.streetbarrier:
-                - transform:
-                    location: {x: 10.0, y: 25.0, z: 0.0}
-
-    The loader extracts all such location entries as individual obstacle points.
+    # Cleanup (restore original map weights)
+    penalty_manager.remove_penalties()
 
 Dependencies:
-    • Python 3.x
-    • NumPy
-    • PyYAML
-    • NetworkX (or compatible graph object)
-    • CARLA Python API
-
+    - yaml
+    - numpy
+    - networkx (implied by graph structure)
+    - carla (implied by waypoint objects)
+--------------------------------------------------------------------------
 """
 
 import yaml
@@ -61,33 +36,40 @@ import numpy as np
 
 
 class RoutePenaltyManager:
+    """
+    Applies spatial penalties to edges of a navigation graph based on proximity
+    to obstacle locations. 
+    
+    This class supports maintaining a history of original edge weights, allowing 
+    temporary penalties (e.g., for transient obstacles) to be rolled back without 
+    rebuilding the entire graph.
+    """
+
     def __init__(self, graph):
         """
-        Initialize the RoutePenaltyManager.
+        Initializes the RoutePenaltyManager.
 
-        Parameters:
-            graph (networkx.DiGraph or similar):
-                Navigation graph where each edge contains waypoint and length
-                metadata. This graph will be dynamically modified when applying
-                or removing penalties.
+        Args:
+            graph (networkx.DiGraph): The navigation graph where edges contain 
+                                      'entry_waypoint', 'exit_waypoint', and 'path' attributes,
+                                      along with a 'length' attribute representing cost.
         """
         self.graph = graph
-        self.original_lengths = {}  # Stores original edge lengths for recovery
-    
+        self.original_lengths = {}
+        self.static_obstacles = []
+
+    # --------------------------------------------------
+    # Static Obstacles Management (YAML)
+    # --------------------------------------------------
     def load_obstacles(self, yaml_path):
         """
-        Load obstacle definitions from a YAML file containing scenario-based
-        prop information. All prop 'location' coordinates are extracted and
-        flattened into a unified list of obstacle points.
+        Parses a YAML configuration file to extract static obstacle locations.
 
-        Parameters:
-            yaml_path (str):
-                Path to the YAML configuration file.
+        This method expects a specific structure (ScenarioRunner compatible) where 
+        obstacles are defined under a 'scenarios' -> 'props' hierarchy.
 
-        Notes:
-            - The YAML structure is expected to include:
-                  scenarios → props → list of transforms → location
-            - Each location entry contributes one obstacle point.
+        Args:
+            yaml_path (str): The file path to the YAML configuration.
         """
         with open(yaml_path, 'r') as f:
             config = yaml.safe_load(f)
@@ -95,48 +77,88 @@ class RoutePenaltyManager:
         scenarios = config.get("scenarios", {})
         obstacles = []
 
-        # Iterate through all scenarios
-        for scenario_name, scenario_data in scenarios.items():
-            props = scenario_data.get("props", {})
+        for scenario in scenarios.values():
+            props = scenario.get("props", {})
+            for transforms in props.values():
+                for element in transforms:
+                    location = element.get("transform", {}).get("location", {})
+                    if "x" in location and "y" in location:
+                        obstacles.append(
+                            (float(location["x"]),
+                             float(location["y"]),
+                             float(location.get("z", 0.0)))
+                        )
 
-            # Each prop contains one or more transforms
-            for prop_id, transform_list in props.items():
-                for element in transform_list:
-                    transform = element.get("transform", {})
-                    location = transform.get("location", None)
+        self.static_obstacles = obstacles
 
-                    if location:
-                        x = location.get("x")
-                        y = location.get("y")
-                        z = location.get("z", 0.0)
-
-                        # Ensure valid numeric coordinates
-                        if x is not None and y is not None:
-                            obstacles.append({
-                                "x": float(x),
-                                "y": float(y),
-                                "z": float(z)
-                            })
-
-        self.obstacles = obstacles
-    
-    def apply_penalties(self, penalty_value=1000.0, radius=5.0):
+    def apply_static_penalties(self, penalty_value=1000.0, radius=5.0):
         """
-        Apply length penalties to edges whose waypoints fall within a given radius
-        of any loaded obstacle.
+        Applies penalties to graph edges for all currently loaded static obstacles.
 
-        Parameters:
-            penalty_value (float):
-                The cost added to affected edges.
-            radius (float):
-                Maximum distance at which an obstacle influences a waypoint.
+        Args:
+            penalty_value (float): The cost to add to affected edges.
+            radius (float): The radius in meters around the obstacle within which edges are penalized.
+        """
+        for obs in self.static_obstacles:
+            self.apply_spatial_penalty(obs, radius, penalty_value)
 
-        Notes:
-            - Affected edges have their "length" attribute increased.
-            - Original lengths are stored so penalties can be removed later.
+    # --------------------------------------------------
+    # Dynamic / Generic Penalty Application
+    # --------------------------------------------------
+    def apply_spatial_penalty(self, center, radius, penalty_value):
+        """
+        Applies a penalty to all graph edges that contain waypoints within a specified 
+        radius of a spatial center point.
+
+        This method iterates through all edges in the graph, checks the geometric 
+        distance of their waypoints to the center, and increases the edge 'length' 
+        (cost) if a collision is detected.
+
+        Args:
+            center (tuple): A tuple (x, y, z) representing the world coordinates of the obstacle center.
+            radius (float): The influence radius in meters. Any edge passing through this sphere is penalized.
+            penalty_value (float): The additive cost value.
+        """
+        cx, cy, cz = center
+
+        for u, v, data in self.graph.edges(data=True):
+            # Construct a full list of points defining the edge geometry
+            wp_list = (
+                [data["entry_waypoint"]] +
+                data.get("path", []) +
+                [data["exit_waypoint"]]
+            )
+
+            for wp in wp_list:
+                loc = wp.transform.location
+                dist = np.linalg.norm(
+                    [loc.x - cx, loc.y - cy, loc.z - cz]
+                )
+
+                if dist < radius:
+                    # Cache the original length if this is the first time we modify this edge
+                    if (u, v) not in self.original_lengths:
+                        self.original_lengths[(u, v)] = data["length"]
+
+                    data["length"] = (
+                        self.original_lengths[(u, v)] + penalty_value
+                    )
+                    break
+
+    def apply_penalty_near_waypoints(self, target_waypoints, penalty_value=1000.0, radius=3.0):
+        """
+        Applies penalties to graph edges whose waypoints are geometrically close to 
+        any of the provided target waypoints.
+
+        This is typically used for dynamic replanning when an external manager identifies
+        specific road segments (as a list of waypoints) that should be avoided.
+
+        Args:
+            target_waypoints (list[carla.Waypoint]): A list of waypoints marking the blocked area.
+            penalty_value (float): The cost to add to affected edges.
+            radius (float): The proximity threshold in meters.
         """
         for u, v, data in self.graph.edges(data=True):
-
             wp_list = (
                 [data["entry_waypoint"]] +
                 data["path"] +
@@ -145,23 +167,24 @@ class RoutePenaltyManager:
 
             affected = False
 
-            # Check each waypoint against every obstacle
-            for obs in self.obstacles:
-                ox, oy, oz = obs["x"], obs["y"], obs.get("z", 0.0)
+            # Check if any point on the edge is close to any target waypoint
+            for target_wp in target_waypoints:
+                tloc = target_wp.transform.location
 
                 for wp in wp_list:
                     loc = wp.transform.location
-                    dist = np.linalg.norm(
-                        [loc.x - ox, loc.y - oy, loc.z - oz]
-                    )
-
+                    dist = np.linalg.norm([
+                        loc.x - tloc.x,
+                        loc.y - tloc.y,
+                        loc.z - tloc.z
+                    ])
                     if dist < radius:
                         affected = True
                         break
+
                 if affected:
                     break
 
-            # Only modify the edge once
             if affected:
                 if (u, v) not in self.original_lengths:
                     self.original_lengths[(u, v)] = data["length"]
@@ -169,13 +192,17 @@ class RoutePenaltyManager:
                 data["length"] = (
                     self.original_lengths[(u, v)] + penalty_value
                 )
-    
+
+    # --------------------------------------------------
+    # Cleanup and Restoration
+    # --------------------------------------------------
     def remove_penalties(self):
         """
-        Restore original edge lengths that were modified by apply_penalties().
-        This fully resets the graph to its pre-penalty state.
+        Restores the original weights of all modified edges and clears the modification history.
+        
+        This should be called before a new planning cycle if the dynamic obstacles 
+        are expected to have moved or disappeared.
         """
         for (u, v), length in self.original_lengths.items():
             self.graph.edges[u, v]["length"] = length
-        
-        self.original_lengths = {}  # Clear stored values
+        self.original_lengths.clear()
