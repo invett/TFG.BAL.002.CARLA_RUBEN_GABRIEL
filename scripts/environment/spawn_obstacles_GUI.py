@@ -2,7 +2,8 @@ import carla
 import yaml
 import tkinter 
 import sys
-from tkinter import messagebox
+from tkinter import  messagebox
+
 
 """
 Script: Spawn_obstacles_GUI.py
@@ -12,7 +13,7 @@ defined in a YAML configuration file, similar to the 'spawn_obstacles.py' script
 
             - A map name to load in CARLA.
             - A description of the scenario being loaded.
-            - A collection of different props or obstacles to be used in the simulation, defined as:
+            - A collection of different props (including route reference props marked with a comment "#Route reference") or obstacles to be used in the simulation, defined as:
     
                     + blueprint type id (static.prop.trafficbarrier)
                     + list of transforms (location [x,y,z] and rotation [pitch, yaw, roll]) following 
@@ -22,6 +23,9 @@ defined in a YAML configuration file, similar to the 'spawn_obstacles.py' script
             The upper section contains all the options available in the YAML configuration file, 
             and the lower section displays the description of the environment selected 
             by the user before starting the simulation (by pressing the run simulation button).
+            In addition, when running the simulation with some of the options shown, the script will also display 
+            a series of props that serve as an indication of a predetermined route for each scenario and will also 
+            display text above the object indicating the start and end of the route. 
 
 Use case: This tool is useful when setting up CARLA simulations involving obstacles, blocked streets, cones, barriers and more
           to conduct autonomous driving tests. The YAML structure allows quick editting of scenarios without modifying Python code
@@ -62,7 +66,7 @@ def load_file(filename):
         
     return data
 
-# interface Callback 
+#Callback when the user selects an option from the interface list
 def selection(event):
     """
     Callback when the user selects an option from the interface list.
@@ -73,7 +77,7 @@ def selection(event):
     selected = listbox.curselection()
     
     if not selected:
-        return #returns None
+        return
 
     scenario_key = names[selected[0]]
     descrip = scenarios_ids[scenario_key]["description"]
@@ -103,6 +107,9 @@ def run_simulation():
     
     props = scenario["props"]
     
+    start = False
+    end = False
+    
     for type_id, instances in props.items():
         bp = blueprint.find(type_id)
         
@@ -112,11 +119,12 @@ def run_simulation():
             loc = transform["location"]
             rot = transform["rotation"]
             
-            transform = carla.Transform(carla.Location(x = float(loc["x"]),y = float(loc["y"]),z = float(loc["z"])), 
+            carla_transform = carla.Transform(carla.Location(x = float(loc["x"]),y = float(loc["y"]),z = float(loc["z"])), 
                                     carla.Rotation(pitch= float(rot["pitch"]),yaw= float(rot["yaw"]),roll= float(rot["roll"])))
             
             
-            actor = world.try_spawn_actor(bp, transform)
+            actor = world.try_spawn_actor(bp, carla_transform)
+            world.tick() #Update world (This assure that locations for START and END reference texts are correctly updated)
             
             if actor:
                 print("Spawned: ", actor.type_id)
@@ -124,6 +132,34 @@ def run_simulation():
                 print("Failed to spawn: ", type_id)
                 
                 messagebox.showinfo("Ready...", f"Scenario {scenario_key} loaded.")
+                
+            #show route reference text
+            z = float(loc["z"])
+            rot_guide = float(rot["pitch"])
+            actor_loc = actor.get_transform().location
+            actor_loc.z += 2.0
+            
+            if actor.type_id == "static.prop.trafficcone02" and z > 6.0 and abs(rot_guide) > 50 and not start:
+                
+                world.debug.draw_string(
+                    actor_loc,
+                    "START",
+                    color = carla.Color(0,0,255),
+                    life_time=120.0,
+                    persistent_lines=True                
+                )
+                start = True
+            
+            if actor.type_id == "static.prop.stop" and z > 6.0 and not end:
+                
+                world.debug.draw_string(
+                    actor_loc,
+                    "END",
+                    color = carla.Color(0,0,255),
+                    life_time=120.0,
+                    persistent_lines=True                
+                )
+                end = True
     
 config = load_file('obstacles.yaml')
 scenarios_ids = config["scenarios"]
