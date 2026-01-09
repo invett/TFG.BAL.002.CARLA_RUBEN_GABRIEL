@@ -12,6 +12,8 @@
 #           - Prop ID: The ID used to search for props in the CARLA blueprints and generate them
 #           - Transforms: Each prop has different transform fiels wich contains the location (x, y, z) and the rotation (pitch, yaw, roll) where the prop will be placed
 #
+# Within the list of props, you may find some props marked with a comment that says -Route Reference-. These props are intended to indicate only the start and end of a pre-established route within the scenarios.
+#
 # This file can be modified or expanded to generate other types of roadblocks on additional maps or change the props used for existing roadblocks in the YAML file
 # To do so, the following considerations must be taken into account:
 #
@@ -19,11 +21,14 @@
 #                   + Unreal Rotation -> roll, pitch, yaw 
 #                   + CARLA Rotation -> pitch, yaw, roll (practical use decided by the CARLA team to match their Python classes)
 #           - In Unreal Engine, positions are given in meters (example: X= 14610.0 in Unreal | X = 146.10 in CARLA)
+#
+# For this file to work correctly, you must modify or replace the Default.Package.json configuration file with the one attached to this YAML file. To make the change correctly, do the following:
+# - Run the CARLA simulator (the Unreal Engine editing window before running the simulation itself)
+# - Locate the path of the Default.Package.json file (usually located in a path like: \carla\Unreal\CarlaUE4\Content\Carla\Config)
+# - Replace the configuration file with the one attached to this file (we recommend creating a backup copy of the original file)
+# - Once the change has been made, a message will appear in the editing window indicating that there has been a change in the files and that they need to be imported. Confirm this option.
+# - The change will now have been made without any problems and the script will now work.
 
-#- transform:
-#            
-#            location: {x: ,y: ,z: }
-#            rotation: {pitch: ,yaw: ,roll: }
 
 scenarios:
 
@@ -61,6 +66,38 @@ scenarios:
 
             location: {x: 40.60 ,y: 250.40,z: 0.03}
             rotation: {pitch: 0.0 , yaw: 90.0 , roll: 0.0}
+
+      static.prop.trafficcone02:
+
+        - transform: #Route reference
+
+            location: {x: 125.30 ,y: 238.70,z: 7.30}
+            rotation: {pitch: 90.0 , yaw: 0.0 , roll: 0.0}
+
+        - transform: #Route reference
+
+            location: {x: 124.20 ,y: 238.70,z: 7.30}
+            rotation: {pitch: 90.0 , yaw: 0.0 , roll: 0.0}
+
+        - transform: #Route reference
+
+            location: {x: 123.80 ,y: 239.50,z: 7.30}
+            rotation: {pitch: 90.0 , yaw: 0.0 , roll: -45.0}
+
+        - transform: #Route reference
+
+            location: {x: 123.90 ,y: 237.90,z: 7.30}
+            rotation: {pitch: 90.0 , yaw: 0.0 , roll: 45.0}
+
+      static.prop.stop:
+
+        - transform: #Route reference
+
+            location: {x: 72.80 ,y: 304.00,z: 7.30}
+            rotation: {pitch: 0.0 , yaw: 90.0 , roll: 0.0}
+
+
+        
  
   blocked_street02_Town02:
 
@@ -88,6 +125,35 @@ scenarios:
           
             location: {x: 142.70 ,y: 191.60 ,z: 0.02}
             rotation: {pitch: 0.0 ,yaw: 90.0 ,roll: 0.0}
+
+      static.prop.trafficcone02:
+        
+        - transform: #Route reference
+          
+            location: {x: 43.90 ,y: 214.30 ,z: 7.30}
+            rotation: {pitch: 90.0 ,yaw: 90.0 ,roll: 0.0}
+
+        - transform: #Route reference
+          
+            location: {x: 43.90 ,y: 215.40 ,z: 7.30}
+            rotation: {pitch: 90.0 ,yaw: 90.0 ,roll: 0.0}
+
+        - transform: #Route reference
+          
+            location: {x: 43.10 ,y: 214.00 ,z: 7.30}
+            rotation: {pitch: 90.0 ,yaw: 90.0 ,roll: -45.0}
+
+        - transform: #Route reference
+          
+            location: {x: 44.70 ,y: 214.00 ,z: 7.30}
+            rotation: {pitch: 90.0 ,yaw: 90.0 ,roll: 45.0}
+
+      static.prop.stop:
+        
+        - transform: #Route reference
+          
+            location: {x: 177.80 ,y: 107.60 ,z: 7.30}
+            rotation: {pitch: 0.0 ,yaw: -90.0 ,roll: 0.0}
   
   multiple_blocked_street01_Town02:
 
@@ -200,6 +266,35 @@ scenarios:
 
             location: {x: 40.60,y: 250.40,z: 0.02}
             rotation: {pitch: 0.0,yaw: 90.0,roll: 0.0}
+      
+      static.prop.trafficcone02:
+        
+        - transform: #Route reference
+          
+            location: {x: 179.70 ,y: 107.40 ,z: 7.30}
+            rotation: {pitch: 90.0 ,yaw: 0.0 ,roll: 0.0}
+
+        - transform: #Route reference
+          
+            location: {x: 180.70 ,y: 107.40 ,z: 7.30}
+            rotation: {pitch: 90.0 ,yaw: 0.0 ,roll: 0.0}
+
+        - transform: #Route reference
+          
+            location: {x: 179.40 ,y: 106.60 ,z: 7.30}
+            rotation: {pitch: 90.0 ,yaw: 0.0 ,roll: 45.0}
+
+        - transform: #Route reference
+          
+            location: {x: 179.40 ,y: 108.20 ,z: 7.30}
+            rotation: {pitch: 90.0 ,yaw: 0.0 ,roll: -45.0}
+
+      static.prop.stop:
+        
+        - transform: #Route reference
+          
+            location: {x: 43.90 ,y: 264.40 ,z: 7.30}
+            rotation: {pitch: 0.0 ,yaw: 0.0 ,roll: 0.0}
 
   multiple_blocked_street02_Town02:
 
@@ -310,6 +405,37 @@ scenarios:
             location: {x: 40.60,y: 198.10,z: 0.02}
             rotation: {pitch: 0.0,yaw: 90.0,roll: 0.0}
 
+      static.prop.trafficcone02:
+        
+        - transform: #Route reference
+          
+            location: {x: 101.70 ,y: 239.00 ,z: 7.30}
+            rotation: {pitch: -90.0 ,yaw: 0.0 ,roll: 0.0}
+
+        - transform: #Route reference
+          
+            location: {x: 100.60 ,y: 239.00 ,z: 7.30}
+            rotation: {pitch: -90.0 ,yaw: 0.0 ,roll: 0.0}
+
+        - transform: #Route reference
+          
+            location: {x: 102.10 ,y: 239.80 ,z: 7.30}
+            rotation: {pitch: -90.0 ,yaw: 0.0 ,roll: -45.0}
+
+        - transform: #Route reference
+          
+            location: {x: 102.10 ,y: 238.20 ,z: 7.30}
+            rotation: {pitch: -90.0 ,yaw: 0.0 ,roll: 45.0}
+
+      static.prop.stop:
+
+        - transform: #Route reference
+          
+            location: {x: 191.60 ,y: 218.80 ,z: 7.30}
+            rotation: {pitch: 0.0 ,yaw: 0.0 ,roll: 0.0}
+        
+
+
   simple_blocked_street01_town03:
 
     map: "Town03"
@@ -373,6 +499,35 @@ scenarios:
 
             location: {x: 156.70,y: -12.90,z: 0.01}
             rotation: {pitch: 0.0,yaw: 0.0,roll: 0.0}
+
+      static.prop.trafficcone02:
+        
+        - transform: #Route reference
+          
+            location: {x: 158.90 ,y: -193.90 ,z: 7.30}
+            rotation: {pitch: -90.0 ,yaw: 0.0 ,roll: 0.0}
+
+        - transform: #Route reference
+          
+            location: {x: 159.90 ,y: -193.90 ,z: 7.30}
+            rotation: {pitch: -90.0 ,yaw: 0.0 ,roll: 0.0}
+
+        - transform: #Route reference
+          
+            location: {x: 160.20 ,y: -193.10 ,z: 7.30}
+            rotation: {pitch: -90.0 ,yaw: 0.0 ,roll: -45.0}
+
+        - transform: #Route reference
+          
+            location: {x: 160.20 ,y: -194.70 ,z: 7.30}
+            rotation: {pitch: -90.0 ,yaw: 0.0 ,roll: 45.0}
+
+      static.prop.stop:
+        
+        - transform: #Route reference
+          
+            location: {x: 156.20 ,y: -171.60 ,z: 7.30}
+            rotation: {pitch: 0.0 ,yaw: 0.0 ,roll: 0.0}
 
   
   poor_condition_uphill_street_Town03:
@@ -457,6 +612,36 @@ scenarios:
             
             location: {x: 77.60,y: -183.90,z: -0.02}
             rotation: {pitch: 0.0,yaw: 60.0,roll: 0.0}
+
+      static.prop.trafficcone02:
+        
+        - transform: #Route reference
+          
+            location: {x: 25.20 ,y: -193.90 ,z: 7.30}
+            rotation: {pitch: -90.0 ,yaw: 0.0 ,roll: 0.0}
+
+        - transform: #Route reference
+          
+            location: {x: 23.90 ,y: -193.90 ,z: 7.30}
+            rotation: {pitch: -90.0 ,yaw: 0.0 ,roll: 0.0}
+
+        - transform: #Route reference
+          
+            location: {x: 25.20 ,y: -193.10 ,z: 7.30}
+            rotation: {pitch: -90.0 ,yaw: 0.0 ,roll: -45.0}
+
+        - transform: #Route reference
+          
+            location: {x: 25.20 ,y: -194.70 ,z: 7.30}
+            rotation: {pitch: -90.0 ,yaw: 0.0 ,roll: 45.0}
+
+      static.prop.stop:
+        
+        - transform: #Route reference
+          
+            location: {x: 80.80 ,y: -111.70 ,z: 15.50}
+            rotation: {pitch: 0.0 ,yaw: 180.0 ,roll: 0.0}
+
 
   multiple_blocked_street01_Town03:
 
@@ -577,6 +762,35 @@ scenarios:
             location: {x: -41.10,y: -3.00,z: 0.0}
             rotation: {pitch: 0.0,yaw: 0.0,roll: 0.0}
 
+      static.prop.trafficcone02:
+        
+        - transform: #Route reference
+          
+            location: {x: 127.30 ,y: 58.10 ,z: 7.30}
+            rotation: {pitch: 90.0 ,yaw: 0.0 ,roll: 0.0}
+
+        - transform: #Route reference
+          
+            location: {x: 128.30 ,y: 58.10 ,z: 7.30}
+            rotation: {pitch: 90.0 ,yaw: 0.0 ,roll: 0.0}
+
+        - transform: #Route reference
+          
+            location: {x: 127.00 ,y: 57.30 ,z: 7.30}
+            rotation: {pitch: 90.0 ,yaw: 0.0 ,roll: 45.0}
+
+        - transform: #Route reference
+          
+            location: {x: 126.90 ,y: 58.90 ,z: 7.30}
+            rotation: {pitch: 90.0 ,yaw: 0.0 ,roll: -45.0}
+
+      static.prop.stop:
+        
+        - transform: #Route reference
+          
+            location: {x: -147.20 ,y: 22.70 ,z: 7.30}
+            rotation: {pitch: 0.0 ,yaw: 0.0 ,roll: 0.0}
+
   double_roadblock_Town03:
     
     map: "Town03"
@@ -666,6 +880,35 @@ scenarios:
             
             location: {x: -10.20,y: 25.80,z: 0.0}
             rotation: {pitch: 0.0,yaw: 160.0,roll: 0.0}
+
+      static.prop.trafficcone02:
+        
+        - transform: #Route reference
+          
+            location: {x: -11.30 ,y: 167.70 ,z: 7.30}
+            rotation: {pitch: 90.0 ,yaw: 0.0 ,roll: 0.0}
+
+        - transform: #Route reference
+          
+            location: {x: -12.30 ,y: 167.70 ,z: 7.30}
+            rotation: {pitch: 90.0 ,yaw: 0.0 ,roll: 0.0}
+
+        - transform: #Route reference
+          
+            location: {x: -12.70 ,y: 166.90 ,z: 7.30}
+            rotation: {pitch: 90.0 ,yaw: 0.0 ,roll: 45.0}
+
+        - transform: #Route reference
+          
+            location: {x: -12.70 ,y: 168.50 ,z: 7.30}
+            rotation: {pitch: 90.0 ,yaw: 0.0 ,roll: -45.0}
+
+      static.prop.stop:
+
+        - transform: #Route reference
+          
+            location: {x: 121.60 ,y: 59.30 ,z: 7.30}
+            rotation: {pitch: 0.0 ,yaw: -90.0 ,roll: 0.0}
 
 
   multiple_blocked_streets03_Town03:
@@ -760,6 +1003,35 @@ scenarios:
            location: {x: 15.10,y: 135.60,z: 0.0}
            rotation: {pitch: 0.0,yaw: 0.0,roll: 0.0}
 
+
+        - transform: #Route reference
+          
+            location: {x: 96.60 ,y: -7.20 ,z: 7.30}
+            rotation: {pitch: 90.0 ,yaw: 0.0 ,roll: 0.0}
+
+        - transform: #Route reference
+          
+            location: {x: 95.50 ,y: -7.20 ,z: 7.30}
+            rotation: {pitch: 90.0 ,yaw: 0.0 ,roll: 0.0}
+
+        - transform: #Route reference
+          
+            location: {x: 95.10 ,y: -8.00 ,z: 7.30}
+            rotation: {pitch: 90.0 ,yaw: 0.0 ,roll: 45.0}
+
+        - transform: #Route reference
+          
+            location: {x: 95.10 ,y: -6.40 ,z: 7.30}
+            rotation: {pitch: 90.0 ,yaw: 0.0 ,roll: -45.0}
+
+
+      static.prop.stop:
+
+        - transform: #Route reference
+          
+            location: {x: 137.80 ,y: 62.90 ,z: 7.30}
+            rotation: {pitch: 0.0 ,yaw: 90.0 ,roll: 0.0}
+
       vehicle.dodge.charger_police:
 
         - transform: 
@@ -844,6 +1116,34 @@ scenarios:
            
             location: {x: 17.80,y: -136.20,z: 0.01}
             rotation: {pitch: 0.0,yaw: 0.0,roll: 0.0}
+
+
+        - transform: #Route reference
+          
+            location: {x: 58.90 ,y: -5.90 ,z: 7.30}
+            rotation: {pitch: 90.0 ,yaw: 0.0 ,roll: 0.0}
+
+        - transform: #Route reference
+          
+            location: {x: 57.90 ,y: -5.90 ,z: 7.30}
+            rotation: {pitch: 90.0 ,yaw: 0.0 ,roll: 0.0}
+
+        - transform: #Route reference
+          
+            location: {x: 57.60 ,y: -6.70 ,z: 7.30}
+            rotation: {pitch: 90.0 ,yaw: 0.0 ,roll: 45.0}
+
+        - transform: #Route reference
+          
+            location: {x: 57.60 ,y: -5.10 ,z: 7.30}
+            rotation: {pitch: 90.0 ,yaw: 0.0 ,roll: -45.0}
+
+      static.prop.stop:
+
+        - transform: #Route reference
+          
+            location: {x: -25.90 ,y: -194.50 ,z: 7.30}
+            rotation: {pitch: 0.0 ,yaw: 90.0 ,roll: 0.0}
 
   multiple_blocked_streets04_Town03:
 
@@ -950,6 +1250,34 @@ scenarios:
             location: {x: 1.40,y: -125.70,z: 0.00}
             rotation: {pitch: 0.0,yaw: 0.0,roll: 0.0}
 
+
+        - transform: #Route reference
+          
+            location: {x: -22.60 ,y: -196.00 ,z: 7.30}
+            rotation: {pitch: -90.0 ,yaw: 0.0 ,roll: 0.0}
+
+        - transform: #Route reference
+          
+            location: {x: -23.70 ,y: -196.00 ,z: 7.30}
+            rotation: {pitch: -90.0 ,yaw: 0.0 ,roll: 0.0}
+
+        - transform: #Route reference
+          
+            location: {x: -22.30 ,y: -195.20 ,z: 7.30}
+            rotation: {pitch: -90.0 ,yaw: 0.0 ,roll: -45.0}
+
+        - transform: #Route reference
+          
+            location: {x: -22.30 ,y: -196.80 ,z: 7.30}
+            rotation: {pitch: -90.0 ,yaw: 0.0 ,roll: 45.0}
+
+      static.prop.stop:
+        
+        - transform: #Route reference
+          
+            location: {x: 230.50 ,y: 91.30 ,z: 7.30}
+            rotation: {pitch: 0.0 ,yaw: 180.0 ,roll: 0.0}
+
       static.prop.constructioncone:
 
         - transform:
@@ -1016,6 +1344,35 @@ scenarios:
             location: {x: 303.60,y: -250.50,z: 0.0}
             rotation: {pitch: 0.0,yaw: 90.0,roll: 0.0}
 
+      static.prop.trafficcone02:
+        
+        - transform: #Route reference
+          
+            location: {x: 342.50 ,y: -171.50 ,z: 7.30}
+            rotation: {pitch: 90.0 ,yaw: 0.0 ,roll: 0.0}
+
+        - transform: #Route reference
+          
+            location: {x: 343.60 ,y: -171.50 ,z: 7.30}
+            rotation: {pitch: 90.0 ,yaw: 0.0 ,roll: 0.0}
+
+        - transform: #Route reference
+          
+            location: {x: 342.20 ,y: -172.30 ,z: 7.30}
+            rotation: {pitch: 90.0 ,yaw: 0.0 ,roll: 45.0}
+
+        - transform: #Route reference
+          
+            location: {x: 342.20 ,y: -170.70 ,z: 7.30}
+            rotation: {pitch: 90.0 ,yaw: 0.0 ,roll: -45.0}
+
+      static.prop.stop:
+
+        - transform: #Route reference
+          
+            location: {x: 199.90 ,y: -205.70 ,z: 7.30}
+            rotation: {pitch: 0.0 ,yaw: 180.0 ,roll: 0.0}
+
   simple_roadblock02_Town04:
 
     map: "Town04"
@@ -1046,8 +1403,36 @@ scenarios:
 
             location: {x: 323.00,y: -246.00,z: 0.0}
             rotation: {pitch: 0.0,yaw: 0.0,roll: 0.0}
+      
+      static.prop.trafficcone02:
+        
+        - transform: #Route reference
+          
+            location: {x: 314.80 ,y: -231.60 ,z: 7.30}
+            rotation: {pitch: 90.0 ,yaw: 0.0 ,roll: -90.0}
 
+        - transform: #Route reference
+          
+            location: {x: 314.80 ,y: -230.60 ,z: 7.30}
+            rotation: {pitch: 90.0 ,yaw: 0.0 ,roll: -90.0}
 
+        - transform: #Route reference
+          
+            location: {x: 315.60 ,y: -232.00 ,z: 7.30}
+            rotation: {pitch: 90.0 ,yaw: 0.0 ,roll: -45.0}
+
+        - transform: #Route reference
+          
+            location: {x: 313.90 ,y: -232.10 ,z: 7.30}
+            rotation: {pitch: 90.0 ,yaw: 0.0 ,roll: -140.0}
+
+      static.prop.stop:
+
+        - transform: #Route reference
+          
+            location: {x: 310.90 ,y: -145.30 ,z: 7.30}
+            rotation: {pitch: 0.0 ,yaw: 180.0 ,roll: 0.0}
+        
   double_roadblock_Town04:
     
     map: "Town04"
@@ -1105,6 +1490,35 @@ scenarios:
             
             location: {x: 201.90,y: -238.70,z: 0.0}
             rotation: {pitch: 0.0,yaw: 180.0,roll: 0.0}
+
+      static.prop.trafficcone02:
+        
+        - transform: #Route reference
+          
+            location: {x: -20.60 ,y: 116.60 ,z: 7.30}
+            rotation: {pitch: 90.0 ,yaw: 0.0 ,roll: 55.0}
+
+        - transform: #Route reference
+          
+            location: {x: -21.20 ,y: 117.40 ,z: 7.30}
+            rotation: {pitch: 90.0 ,yaw: 0.0 ,roll: 55.0}
+
+        - transform: #Route reference
+          
+            location: {x: -22.40 ,y: 117.30 ,z: 7.30}
+            rotation: {pitch: 90.0 ,yaw: 0.0 ,roll: 120.0}
+
+        - transform: #Route reference
+          
+            location: {x: -20.70 ,y: 118.30 ,z: 7.30}
+            rotation: {pitch: 90.0 ,yaw: 0.0 ,roll: 0.0}
+
+      static.prop.stop:
+        
+        - transform: #Route reference
+          
+            location: {x: 293.80 ,y: -118.60 ,z: 7.30}
+            rotation: {pitch: 0.0 ,yaw: 90.0 ,roll: 0.0}
 
   double_roadblock02_Town04:
 
@@ -1177,6 +1591,35 @@ scenarios:
           
             location: {x: 315.90,y: -161.30,z: 0.0}
             rotation: {pitch: 0.0,yaw: 0.0,roll: 0.0}
+
+      static.prop.trafficcone02:
+        
+        - transform: #Route reference
+          
+            location: {x:  38.20 ,y: -170.40 ,z: 7.30}
+            rotation: {pitch: -90.0 ,yaw: 0.0 ,roll: 0.0}
+
+        - transform: #Route reference
+          
+            location: {x:  39.30 ,y: -170.40 ,z: 7.30}
+            rotation: {pitch: -90.0 ,yaw: 0.0 ,roll: 0.0}
+
+        - transform: #Route reference
+          
+            location: {x:  39.60 ,y: -169.60 ,z: 7.30}
+            rotation: {pitch: -90.0 ,yaw: 0.0 ,roll: -45.0}
+
+        - transform: #Route reference
+          
+            location: {x:  39.60 ,y: -171.20 ,z: 7.30}
+            rotation: {pitch: -90.0 ,yaw: 0.0 ,roll: 45.0}
+
+      static.prop.stop:
+
+        - transform: #Route reference
+          
+            location: {x:  380.80 ,y: -47.10 ,z: 7.30}
+            rotation: {pitch: 0.0 ,yaw: 180.0 ,roll: 0.0}
 
   multiple_blocked_streets_Town04:
     
@@ -1307,6 +1750,35 @@ scenarios:
             location: {x: 301.00,y: -172.10,z: 0.02}
             rotation: {pitch: 0.0,yaw: -115.0,roll: 0.0}
 
+      static.prop.trafficcone02:
+        
+        - transform: #Route reference
+          
+            location: {x:  7.70 ,y: -203.30 ,z: 7.30}
+            rotation: {pitch: 90.0 ,yaw: 0.0 ,roll: -90.0}
+
+        - transform: #Route reference
+          
+            location: {x:  7.70 ,y: -204.40 ,z: 7.30}
+            rotation: {pitch: 90.0 ,yaw: 0.0 ,roll: -90.0}
+
+        - transform: #Route reference
+          
+            location: {x:  8.50 ,y: -204.80 ,z: 7.30}
+            rotation: {pitch: 90.0 ,yaw: 0.0 ,roll: -45.0}
+
+        - transform: #Route reference
+          
+            location: {x:  6.80 ,y: -204.80 ,z: 7.30}
+            rotation: {pitch: 90.0 ,yaw: 0.0 ,roll: -135.0}
+
+      static.prop.stop:
+        
+        - transform: #Route reference
+          
+            location: {x:  225.30 ,y: -172.80 ,z: 7.30}
+            rotation: {pitch: 0.0 ,yaw: -90.0 ,roll: 0.0}
+
 
   multiple_blocked_streets02_Town04:
 
@@ -1387,6 +1859,35 @@ scenarios:
             
             location: {x: 202.40,y: -256.10,z: 0.0}
             rotation: {pitch: 0.0,yaw: 0.0,roll: 0.0}
+
+      static.prop.trafficcone02:
+        
+        - transform: #Route reference
+          
+            location: {x:  -13.20 ,y: 54.90 ,z: 7.30}
+            rotation: {pitch: 90.0 ,yaw: 0.0 ,roll: 90.0}
+
+        - transform: #Route reference
+          
+            location: {x:  -13.20 ,y: 56.00 ,z: 7.30}
+            rotation: {pitch: 90.0 ,yaw: 0.0 ,roll: 90.0}
+
+        - transform: #Route reference
+          
+            location: {x:  -14.00 ,y: 56.40 ,z: 7.30}
+            rotation: {pitch: 90.0 ,yaw: 0.0 ,roll: 135.0}
+
+        - transform: #Route reference
+          
+            location: {x:  -12.40 ,y: 56.40 ,z: 7.30}
+            rotation: {pitch: 90.0 ,yaw: 0.0 ,roll: 45.0}
+
+      static.prop.stop:
+
+        - transform: #Route reference
+          
+            location: {x:  206.40 ,y: -356.00 ,z: 7.30}
+            rotation: {pitch: 0.0 ,yaw: 0.0 ,roll: 0.0}
       
   double_roadblock_Town10:
 
@@ -1480,6 +1981,35 @@ scenarios:
             location: {x: -50.50,y: 113.20,z: 2.00}
             rotation: {pitch: 0.0,yaw: 0.0,roll: 0.0}
 
+      static.prop.trafficcone02:
+        
+        - transform: #Route reference
+          
+            location: {x:  67.60 ,y: 68.10 ,z: 7.30}
+            rotation: {pitch: -90.0 ,yaw: 0.0 ,roll: 0.0}
+
+        - transform: #Route reference
+          
+            location: {x:  68.70 ,y: 68.10 ,z: 7.30}
+            rotation: {pitch: -90.0 ,yaw: 0.0 ,roll: 0.0}
+
+        - transform: #Route reference
+          
+            location: {x:  69.10 ,y: 68.90 ,z: 7.30}
+            rotation: {pitch: -90.0 ,yaw: 0.0 ,roll: -45.0}
+
+        - transform: #Route reference
+          
+            location: {x:  69.10 ,y: 67.30 ,z: 7.30}
+            rotation: {pitch: -90.0 ,yaw: 0.0 ,roll: 45.0}
+
+      static.prop.stop:
+        
+        - transform: #Route reference
+          
+            location: {x:  -9.50 ,y: 26.80 ,z: 7.30}
+            rotation: {pitch: 0.0 ,yaw: 90.0 ,roll: 0.0}
+
   double_roadblock02_Town10:
 
     map: "Town10HD"
@@ -1562,6 +2092,35 @@ scenarios:
             
             location: {x: -50.50,y: 80.40,z: 2.00}
             rotation: {pitch: 0.0,yaw: 0.0,roll: 0.0}
+
+      static.prop.trafficcone02:
+        
+        - transform: #Route reference
+          
+            location: {x:  1.80 ,y: 68.20 ,z: 7.30}
+            rotation: {pitch: 90.0 ,yaw: 0.0 ,roll: 0.0}
+
+        - transform: #Route reference
+          
+            location: {x:  0.70 ,y: 68.20 ,z: 7.30}
+            rotation: {pitch: 90.0 ,yaw: 0.0 ,roll: 0.0}
+
+        - transform: #Route reference
+          
+            location: {x:  0.30 ,y: 69.00 ,z: 7.30}
+            rotation: {pitch: 90.0 ,yaw: 0.0 ,roll: -45.0}
+
+        - transform: #Route reference
+          
+            location: {x:  0.30,y: 67.40 ,z: 7.30}
+            rotation: {pitch: 90.0 ,yaw: 0.0 ,roll: 45.0}
+
+      static.prop.stop:
+        
+        - transform: #Route reference
+          
+            location: {x:  -111.10 ,y: 75.40 ,z: 7.30}
+            rotation: {pitch: 0.0 ,yaw: 180.0 ,roll: 0.0}
 
 
   multiple_blocked_streets_Town10:
@@ -1656,6 +2215,34 @@ scenarios:
             location: {x: -43.10,y: 39.30,z: 0.0}
             rotation: {pitch: 0.0,yaw: 0.0,roll: 0.0}
 
+        
+        - transform: #Route reference
+          
+            location: {x:  108.10 ,y: 89.70 ,z: 7.30}
+            rotation: {pitch: 90.0 ,yaw: 0.0 ,roll: -90.0}
+
+        - transform: #Route reference
+          
+            location: {x:  108.10 ,y: 88.70 ,z: 7.30}
+            rotation: {pitch: 90.0 ,yaw: 0.0 ,roll: -90.0}
+
+        - transform: #Route reference
+          
+            location: {x:  108.90 ,y: 88.30 ,z: 7.30}
+            rotation: {pitch: 90.0 ,yaw: 0.0 ,roll: -45.0}
+
+        - transform: #Route reference
+          
+            location: {x:  107.30 ,y: 88.30 ,z: 7.30}
+            rotation: {pitch: 90.0 ,yaw: 0.0 ,roll: -135.0}
+
+      static.prop.stop:
+
+        - transform: #Route reference
+          
+            location: {x:  -67.90 ,y: 129.60 ,z: 7.30}
+            rotation: {pitch: 0.0 ,yaw: -90.0 ,roll: 0.0}
+
       static.prop.streetbarrier:
         
         - transform: 
@@ -1716,6 +2303,34 @@ scenarios:
             
             location: {x: -95.60,y: 23.60,z: 0.0}
             rotation: {pitch: 0.0,yaw: 0.0,roll: 0.0}
+
+
+        - transform: #Route reference
+          
+            location: {x:  -67.00 ,y: -66.90 ,z: 7.30}
+            rotation: {pitch: 90.0 ,yaw: 0.0 ,roll: 0.0}
+
+        - transform: #Route reference
+          
+            location: {x:  -68.10 ,y: -66.90 ,z: 7.30}
+            rotation: {pitch: 90.0 ,yaw: 0.0 ,roll: 0.0}
+
+        - transform: #Route reference
+          
+            location: {x:  -68.40 ,y: -67.70 ,z: 7.30}
+            rotation: {pitch: 90.0 ,yaw: 0.0 ,roll: 45.0}
+
+        - transform: #Route reference
+          
+            location: {x:  -68.40 ,y: -66.10 ,z: 7.30}
+            rotation: {pitch: 90.0 ,yaw: 0.0 ,roll: -45.0}
+
+      static.prop.stop:
+        
+        - transform: #Route reference
+          
+            location: {x:  56.40 ,y: 28.00 ,z: 7.30}
+            rotation: {pitch: 0.0 ,yaw: 90.0 ,roll: 0.0}
 
       static.prop.warningconstruction:
 
@@ -1864,6 +2479,34 @@ scenarios:
             location: {x: 93.10,y: 62.50,z: 0.0}
             rotation: {pitch: 0.0,yaw: 0.0,roll: 0.0}
 
+        
+        - transform: #Route reference
+          
+            location: {x:  69.80 ,y: 28.10 ,z: 7.30}
+            rotation: {pitch: -90.0 ,yaw: 0.0 ,roll: 0.0}
+
+        - transform: #Route reference
+          
+            location: {x:  70.90 ,y: 28.10 ,z: 7.30}
+            rotation: {pitch: -90.0 ,yaw: 0.0 ,roll: 0.0}
+
+        - transform: #Route reference
+          
+            location: {x:  71.20 ,y: 28.90 ,z: 7.30}
+            rotation: {pitch: -90.0 ,yaw: 0.0 ,roll: -45.0}
+
+        - transform: #Route reference
+          
+            location: {x:  71.20 ,y: 27.30 ,z: 7.30}
+            rotation: {pitch: -90.0 ,yaw: 0.0 ,roll: 45.0}
+
+      static.prop.stop:
+        
+        - transform: #Route reference
+          
+            location: {x:  -20.30 ,y: 14.90 ,z: 7.30}
+            rotation: {pitch: 0.0 ,yaw: -90.0 ,roll: 0.0}
+
       vehicle.carlamotors.carlacola:
         
         - transform:
@@ -1944,7 +2587,6 @@ scenarios:
         
         - transform:
             
-
             location: {x: 131.00,y: 197.30,z: 0.02}
             rotation: {pitch: 0.0,yaw: 0.0,roll: 0.0}
 
@@ -1953,6 +2595,36 @@ scenarios:
 
             location: {x: 137.60,y: 197.30,z: 0.02}
             rotation: {pitch: 0.0,yaw: 0.0,roll: 0.0}
+
+      static.prop.trafficcone02:
+        
+        - transform: #Route reference
+            
+            location: {x: 99.90,y: 191.70,z: 7.40}
+            rotation: {pitch: -90.0,yaw: 0.0,roll: 0.0}
+        
+        - transform: #Route reference
+            
+            location: {x: 101.00,y: 191.70,z: 7.40}
+            rotation: {pitch: -90.0,yaw: 0.0,roll: 0.0}
+
+        - transform: #Route reference
+            
+            location: {x: 101.30,y: 192.50,z: 7.40}
+            rotation: {pitch: -90.0,yaw: 0.0,roll: -45.0}
+
+        - transform: #Route reference
+            
+            location: {x: 101.30,y: 190.90,z: 7.40}
+            rotation: {pitch: -90.0,yaw: 0.0,roll: 45.0}
+
+      static.prop.stop:
+
+        - transform: #Route reference
+            
+            location: {x: 189.60,y: 286.30,z: 7.40}
+            rotation: {pitch: 0.0,yaw: 180.0,roll: 0.0}
+
 
   simple_blocked_street04_town02:
     
@@ -2026,6 +2698,37 @@ scenarios:
             location: {x: 15.20,y: 189.50,z: 2.00}
             rotation: {pitch: 0.0,yaw: 20.0,roll: 0.0}
 
+      static.prop.trafficcone02:
+        
+        - transform: #Route reference
+            
+            location: {x: -7.40,y: 174.70,z: 7.40}
+            rotation: {pitch: 90.0,yaw: 0.0,roll: 90.0}
+
+        - transform: #Route reference
+            
+            location: {x: -7.40,y: 175.90,z: 7.40}
+            rotation: {pitch: 90.0,yaw: 0.0,roll: 90.0}
+
+        - transform: #Route reference
+            
+            location: {x: -8.20,y: 176.30,z: 7.40}
+            rotation: {pitch: 90.0,yaw: 0.0,roll: 145.0}
+
+        - transform: #Route reference
+            
+            location: {x: -6.60,y: 176.30,z: 7.40}
+            rotation: {pitch: 90.0,yaw: 0.0,roll: 45.0}
+
+      static.prop.stop:
+        
+        - transform: #Route reference
+            
+            location: {x: 65.20,y: 240.90,z: 7.40}
+            rotation: {pitch: 0.0,yaw: 90.0,roll: 0.0}
+
+      
+
   double_roadblock_Town02:
         
     map: "Town02"
@@ -2068,6 +2771,35 @@ scenarios:
             location: {x: -7.50,y: 198.70,z: 0.02}
             rotation: {pitch: 0.0,yaw: 0.0,roll: 0.0}
 
+      static.prop.trafficcone02:
+        
+        - transform: #Route reference
+            
+            location: {x: 74.90,y: 105.90,z: 7.40}
+            rotation: {pitch: 90.0,yaw: 0.0,roll: 0.0}
+
+        - transform: #Route reference
+            
+            location: {x: 73.80,y: 105.90,z: 7.40}
+            rotation: {pitch: 90.0,yaw: 0.0,roll: 0.0}
+
+        - transform: #Route reference
+            
+            location: {x: 73.40,y: 105.10,z: 7.40}
+            rotation: {pitch: 90.0,yaw: 0.0,roll: 45.0}
+
+        - transform: #Route reference
+            
+            location: {x: 73.40,y: 106.70,z: 7.40}
+            rotation: {pitch: 90.0,yaw: 0.0,roll: -45.0}
+
+      static.prop.stop:
+        
+        - transform: #Route reference
+            
+            location: {x: 42.00,y: 271.30,z: 7.40}
+            rotation: {pitch: 0.0,yaw: 180.0,roll: 0.0}
+
   simple_blocked_street05_town02:
 
     map: "Town02"
@@ -2105,6 +2837,35 @@ scenarios:
             
             location: {x: 119.90,y: 189.60,z: 2.00}
             rotation: {pitch: 0.0,yaw: 90.0,roll: 0.0}
+
+      static.prop.trafficcone02:
+        
+        - transform: #Route reference
+            
+            location: {x: 159.60,y: 187.40,z: 7.40}
+            rotation: {pitch: 90.0,yaw: 0.0,roll: 0.0}
+
+        - transform: #Route reference
+            
+            location: {x: 160.70,y: 187.40,z: 7.40}
+            rotation: {pitch: 90.0,yaw: 0.0,roll: 0.0}
+
+        - transform: #Route reference
+            
+            location: {x: 159.20,y: 186.60,z: 7.40}
+            rotation: {pitch: 90.0,yaw: 0.0,roll: 45.0}
+
+        - transform: #Route reference
+            
+            location: {x: 159.20,y: 188.20,z: 7.40}
+            rotation: {pitch: 90.0,yaw: 0.0,roll: -45.0}
+
+      static.prop.stop:
+        
+        - transform: #Route reference
+            
+            location: {x: 18.50,y: 187.60,z: 7.40}
+            rotation: {pitch: 0.0,yaw: -90.0,roll: 0.0}
 
   simple_blocked_street_town10:
     
@@ -2168,6 +2929,34 @@ scenarios:
 
             location: {x: -95.60,y: 9.70,z: 0.0}
             rotation: {pitch: 0.0,yaw: 0.0,roll: 0.0}
+        
+        - transform: #Route reference
+            
+            location: {x: -113.50,y: -18.20,z: 7.40}
+            rotation: {pitch: 90.0,yaw: 0.0,roll: 90.0}
+
+        - transform: #Route reference
+            
+            location: {x: -113.50,y: -17.20,z: 7.40}
+            rotation: {pitch: 90.0,yaw: 0.0,roll: 90.0}
+
+        - transform: #Route reference
+            
+            location: {x: -114.30,y: -16.80,z: 7.40}
+            rotation: {pitch: 90.0,yaw: 0.0,roll: 135.0}
+
+        - transform: #Route reference
+            
+            location: {x: -112.70,y: -16.80,z: 7.40}
+            rotation: {pitch: 90.0,yaw: 0.0,roll: 45.0}
+
+
+      static.prop.stop:
+        
+        - transform: #Route reference
+            
+            location: {x: 110.10,y: -24.20,z: 7.40}
+            rotation: {pitch: 0.0,yaw: 0.0,roll: 0.0}
 
   simple_blocked_street02_town10:
     
@@ -2211,6 +3000,35 @@ scenarios:
             
             location: {x: -28.90,y: 71.50,z: 0.0}
             rotation: {pitch: 0.0,yaw: 0.0,roll: 0.0}
+
+      static.prop.trafficcone02:
+
+        - transform: #Route reference
+            
+            location: {x: 37.10,y: 132.30,z: 7.40}
+            rotation: {pitch: 90.0,yaw: 0.0,roll: 0.0}
+
+        - transform: #Route reference
+            
+            location: {x: 36.10,y: 132.30,z: 7.40}
+            rotation: {pitch: 90.0,yaw: 0.0,roll: 0.0}
+
+        - transform: #Route reference
+            
+            location: {x: 35.70,y: 131.50,z: 7.40}
+            rotation: {pitch: 90.0,yaw: 0.0,roll: 45.0}
+
+        - transform: #Route reference
+            
+            location: {x: 35.70,y: 133.10,z: 7.40}
+            rotation: {pitch: 90.0,yaw: 0.0,roll: -45.0}
+
+      static.prop.stop:
+        
+        - transform: #Route reference
+            
+            location: {x: 77.20,y: 69.70,z: 7.40}
+            rotation: {pitch: 0.0,yaw: 90.0,roll: 0.0}
 
   simple_blocked_street03_town10:
     
@@ -2275,6 +3093,35 @@ scenarios:
             location: {x: 26.50,y: 68.00,z: 2.00}
             rotation: {pitch: 0.0,yaw: 90.0,roll: 0.0}
 
+      static.prop.trafficcone02:
+
+        - transform: #Route reference
+            
+            location: {x: 91.00,y: 66.30,z: 7.40}
+            rotation: {pitch: 90.0,yaw: 0.0,roll: 0.0}
+
+        - transform: #Route reference
+            
+            location: {x: 90.00,y: 66.30,z: 7.40}
+            rotation: {pitch: 90.0,yaw: 0.0,roll: 0.0}
+
+        - transform: #Route reference
+            
+            location: {x: 89.70,y: 65.50,z: 7.40}
+            rotation: {pitch: 90.0,yaw: 0.0,roll: 45.0}
+
+        - transform: #Route reference
+            
+            location: {x: 89.70,y: 67.10,z: 7.40}
+            rotation: {pitch: 90.0,yaw: 0.0,roll: -45.0}
+
+      static.prop.stop:
+        
+        - transform: #Route reference
+            
+            location: {x: -77.50,y: 13.00,z: 7.40}
+            rotation: {pitch: 0.0,yaw: -90.0,roll: 0.0}
+
   simple_blocked_street04_town10:
 
     map: "Town10HD"
@@ -2302,6 +3149,35 @@ scenarios:
             
             location: {x: 57.70,y: 26.70,z: 0.0}
             rotation: {pitch: 0.0,yaw: -90.0,roll: 0.0}
+
+      static.prop.trafficcone02:
+        
+        - transform: #Route reference
+            
+            location: {x: -75.00,y: 27.60,z: 7.40}
+            rotation: {pitch: -90.0,yaw: 0.0,roll: 0.0}
+
+        - transform: #Route reference
+            
+            location: {x: -74.10,y: 27.60,z: 7.40}
+            rotation: {pitch: -90.0,yaw: 0.0,roll: 0.0}
+
+        - transform: #Route reference
+            
+            location: {x: -73.80,y: 28.40,z: 7.40}
+            rotation: {pitch: -90.0,yaw: 0.0,roll: -45.0}
+
+        - transform: #Route reference
+            
+            location: {x: -73.80,y: 26.80,z: 7.40}
+            rotation: {pitch: -90.0,yaw: 0.0,roll: 45.0}
+
+      static.prop.stop:
+        
+        - transform: #Route reference
+            
+            location: {x: 77.50,y: 69.90,z: 7.40}
+            rotation: {pitch: 0.0,yaw: 90.0,roll: 0.0}
 
   double_roadblock05_Town10:
 
@@ -2351,6 +3227,36 @@ scenarios:
             
             location: {x: -63.90,y: 11.00,z: 0.0}
             rotation: {pitch: 0.0,yaw: -90.0,roll: 0.0}
+
+      static.prop.trafficcone02:
+        
+        - transform: #Route reference
+            
+            location: {x: -5.50,y: 69.70,z: 7.40}
+            rotation: {pitch: -90.0,yaw: 0.0,roll: 0.0}
+
+        - transform: #Route reference
+            
+            location: {x: -4.40,y: 69.70,z: 7.40}
+            rotation: {pitch: -90.0,yaw: 0.0,roll: 0.0}
+
+        - transform: #Route reference
+            
+            location: {x: -4.00,y: 70.50,z: 7.40}
+            rotation: {pitch: -90.0,yaw: 0.0,roll: -45.0}
+
+        - transform: #Route reference
+            
+            location: {x: -4.00,y: 68.90,z: 7.40}
+            rotation: {pitch: -90.0,yaw: 0.0,roll: 45.0}
+
+
+      static.prop.stop:
+        
+        - transform: #Route reference
+            
+            location: {x: 108.10,y: 43.00,z: 7.40}
+            rotation: {pitch: 0.0,yaw: 0.0,roll: 0.0}
 
   double_roadblock06_Town10:
     
@@ -2424,6 +3330,35 @@ scenarios:
             
             location: {x: -57.30,y: 11.10,z: 0.0}
             rotation: {pitch: 0.0,yaw: 0.0,roll: 0.0}
+
+      static.prop.trafficcone02:
+        
+        - transform: #Route reference
+            
+            location: {x: 16.90,y: 13.30,z: 7.40}
+            rotation: {pitch: 90.0,yaw: 0.0,roll: 0.0}
+
+        - transform: #Route reference
+            
+            location: {x: 15.70,y: 13.30,z: 7.40}
+            rotation: {pitch: 90.0,yaw: 0.0,roll: 0.0}
+
+        - transform: #Route reference
+            
+            location: {x: 15.30,y: 12.50,z: 7.40}
+            rotation: {pitch: 90.0,yaw: 0.0,roll: 45.0}
+
+        - transform: #Route reference
+            
+            location: {x: 15.30,y: 14.10,z: 7.40}
+            rotation: {pitch: 90.0,yaw: 0.0,roll: -45.0}
+
+      static.prop.stop:
+        
+        - transform: #Route reference
+            
+            location: {x: -112.00,y: 96.90,z: 7.40}
+            rotation: {pitch: 0.0,yaw: 180.0,roll: 0.0}
 
   multiple_blocked_streets03_Town04:
     
@@ -2500,6 +3435,33 @@ scenarios:
         - transform:
           
             location: {x: 210.90,y: -246.90,z: 0.0}
+            rotation: {pitch: 0.0,yaw: 0.0,roll: 0.0}
+
+        - transform: #Route reference
+            
+            location: {x: 131.10,y: -181.50,z: 7.40}
+            rotation: {pitch: 90.0,yaw: 0.0,roll: -90.0}
+
+        - transform: #Route reference
+            
+            location: {x: 131.10,y: -182.50,z: 7.40}
+            rotation: {pitch: 90.0,yaw: 0.0,roll: -90.0}
+        
+        - transform: #Route reference
+            
+            location: {x: 131.90,y: -182.80,z: 7.40}
+            rotation: {pitch: 90.0,yaw: 0.0,roll: -45.0}
+
+        - transform: #Route reference
+            
+            location: {x: 130.30,y: -182.80,z: 7.40}
+            rotation: {pitch: 90.0,yaw: 0.0,roll: -135.0}
+
+      static.prop.stop:
+        
+        - transform: #Route reference
+            
+            location: {x: 258.60,y: -231.10,z: 7.40}
             rotation: {pitch: 0.0,yaw: 0.0,roll: 0.0}
 
       static.prop.warningaccident:
@@ -2604,6 +3566,36 @@ scenarios:
             
             location: {x: 266.40,y: -172.80,z: 0.02}
             rotation: {pitch: 0.0,yaw: 0.0,roll: 0.0}
+
+      static.prop.trafficcone02:
+        
+        - transform: #Route reference
+            
+            location: {x: 204.70,y: -281.90,z: 7.40}
+            rotation: {pitch: 90.0,yaw: 0.0,roll: -90.0}
+
+        - transform: #Route reference
+            
+            location: {x: 204.70,y: -283.00,z: 7.40}
+            rotation: {pitch: 90.0,yaw: 0.0,roll: -90.0}
+
+        - transform: #Route reference
+            
+            location: {x: 205.50,y: -283.40,z: 7.40}
+            rotation: {pitch: 90.0,yaw: 0.0,roll: -45.0}
+
+        - transform: #Route reference
+            
+            location: {x: 203.90,y: -283.40,z: 7.40}
+            rotation: {pitch: 90.0,yaw: 0.0,roll: -135.0}
+
+
+      static.prop.stop:
+        
+        - transform: #Route reference
+            
+            location: {x: 255.20,y: -209.50,z: 7.40}
+            rotation: {pitch: 0.0,yaw: 180.0,roll: 0.0}
 
   multiple_blocked_streets04_Town04:
   
@@ -2762,6 +3754,36 @@ scenarios:
             location: {x: 312.60,y: -186.30,z: 2.00}
             rotation: {pitch: 0.0,yaw: -75.0,roll: 0.0}
 
+
+      static.prop.trafficcone02:
+
+        - transform: #Route reference
+            
+            location: {x: 314.10,y: -224.30,z: 7.40}
+            rotation: {pitch: 90.0,yaw: 0.0,roll: -90.0}
+
+        - transform: #Route reference
+            
+            location: {x: 314.10,y: -225.40,z: 7.40}
+            rotation: {pitch: 90.0,yaw: 0.0,roll: -90.0}
+
+        - transform: #Route reference
+            
+            location: {x: 314.90,y: -225.80,z: 7.40}
+            rotation: {pitch: 90.0,yaw: 0.0,roll: -45.0}
+
+        - transform: #Route reference
+            
+            location: {x: 313.30,y: -225.80,z: 7.40}
+            rotation: {pitch: 90.0,yaw: 0.0,roll: -135.0}
+
+      static.prop.stop:
+
+        - transform: #Route reference
+            
+            location: {x: 255.20,y: -278.80,z: 7.40}
+            rotation: {pitch: 0.0,yaw: 180.0,roll: 0.0}
+
   multiple_blocked_streets05_Town04:
 
     map: "Town04"
@@ -2833,6 +3855,35 @@ scenarios:
             
             location: {x: 202.50,y: -255.50,z: 0.0}
             rotation: {pitch: 0.0,yaw: 180.0,roll: 0.0}
+
+      static.prop.trafficcone02:
+
+        - transform: #Route reference
+            
+            location: {x: 258.40,y: -154.60,z: 7.40}
+            rotation: {pitch: 90.0,yaw: 0.0,roll: -90.0}
+
+        - transform: #Route reference
+            
+            location: {x: 258.40,y: -155.60,z: 7.40}
+            rotation: {pitch: 90.0,yaw: 0.0,roll: -90.0}
+
+        - transform: #Route reference
+            
+            location: {x: 259.20,y: -155.90,z: 7.40}
+            rotation: {pitch: 90.0,yaw: 0.0,roll: -45.0}
+
+        - transform: #Route reference
+            
+            location: {x: 257.60,y: -155.90,z: 7.40}
+            rotation: {pitch: 90.0,yaw: 0.0,roll: -135.0}
+
+      static.prop.stop:  
+
+        - transform: #Route reference
+            
+            location: {x: 278.20,y: -246.40,z: 7.40}
+            rotation: {pitch: 0.0,yaw: 90.0,roll: 0.0}
 
 
   multiple_blocked_streets06_Town04:
@@ -2930,6 +3981,34 @@ scenarios:
             location: {x: 198.90,y: -237.40,z: 0.0}
             rotation: {pitch: 0.0,yaw: 0.0,roll: 0.0}
 
+
+        - transform: #Route reference
+            
+            location: {x: 129.00,y: -199.20,z: 7.40}
+            rotation: {pitch: 90.0,yaw: 0.0,roll: 90.0}
+
+        - transform: #Route reference
+            
+            location: {x: 129.00,y: -198.10,z: 7.40}
+            rotation: {pitch: 90.0,yaw: 0.0,roll: 90.0}
+
+        - transform: #Route reference
+            
+            location: {x: 128.20,y: -197.70,z: 7.40}
+            rotation: {pitch: 90.0,yaw: 0.0,roll: 135.0}
+
+        - transform: #Route reference
+            
+            location: {x: 129.80,y: -197.70,z: 7.40}
+            rotation: {pitch: 90.0,yaw: 0.0,roll: 45.0}
+
+      static.prop.stop:
+        
+        - transform: #Route reference
+            
+            location: {x: 254.80,y: -141.60,z: 7.40}
+            rotation: {pitch: 0.0,yaw: 180.0,roll: 0.0}
+
       static.prop.constructioncone:
 
         - transform:
@@ -3021,6 +4100,7 @@ scenarios:
             
             location: {x: 337.20,y: -171.50,z: 2.00}
             rotation: {pitch: 0.0,yaw: -120.0,roll: 0.0}
+        
 
   multiple_blocked_street02_Town03:
     
@@ -3112,6 +4192,36 @@ scenarios:
             location: {x: -90.30,y: 23.50,z: 2.00}
             rotation: {pitch: 0.0,yaw: -35.0,roll: 0.0}
 
+      static.prop.trafficcone02:
+        
+        - transform: #Route reference
+            
+            location: {x: 167.20,y: 81.30,z: 7.40}
+            rotation: {pitch: 90.0,yaw: 0.0,roll: 90.0}
+
+        - transform: #Route reference
+            
+            location: {x: 167.20,y: 82.30,z: 7.40}
+            rotation: {pitch: 90.0,yaw: 0.0,roll: 90.0}
+
+        - transform: #Route reference
+            
+            location: {x: 166.40,y: 82.70,z: 7.40}
+            rotation: {pitch: 90.0,yaw: 0.0,roll: 135.0}
+
+        - transform: #Route reference
+            
+            location: {x: 168.00,y: 82.70,z: 7.40}
+            rotation: {pitch: 90.0,yaw: 0.0,roll: 45.0}
+
+
+      static.prop.stop:
+        
+        - transform: #Route reference
+            
+            location: {x: -38.10,y: 207.30,z: 7.40}
+            rotation: {pitch: 0.0,yaw: 90.0,roll: 0.0}
+
   double_roadblock03_Town03:
 
     map: "Town03"
@@ -3183,7 +4293,6 @@ scenarios:
             location: {x: 173.60,y: 74.00,z: 0.0}
             rotation: {pitch: 0.0,yaw: 0.0,roll: 0.0}
 
-        
         - transform:
             
             location: {x: 4.00,y: -125.70,z: 0.0}
@@ -3203,6 +4312,33 @@ scenarios:
             
             location: {x: 1.40,y: -125.70,z: 0.0}
             rotation: {pitch: 0.0,yaw: 0.0,roll: 0.0}
+
+        - transform: #Route reference
+            
+            location: {x: 203.30,y: 58.80,z: 7.40}
+            rotation: {pitch: 90.0,yaw: 0.0,roll: 0.0}
+
+        - transform: #Route reference
+            
+            location: {x: 202.20,y: 58.80,z: 7.40}
+            rotation: {pitch: 90.0,yaw: 0.0,roll: 0.0}
+
+        - transform: #Route reference
+            
+            location: {x: 201.80,y: 58.00,z: 7.40}
+            rotation: {pitch: 90.0,yaw: 0.0,roll: 45.0}
+
+        - transform: #Route reference
+            
+            location: {x: 201.80,y: 59.60,z: 7.40}
+            rotation: {pitch: 90.0,yaw: 0.0,roll: -45.0}
+
+      static.prop.stop:
+        
+        - transform: #Route reference
+            
+            location: {x: -32.00,y: 131.20,z: 7.40}
+            rotation: {pitch: 0.0,yaw: -90.0,roll: 0.0}
 
       static.prop.streetbarrier:
         
@@ -3329,10 +4465,6 @@ scenarios:
             location: {x: -90.30,y: 23.50,z: 2.00}
             rotation: {pitch: 0.0,yaw: -35.0,roll: 0.0}
 
-        - transform:
-            
-            location: {x: -76.80,y: -123.10,z: 2.00}
-            rotation: {pitch: 0.0,yaw: -165.0,roll: 0.0}
 
       static.prop.trafficcone02:
 
@@ -3351,6 +4483,32 @@ scenarios:
             location: {x: 2.20,y: -125.70,z: 0.0}
             rotation: {pitch: 0.0,yaw: 0.0,roll: 0.0}
 
+        - transform: #Route reference
+            
+            location: {x: 19.20,y: -139.20,z: 7.40}
+            rotation: {pitch: 90.0,yaw: 0.0,roll: 0.0}
+
+        - transform: #Route reference
+            
+            location: {x: 18.20,y: -139.20,z: 7.40}
+            rotation: {pitch: 90.0,yaw: 0.0,roll: 0.0}
+        
+        - transform: #Route reference
+            
+            location: {x: 17.90,y: -140.00,z: 7.40}
+            rotation: {pitch: 90.0,yaw: 0.0,roll: 45.0}
+
+        - transform: #Route reference
+            
+            location: {x: 17.90,y: -138.40,z: 7.40}
+            rotation: {pitch: 90.0,yaw: 0.0,roll: -45.0}
+
+      static.prop.stop:
+
+        - transform: #Route reference
+            
+            location: {x: 160.40,y: 119.50,z: 7.40}
+            rotation: {pitch: 0.0,yaw: 45.0,roll: 0.0}
 
 
       static.prop.trafficwarning:
@@ -3521,6 +4679,35 @@ scenarios:
         - transform:
             
             location: {x: 80.10,y: -24.90,z: 4.00} 
+            rotation: {pitch: 0.0,yaw: 0.0,roll: 0.0}
+
+      static.prop.trafficcone02:
+        
+        - transform: #Route reference
+            
+            location: {x: 113.50,y: -6.80,z: 7.40}
+            rotation: {pitch: 90.0,yaw: 0.0,roll: 0.0}
+
+        - transform: #Route reference
+            
+            location: {x: 112.40,y: -6.80,z: 7.40}
+            rotation: {pitch: 90.0,yaw: 0.0,roll: 0.0}
+
+        - transform: #Route reference
+            
+            location: {x: 112.10,y: -7.60,z: 7.40}
+            rotation: {pitch: 90.0,yaw: 0.0,roll: 45.0}
+
+        - transform: #Route reference
+            
+            location: {x: 112.10,y: -6.00,z: 7.40}
+            rotation: {pitch: 90.0,yaw: 0.0,roll: -45.0}
+
+      static.prop.stop:
+        
+        - transform: #Route reference
+            
+            location: {x: 86.10,y: -175.40,z: 7.40}
             rotation: {pitch: 0.0,yaw: 0.0,roll: 0.0}
 
   multiple_blocked_street05_Town03:
@@ -3697,5 +4884,34 @@ scenarios:
         - transform:
             
             location: {x: 82.60,y: -14.50,z: 0.03}
+            rotation: {pitch: 0.0,yaw: 0.0,roll: 0.0}
+
+      static.prop.trafficcone02:
+
+        - transform: #Route reference
+            
+            location: {x: -74.70,y: 151.00,z: 7.40}
+            rotation: {pitch: 90.0,yaw: 0.0,roll: -90.0}
+
+        - transform: #Route reference
+            
+            location: {x: -74.70,y: 149.90,z: 7.40}
+            rotation: {pitch: 90.0,yaw: 0.0,roll: -90.0}
+
+        - transform: #Route reference
+            
+            location: {x: -73.90,y: 149.60,z: 7.40}
+            rotation: {pitch: 90.0,yaw: 0.0,roll: -45.0}
+
+        - transform: #Route reference
+            
+            location: {x: -75.50,y: 149.60,z: 7.40}
+            rotation: {pitch: 90.0,yaw: 0.0,roll: -135.0}
+
+      static.prop.stop:
+
+        - transform: #Route reference
+            
+            location: {x: -76.10,y: -30.10,z: 7.40}
             rotation: {pitch: 0.0,yaw: 0.0,roll: 0.0}
             
