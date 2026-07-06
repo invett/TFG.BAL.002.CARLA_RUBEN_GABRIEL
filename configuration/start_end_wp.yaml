@@ -1,0 +1,802 @@
+# Town02
+blocked_street01_Town02:
+  start:
+    location:
+      x: 118.762
+      'y': 236.916
+      z: 0
+    rotation:
+      pitch: 0
+      yaw: -179.965
+      roll: 0
+  end:
+    location:
+      x: 72.097
+      'y': 306.538
+      z: 0
+    rotation:
+      pitch: 0
+      yaw: 0.019
+      roll: 0
+blocked_street02_Town02:
+  start:
+    location:
+      x: 45.852
+      'y': 215.556
+      z: 0
+    rotation:
+      pitch: 0
+      yaw: -90.005
+      roll: 0
+  end:
+    location:
+      x: 174.378
+      'y': 105.425
+      z: 0
+    rotation:
+      pitch: 0
+      yaw: 179.961
+      roll: 0
+multiple_blocked_street01_Town02:
+  start:
+    location:
+      x: 173.204
+      'y': 105.426
+      z: 0
+    rotation:
+      pitch: 0
+      yaw: 179.961
+      roll: 0
+  end:
+    location:
+      x: 45.858
+      'y': 286.429
+      z: 0
+    rotation:
+      pitch: 0
+      yaw: -90.005
+      roll: 0
+multiple_blocked_street02_Town02:
+  start:
+    location:
+      x: 101.867
+      'y': 240.905
+      z: 0
+    rotation:
+      pitch: 360
+      yaw: 0.035
+      roll: 0
+  end:
+    location:
+      x: 193.693
+      'y': 219.939
+      z: 0
+    rotation:
+      pitch: 0
+      yaw: -90.013
+      roll: 0
+simple_blocked_street03_town02:
+  start:
+    location:
+      x: 92.199
+      'y': 191.595
+      z: 0
+    rotation:
+      pitch: 0
+      yaw: 0.026
+      roll: 0
+  end:
+    location:
+      x: 189.686
+      'y': 271.558
+      z: 0
+    rotation:
+      pitch: 360
+      yaw: 90.039
+      roll: 0
+simple_blocked_street04_town02:
+  start:
+    location:
+      x: -7.459
+      'y': 167.024
+      z: 0
+    rotation:
+      pitch: 360
+      yaw: 89.987
+      roll: 0
+  end:
+    location:
+      x: 68.755
+      'y': 240.885
+      z: 0
+    rotation:
+      pitch: 360
+      yaw: 0.035
+      roll: 0
+double_roadblock_Town02:
+  start:
+    location:
+      x: 47.679
+      'y': 105.395
+      z: 0
+    rotation:
+      pitch: 0
+      yaw: 179.793
+      roll: 0
+  end:
+    location:
+      x: 41.856
+      'y': 261.034
+      z: 0
+    rotation:
+      pitch: 360
+      yaw: 89.995
+      roll: 0
+simple_blocked_street05_town02:
+  start:
+    location:
+      x: 167.672
+      'y': 187.629
+      z: 0
+    rotation:
+      pitch: 360
+      yaw: 180.026
+      roll: 0
+  end:
+    location:
+      x: 18.115
+      'y': 187.561
+      z: 0
+    rotation:
+      pitch: 360
+      yaw: 180.026
+      roll: 0
+# Town03
+simple_blocked_street01_town03:
+  start:
+    location:
+      x: 163.635
+      'y': -197.4
+      z: 0
+    rotation:
+      pitch: 360
+      yaw: 0
+      roll: 0
+  end:
+    location:
+      x: 154.474
+      'y': -160.744
+      z: 4.069
+    rotation:
+      pitch: 346.068
+      yaw: 270.996
+      roll: 0
+poor_condition_uphill_street_Town03:
+  start:
+    location:
+      x: 26.08
+      'y': -193.30
+      z: 0.36
+    rotation:
+      pitch: 360
+      yaw: 1.44
+      roll: 0
+  end:
+    location:
+      x: 80.80
+      'y': -111.70
+      z: 4.069
+    rotation:
+      pitch: 0
+      yaw: 92.024
+      roll: 0
+multiple_blocked_street01_Town03:
+  start:
+    location:
+      x: 130.541
+      'y': 58.991
+      z: 0
+    rotation:
+      pitch: 0
+      yaw: 179.853
+      roll: 0
+  end:
+    location:
+      x: -145.521
+      'y': 24.62
+      z: 0
+    rotation:
+      pitch: 360
+      yaw: 270.03
+      roll: 0
+double_roadblock_Town03:
+  start:
+    location:
+      x: -17.404
+      'y': 169.28
+      z: 0
+    rotation:
+      pitch: 0
+      yaw: 161.006
+      roll: 0
+  end:
+    location:
+      x: 124.469
+      'y': 59.007
+      z: 0
+    rotation:
+      pitch: 0
+      yaw: 179.853
+      roll: 0
+multiple_blocked_streets03_Town03:
+  start:
+    location:
+      x: 114.794
+      'y': -6.766
+      z: 0.112
+    rotation:
+      pitch: 0.155
+      yaw: 179.144
+      roll: 0
+  end:
+    location:
+      x: 129.42
+      'y': 62.494
+      z: 0
+    rotation:
+      pitch: 360
+      yaw: 359.853
+      roll: 0
+double_roadblock02_Town03:
+  start:
+    location:
+      x: 56.598
+      'y': -7.636
+      z: 0.035
+    rotation:
+      pitch: -0.155
+      yaw: -179.144
+      roll: 0
+  end:
+    location:
+      x: -36.899
+      'y': -194.93
+      z: 0
+    rotation:
+      pitch: 360
+      yaw: 1.44
+      roll: 0
+multiple_blocked_streets04_Town03:
+  start:
+    location:
+      x: -25.748
+      'y': -194.724
+      z: 0.035
+    rotation:
+      pitch: 0
+      yaw: 0.0
+      roll: 0
+  end:
+    location:
+      x: 229.272
+      'y': 96.466
+      z: 0.266
+    rotation:
+      pitch: 0.845
+      yaw: 91.393
+      roll: 0
+multiple_blocked_street02_Town03:
+  start:
+    location:
+      x: 167.093
+      'y': 94.209
+      z: 0.25
+    rotation:
+      pitch: 360.363
+      yaw: 93.818
+      roll: 0
+  end:
+    location:
+      x: -84.43
+      'y': 177.895
+      z: 0
+    rotation:
+      pitch: 360
+      yaw: 427.236
+      roll: 0
+double_roadblock03_Town03:
+  start:
+    location:
+      x: 142.23
+      'y': 58.59
+      z: 0.063
+    rotation:
+      pitch: 0.155
+      yaw: -179.144
+      roll: 0
+  end:
+    location:
+      x: -32.193
+      'y': 131.765
+      z: -0.122
+    rotation:
+      pitch: 360.397
+      yaw: 270.154
+      roll: 0
+multiple_blocked_street03_Town03:
+  start:
+    location:
+      x: 32.908
+      'y': -137.567
+      z: 1.407
+    rotation:
+      pitch: -8.687
+      yaw: -178.773
+      roll: 0
+  end:
+    location:
+      x: 159.372
+      'y': 120.113
+      z: 0.421
+    rotation:
+      pitch: -0.293
+      yaw: -46.626
+      roll: 0
+multiple_blocked_street04_Town03:
+  start:
+    location:
+      x: 199.545
+      'y': 58.814
+      z: 0
+    rotation:
+      pitch: 0
+      yaw: 179.853
+      roll: 0
+  end:
+    location:
+      x: -42.552
+      'y': 131.432
+      z: 0
+    rotation:
+      pitch: 360
+      yaw: 178.703
+      roll: 0
+multiple_blocked_street05_Town03:
+  start:
+    location:
+      x: -148.993
+      'y': -29.124
+      z: 0
+    rotation:
+      pitch: -0.02
+      yaw: 90.03
+      roll: 0
+  end:
+    location:
+      x: -104.731
+      'y': 136.34
+      z: 0
+    rotation:
+      pitch: 0
+      yaw: -1.297
+      roll: 0
+# Town04
+simple_roadblock_Town04:
+  start:
+    location:
+      x: 314.97
+      'y': -189.87
+      z: 0
+    rotation:
+      pitch: 0
+      yaw: -100.0
+      roll: 0
+  end:
+    location:
+      x: 199.67
+      'y': -216.721
+      z: 0.02
+    rotation:
+      pitch: 0
+      yaw: 91.314
+      roll: 0
+simple_roadblock02_Town04:
+  start:
+    location:
+      x: 315.73
+      'y': -227.75
+      z: 0.004
+    rotation:
+      pitch: 360
+      yaw: -103.964
+      roll: 0
+  end:
+    location:
+      x: 310.805
+      'y': -148.59
+      z: 0.004
+    rotation:
+      pitch: 0
+      yaw: 90.511
+      roll: 0
+double_roadblock_Town04:
+  start:
+    location:
+      x: 95.253
+      'y': 41.052
+      z: 10.818
+    rotation:
+      pitch: 359.246
+      yaw: 20.086
+      roll: 0
+  end:
+    location:
+      x: 282.724
+      'y': -118.427
+      z: 0.02
+    rotation:
+      pitch: 0
+      yaw: 0.924
+      roll: 0
+double_roadblock02_Town04:
+  start:
+    location:
+      x: 30.865
+      'y': -170.481
+      z: 0.196
+    rotation:
+      pitch: 0
+      yaw: 0.326
+      roll: 0
+  end:
+    location:
+      x: 380.764
+      'y': -41.083
+      z: 0.266
+    rotation:
+      pitch: 0
+      yaw: 90.439
+      roll: 0
+multiple_blocked_streets_Town04:
+  start:
+    location:
+      x: 25.943
+      'y': -276.346
+      z: 0
+    rotation:
+      pitch: 0
+      yaw: -67.12
+      roll: 0
+  end:
+    location:
+      x: 229.672
+      'y': -172.849
+      z: 0.196
+    rotation:
+      pitch: 360
+      yaw: 180.326
+      roll: 0
+multiple_blocked_streets02_Town04:
+  start:
+    location:
+      x: -13.15
+      'y': 19.146
+      z: 0
+    rotation:
+      pitch: 360
+      yaw: -270.289
+      roll: 0
+  end:
+    location:
+      x: 218.737
+      'y': -364.175
+      z: 0
+    rotation:
+      pitch: 0
+      yaw: 10.43
+      roll: 0
+multiple_blocked_streets03_Town04:
+  start:
+    location:
+      x: 131.557
+      'y': -189.236
+      z: 0.039
+    rotation:
+      pitch: 360
+      yaw: -87.09
+      roll: 0
+  end:
+    location:
+      x: 258.615
+      'y': -230.728
+      z: 0.02
+    rotation:
+      pitch: 0
+      yaw: -89.823
+      roll: 0
+double_roadblock03_Town04:
+  start:
+    location:
+      x: 204.849
+      'y': -289.879
+      z: 0.02
+    rotation:
+      pitch: 360
+      yaw: 271.314
+      roll: 0
+  end:
+    location:
+      x: 255.077
+      'y': -218.379
+      z: 0.02
+    rotation:
+      pitch: 360
+      yaw: 90.177
+      roll: 0
+multiple_blocked_streets04_Town04:
+  start:
+    location:
+      x: 315.058
+      'y': -232.98
+      z: 0.004
+    rotation:
+      pitch: 360
+      yaw: 270.511
+      roll: 0
+  end:
+    location:
+      x: 255.26
+      'y': -277.481
+      z: 0.02
+    rotation:
+      pitch: 360
+      yaw: 90.177
+      roll: 0
+multiple_blocked_streets05_Town04:
+  start:
+    location:
+      x: 258.656
+      'y': -155.532
+      z: 0.196
+    rotation:
+      pitch: 0
+      yaw: -90.326
+      roll: 0
+  end:
+    location:
+      x: 281.413
+      'y': -246.158
+      z: 0.004
+    rotation:
+      pitch: 0
+      yaw: 0.59
+      roll: 0
+multiple_blocked_streets06_Town04:
+  start:
+    location:
+      x: 134.292
+      'y': -213.415
+      z: 0.039
+    rotation:
+      pitch: 0
+      yaw: -243.805
+      roll: 0
+  end:
+    location:
+      x: 254.86
+      'y': -147.9
+      z: 0.02
+    rotation:
+      pitch: 360
+      yaw: 90.177
+      roll: 0
+# Town10
+double_roadblock_Town10:
+  start:
+    location:
+      x: 61.382
+      'y': 69.827
+      z: 0
+    rotation:
+      pitch: 360
+      yaw: 0.073
+      roll: 0
+  end:
+    location:
+      x: -8.417
+      'y': 28.161
+      z: 0
+    rotation:
+      pitch: 0
+      yaw: 0.159
+      roll: 0
+double_roadblock02_Town10:
+  start:
+    location:
+      x: -2.616
+      'y': 66.245
+      z: 0
+    rotation:
+      pitch: 0
+      yaw: -179.927
+      roll: 0
+  end:
+    location:
+      x: -114.339
+      'y': 53.322
+      z: 0
+    rotation:
+      pitch: 360
+      yaw: 90.642
+      roll: 0
+multiple_blocked_streets_Town10:
+  start:
+    location:
+      x: 109.544
+      'y': 47.216
+      z: 0
+    rotation:
+      pitch: 0
+      yaw: -89.609
+      roll: 0
+  end:
+    location:
+      x: -70.113
+      'y': 128.987
+      z: 0
+    rotation:
+      pitch: 0
+      yaw: -167.728
+      roll: 0
+double_roadblock03_Town10:
+  start:
+    location:
+      x: 70.804
+      'y': 28.381
+      z: 0
+    rotation:
+      pitch: 0
+      yaw: 0.159
+      roll: 0
+  end:
+    location:
+      x: -20.254
+      'y': 13.128
+      z: 0
+    rotation:
+      pitch: 360
+      yaw: 180.159
+      roll: 0
+double_roadblock04_Town10:
+  start:
+    location:
+      x: 71.012
+      'y': 28.682
+      z: 0
+    rotation:
+      pitch: 360
+      yaw: 0.403
+      roll: 0
+  end:
+    location:
+      x: -20.034
+      'y': 14.90
+      z: 0
+    rotation:
+      pitch: 0
+      yaw: 0.159
+      roll: 0
+simple_blocked_street_town10:
+  start:
+    location:
+      x: -98.076
+      'y': -58.051
+      z: 0
+    rotation:
+      pitch: 360
+      yaw: 137.152
+      roll: 0
+  end:
+    location:
+      x: 109.947
+      'y': -19.689
+      z: 0
+    rotation:
+      pitch: 0
+      yaw: 270.391
+      roll: 0
+simple_blocked_street02_town10:
+  start:
+    location:
+      x: 58.183
+      'y': 130.677
+      z: 0
+    rotation:
+      pitch: 360
+      yaw: 180.32
+      roll: 0
+  end:
+    location:
+      x: 77.138
+      'y': 69.847
+      z: 0
+    rotation:
+      pitch: 360
+      yaw: 0.073
+      roll: 0
+simple_blocked_street03_town10:
+  start:
+    location:
+      x: 81.048
+      'y': 66.352
+      z: 0
+    rotation:
+      pitch: 0
+      yaw: -179.927
+      roll: 0
+  end:
+    location:
+      x: -81.222
+      'y': 12.958
+      z: 0
+    rotation:
+      pitch: 360
+      yaw: 180.159
+      roll: 0
+simple_blocked_street04_town10:
+  start:
+    location:
+      x: -78.004
+      'y': 27.967
+      z: 0
+    rotation:
+      pitch: 0
+      yaw: 0.159
+      roll: 0
+  end:
+    location:
+      x: 67.276
+      'y': 66.847
+      z: 0
+    rotation:
+      pitch: 360
+      yaw: 0.073
+      roll: 0
+double_roadblock05_Town10:
+  start:
+    location:
+      x: -6.913
+      'y': 69.74
+      z: 0
+    rotation:
+      pitch: 360
+      yaw: 0.073
+      roll: 0
+  end:
+    location:
+      x: 109.49
+      'y': 55.137
+      z: 0
+    rotation:
+      pitch: 0
+      yaw: -449.609
+      roll: 0
+double_roadblock06_Town10:
+  start:
+    location:
+      x: 28.971
+      'y': 13.264
+      z: 0
+    rotation:
+      pitch: 360
+      yaw: -179.841
+      roll: 0
+  end:
+    location:
+      x: -113.969
+      'y': 86.369
+      z: 0
+    rotation:
+      pitch: 360
+      yaw: 442.681
+      roll: 0
